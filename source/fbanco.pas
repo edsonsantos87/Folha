@@ -29,17 +29,16 @@ uses
   {$IFDEF CLX}
   QGraphics, QControls, QForms, QDialogs, QStdCtrls, QAKLabel,
   {$ENDIF}
-  {$IFDEF VCL}
   Graphics, Controls, Forms, Dialogs, StdCtrls, ExtCtrls, DBCtrls, Mask, Grids,
   DBGrids, Buttons, ComCtrls, AKLabel,
-  {$ENDIF}
+
   {$IFDEF FL_MIDASLIB}MidasLib,{$ENDIF}
   fbase, DB, DBClient, Variants, cxGraphics, cxControls, cxLookAndFeels,
   cxLookAndFeelPainters, cxStyles, dxSkinsCore, dxSkinsDefaultPainters,
   dxSkinscxPCPainter, cxCustomData, cxFilter, cxData, cxDataStorage,
   cxEdit, cxDBData, cxGridCustomTableView, cxGridTableView,
   cxGridDBTableView, cxGridLevel, cxClasses, cxGridCustomView, cxGrid,
-  cxLocalization, cxNavigator, RxAnimate, RxGIFCtrl;
+  cxLocalization, cxNavigator;
 
 type
   TFrmBanco = class(TFrmBase)

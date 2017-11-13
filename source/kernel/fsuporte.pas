@@ -59,7 +59,7 @@ uses
   {$IFDEF FL_D6}Variants, Types,{$ENDIF} {Implementados a partir do Delphi 6}
   {$IFDEF FL_MIDASLIB}MidasLib,{$ENDIF}
   Classes, SysUtils,
-  Math, DB, DBClient, TypInfo, Sockets,
+  Math, DB, DBClient, TypInfo, Sockets, System.Variants,
 
   //DevExpres
   cxGraphics, cxControls, cxLookAndFeels,

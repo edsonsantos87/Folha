@@ -719,12 +719,12 @@ end;
 destructor TFPrint.Destroy;
 begin
 
-  {$IFDEF FL_D7}
-  FormReport.Free;
-  {$ELSE}
-  Report.Free;
-  Filter.Free;
-  {$ENDIF}
+//  {$IFDEF FL_D7}
+//  FormReport.Free;
+//  {$ELSE}
+//  Report.Free;
+//  Filter.Free;
+//  {$ENDIF}
 
   dsDados.Free;
 

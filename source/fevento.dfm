@@ -7,34 +7,49 @@ inherited FrmEvento: TFrmEvento
   TextHeight = 14
   inherited PnlEscuro: TPanel
     Height = 577
+    ExplicitHeight = 577
     inherited lblPrograma: TPanel
       Caption = 'Eventos'
     end
     inherited pnlPesquisa: TPanel
       Top = 477
+      ExplicitTop = 477
     end
   end
   inherited PnlClaro: TPanel
     Width = 672
     Height = 577
+    ExplicitWidth = 672
+    ExplicitHeight = 577
     inherited PnlControle: TPanel
       Top = 537
       Width = 672
+      ExplicitTop = 537
+      ExplicitWidth = 672
     end
     inherited PnlTitulo: TPanel
       Width = 672
+      ExplicitWidth = 672
+      inherited RxTitulo: TLabel
+        Height = 30
+      end
       inherited PnlFechar: TPanel
         Left = 543
+        ExplicitLeft = 543
       end
     end
     inherited PageControl1: TPageControl
       Width = 672
       Height = 507
+      ExplicitWidth = 672
+      ExplicitHeight = 507
       inherited TabListagem: TTabSheet
         Caption = 'Lista de Eventos'
         inherited grdCadastro: TcxGrid
           Width = 664
           Height = 475
+          ExplicitWidth = 664
+          ExplicitHeight = 475
           inherited tv: TcxGridDBTableView
             object tvIDEVENTO: TcxGridDBColumn
               Caption = 'ID'
@@ -156,6 +171,10 @@ inherited FrmEvento: TFrmEvento
           object TabGeral: TTabSheet
             Caption = 'Geral'
             ImageIndex = 2
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object pnlGeral: TPanel
               Left = 0
               Top = 0
@@ -337,6 +356,10 @@ inherited FrmEvento: TFrmEvento
           object TabFormula: TTabSheet
             Caption = 'F'#243'rmula'
             ImageIndex = 2
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object gpFormula: TGroupBox
               Left = 0
               Top = 0
@@ -475,6 +498,10 @@ inherited FrmEvento: TFrmEvento
           object TabIncidencia: TTabSheet
             Caption = 'Incid'#234'ncias'
             ImageIndex = 1
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object Panel2: TPanel
               Left = 0
               Top = 0
@@ -939,5 +966,8 @@ inherited FrmEvento: TFrmEvento
   end
   inherited dtsPesquisa: TDataSource
     Top = 448
+  end
+  inherited cxStyleRepository1: TcxStyleRepository
+    PixelsPerInch = 96
   end
 end

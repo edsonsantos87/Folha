@@ -46,10 +46,10 @@ uses
 //  {$IFDEF DBX}SqlExpr,{$ENDIF}
 //  {$IFDEF IBX}IBDatabase,{$ENDIF}
 //  {$IFDEF FL_MIDASLIB}MidasLib,{$ENDIF}
-  Mask, Types, DB, DBClient, Variants, ScktComp, DBXpress, uADStanIntf,
+  Mask, Types, DB, DBClient, Variants, ScktComp, uADStanIntf,
   uADStanOption, uADStanError, uADGUIxIntf, uADPhysIntf, uADStanDef,
   uADStanPool, uADStanAsync, uADPhysManager, uADCompClient, uADPhysPG,
-  uADDAptManager, uADGUIxFormsWait, uADCompGUIx;
+  uADDAptManager, uADGUIxFormsWait, uADCompGUIx{, DBExpress};
 
 type
   TFrmFLivre = class(TForm)
@@ -833,7 +833,7 @@ begin
     iEmpresa := StrToIntDef( kGetUsuario( kGetUser(), 'EMPRESA_ID'), 0);
 
     // Força a execução de AtivarEmpresaClick()
-    kSetDeposito('EMPRESA_ID', -1);
+    kSetDeposito('EMPRESA_ID');
 
     for i := 0 to TMenuItem(Sender).Count-1 do
     begin
@@ -868,7 +868,7 @@ begin
   // Muda o codigo da empresa atual
   kSetDeposito( 'EMPRESA_ID', IntToStr(TMenuItem(Sender).Tag));
   // Força a função 'VerificarFolha' a atualizar dados da folha
-  kSetDeposito( 'FOLHA_ID', -1);
+  kSetDeposito( 'FOLHA_ID');
 
   // Ler informacoes da empresa atual
   kEmpresaLoader;
@@ -924,11 +924,9 @@ begin
   end;
 
   kSetDeposito('FOLHA_ID', sFolha);
-  kSetDeposito('FOLHA_GP', iGrupo);
+  kSetDeposito('FOLHA_GP', IntToStr(iGrupo));
   kSetDeposito('FOLHA_TP', sTipo);
-
   kSetUsuario( kGetUser(), 'FOLHA_'+IntToStr(kEmpresaAtiva), sFolha);
-
 end; // VerificarFolha
 
 procedure TFrmFLivre.mniAutomaticoClick(Sender: TObject);

@@ -25,8 +25,7 @@ interface
 
 uses
   {$IFDEF VCL}
-  Windows, Messages, Graphics, Controls, Forms, Dialogs, ComCtrls, StdCtrls,
-  ToolWin, ExtCtrls, DBCtrls, Mask, Buttons,
+  Windows, Messages, Graphics, Forms, Dialogs, ToolWin, Mask,
   {$ENDIF}
   {$IFDEF CLX}
   Qt, QGraphics, QControls, QForms, QDialogs, QComCtrls, QStdCtrls,
@@ -42,8 +41,8 @@ uses
   //Firedac
   uADStanIntf, uADStanOption, uADStanError, uADGUIxIntf, uADPhysIntf,
   uADStanDef, uADStanPool, uADStanAsync, uADPhysManager, uADCompClient,
-  cxStyles, cxLocalization, RxAnimate, RxGIFCtrl, cxClasses, Vcl.ExtCtrls,
-  Vcl.Buttons, Vcl.DBCtrls, Vcl.StdCtrls, Vcl.Controls;
+  cxStyles, cxLocalization, {RxAnimate, RxGIFCtrl,} cxClasses, Vcl.ExtCtrls,
+  Vcl.Buttons, Vcl.DBCtrls, Vcl.StdCtrls, Vcl.Controls, Vcl.ComCtrls;
 
 type
   TFrmBase = class(TForm)
@@ -79,7 +78,7 @@ type
     shpBottom: TShape;
     shpleft: TShape;
     lblAguarde: TLabel;
-    imgAguarde: TRxGIFAnimator;
+    Animate1: TAnimate;
     procedure RxFecharClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure dtsRegistroStateChange(Sender: TObject);

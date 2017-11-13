@@ -85,6 +85,7 @@ var
   cInformado: Currency;
   iCountEvento: Integer;
   fProgress: TFrmProgress;
+  fs : TFormatSettings;
 begin
 
   Result := False;
@@ -115,122 +116,125 @@ begin
   iFuncionario := 0;
   iCountEvento := Length(Eventos)-1;
 
-  try try
+  try
+    fs:= TFormatSettings.Create();
+    try
 
-    lSQL.LoadFromFile(FileName);
-    fProgress.MaxValue := lSQL.Count;
+      lSQL.LoadFromFile(FileName);
+      fProgress.MaxValue := lSQL.Count;
 
-    for i := 0 to lSQL.Count - 1 do
-    begin
-
-      // Separa as partes de cada linha do arquivo
-      sLine := Trim(lSQL.Strings[i]);
-      kBreakApart( sLine, #32, lLine);
-
-      if (lLine.Count < 2) or (lLine.Count > 3) then
-        raise Exception.CreateFmt(
-                'Erro na linha de número %d'+sLineBreak+sLineBreak+
-                'Número insuficiente de campos (dados)'+sLineBreak+sLineBreak+
-                'Conteúdo da linha: '+QuotedStr(sLine), [i+1]);
-
-      if (lLine.Count = 3) then
-      begin
-        iEvento := StrToInt(lLine.Strings[2]);  // Evento informado na linha
-        if (iEvento < 1) then
-          raise Exception.CreateFmt(
-                  'Erro na linha de número %d'+sLineBreak+sLineBreak+
-                  'Código inválido para evento: %d'+sLineBreak+sLineBreak+
-                  'Conteúdo da linha: '+QuotedStr(sLine), [i+1,iEvento]);
-      end else
-        iEvento := -1;   // Considera a lista de eventos informados
-
-      if (iFuncionario <> StrToInt(lLine.Strings[0])) then
+      for i := 0 to lSQL.Count - 1 do
       begin
 
-        if Combinar and (iCountEvento <> Length(Eventos)-1) then
+        // Separa as partes de cada linha do arquivo
+        sLine := Trim(lSQL.Strings[i]);
+        kBreakApart( sLine, #32, lLine);
+
+        if (lLine.Count < 2) or (lLine.Count > 3) then
           raise Exception.CreateFmt(
                   'Erro na linha de número %d'+sLineBreak+sLineBreak+
-                  'O número de lançamentos para o funcionário anterior é diferente do número de eventos especificados'+sLineBreak+sLineBreak+
+                  'Número insuficiente de campos (dados)'+sLineBreak+sLineBreak+
                   'Conteúdo da linha: '+QuotedStr(sLine), [i+1]);
 
-        iFuncionario := StrToInt(lLine.Strings[0]);
+        if (lLine.Count = 3) then
+        begin
+          iEvento := StrToInt(lLine.Strings[2]);  // Evento informado na linha
+          if (iEvento < 1) then
+            raise Exception.CreateFmt(
+                    'Erro na linha de número %d'+sLineBreak+sLineBreak+
+                    'Código inválido para evento: %d'+sLineBreak+sLineBreak+
+                    'Conteúdo da linha: '+QuotedStr(sLine), [i+1,iEvento]);
+        end else
+          iEvento := -1;   // Considera a lista de eventos informados
 
-        if (lEmployee.IndexOf(IntToStr(iFuncionario)) > -1) then
+        if (iFuncionario <> StrToInt(lLine.Strings[0])) then
+        begin
+
+          if Combinar and (iCountEvento <> Length(Eventos)-1) then
+            raise Exception.CreateFmt(
+                    'Erro na linha de número %d'+sLineBreak+sLineBreak+
+                    'O número de lançamentos para o funcionário anterior é diferente do número de eventos especificados'+sLineBreak+sLineBreak+
+                    'Conteúdo da linha: '+QuotedStr(sLine), [i+1]);
+
+          iFuncionario := StrToInt(lLine.Strings[0]);
+
+          if (lEmployee.IndexOf(IntToStr(iFuncionario)) > -1) then
+            raise Exception.CreateFmt(
+                    'Erro na linha de número %d'+sLineBreak+sLineBreak+
+                    'O arquivo não está ordenado.'+sLineBreak+
+                    'O funcionário já foi processado.'+sLineBreak+sLineBreak+
+                    'Conteúdo da linha: '+QuotedStr(sLine), [i+1]);
+
+          lEmployee.Add(IntToStr(iFuncionario));
+          iCountEvento := 0;  // Considera o primeiro evento da lista
+
+        end else
+          Inc(iCountEvento);  // Considera o proximo evento da lista
+
+        if ((iCountEvento+1) > Length(Eventos)) then
           raise Exception.CreateFmt(
                   'Erro na linha de número %d'+sLineBreak+sLineBreak+
-                  'O arquivo não está ordenado.'+sLineBreak+
-                  'O funcionário já foi processado.'+sLineBreak+sLineBreak+
+                  'O número de lançamentos para o funcionário excedeu o número de eventos especificados'+sLineBreak+sLineBreak+
                   'Conteúdo da linha: '+QuotedStr(sLine), [i+1]);
 
-        lEmployee.Add(IntToStr(iFuncionario));
-        iCountEvento := 0;  // Considera o primeiro evento da lista
+        sInformado := lLine.Strings[1];
 
-      end else
-        Inc(iCountEvento);  // Considera o proximo evento da lista
+        if Pos(':', sInformado) > 0 then
+          sInformado := kSubstitui(sInformado,':', fs.DecimalSeparator);
 
-      if ((iCountEvento+1) > Length(Eventos)) then
-        raise Exception.CreateFmt(
-                'Erro na linha de número %d'+sLineBreak+sLineBreak+
-                'O número de lançamentos para o funcionário excedeu o número de eventos especificados'+sLineBreak+sLineBreak+
-                'Conteúdo da linha: '+QuotedStr(sLine), [i+1]);
+        if (fs.DecimalSeparator <> ',') and (Pos(',', sInformado) > 0) then
+          sInformado := kSubstitui(sInformado, ',', fs.DecimalSeparator);
 
-      sInformado := lLine.Strings[1];
+        if (fs.DecimalSeparator <> '.') and (Pos('.', sInformado) > 0) then
+          sInformado := kSubstitui(sInformado, '.', fs.DecimalSeparator);
 
-      if Pos(':', sInformado) > 0 then
-        sInformado := kSubstitui(sInformado,':', DecimalSeparator);
+        cInformado := StrToCurr(sInformado);
 
-      if (DecimalSeparator <> ',') and (Pos(',', sInformado) > 0) then
-        sInformado := kSubstitui(sInformado, ',', DecimalSeparator);
+        if (iEvento = -1) then
+          iEvento := Eventos[iCountEvento];
 
-      if (DecimalSeparator <> '.') and (Pos('.', sInformado) > 0) then
-        sInformado := kSubstitui(sInformado, '.', DecimalSeparator);
+        if (iEvento <> 0) then
+        begin
 
-      cInformado := StrToCurr(sInformado);
+          if not kExecSQL( sDelete,
+                    [Empresa, Folha, iFuncionario, iEvento], False) then
+            raise Exception.Create(kGetErrorLastSQL);
 
-      if (iEvento = -1) then
-        iEvento := Eventos[iCountEvento];
+          iID := kMaxCodigo( 'F_INFORMADO', 'ID', Empresa,
+                             'IDFOLHA = '+IntToStr(Folha)+
+                             ' AND IDFUNCIONARIO = '+IntToStr(iFuncionario), False);
 
-      if (iEvento <> 0) then
-      begin
+          if not kExecSQL( sInsert,
+                    [Empresa, Folha, iFuncionario,iID,iEvento,cInformado], False) then
+            raise Exception.Create(kGetErrorLastSQL);
 
-        if not kExecSQL( sDelete,
-                  [Empresa, Folha, iFuncionario, iEvento], False) then
-          raise Exception.Create(kGetErrorLastSQL);
+        end;
 
-        iID := kMaxCodigo( 'F_INFORMADO', 'ID', Empresa,
-                           'IDFOLHA = '+IntToStr(Folha)+
-                           ' AND IDFUNCIONARIO = '+IntToStr(iFuncionario), False);
-
-        if not kExecSQL( sInsert,
-                  [Empresa, Folha, iFuncionario,iID,iEvento,cInformado], False) then
-          raise Exception.Create(kGetErrorLastSQL);
+        fProgress.AddProgress(1);
+        fProgress.Mensagem := 'Importando linha '+
+                              IntToStr(i+1)+' de '+IntToStr(fProgress.MaxValue);
 
       end;
 
-      fProgress.AddProgress(1);
-      fProgress.Mensagem := 'Importando linha '+
-                            IntToStr(i+1)+' de '+IntToStr(fProgress.MaxValue);
+      if Combinar and (iCountEvento <> Length(Eventos)-1) then
+        raise Exception.Create(
+                'Erro na última linha do arquivo'+sLineBreak+sLineBreak+
+                'O número de lançamentos para o funcionário é diferente do número de eventos especificados'+sLineBreak+sLineBreak+
+                'Conteúdo da linha: '+QuotedStr(sLine));
 
+      Result := True;
+
+    except
+      on E:Exception do
+      begin
+        if kInTransaction() then
+          kRollbackTransaction();
+        fProgress.Visible := False;
+        kErro(E.Message);
+      end;
     end;
-
-    if Combinar and (iCountEvento <> Length(Eventos)-1) then
-      raise Exception.Create(
-              'Erro na última linha do arquivo'+sLineBreak+sLineBreak+
-              'O número de lançamentos para o funcionário é diferente do número de eventos especificados'+sLineBreak+sLineBreak+
-              'Conteúdo da linha: '+QuotedStr(sLine));
-
-    Result := True;
-
-  except
-    on E:Exception do
-    begin
-      if kInTransaction() then
-        kRollbackTransaction();
-      fProgress.Visible := False;
-      kErro(E.Message);
-    end;
-  end;
   finally
+    FreeAndNil( fs );
     if kInTransaction() then
       kCommitTransaction();
     lLine.Free;

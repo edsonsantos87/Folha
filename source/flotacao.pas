@@ -28,18 +28,16 @@ uses
   QDBCtrls, QMask, QGrids, QDBGrids, QComCtrls, QButtons,
 //  {$IFDEF AK_LABEL}QAKLabel,{$ENDIF}
   {$ENDIF}
-  {$IFDEF VCL}
   Windows, Messages, Graphics, Controls, Forms, Dialogs, ExtCtrls, StdCtrls,
   DBCtrls, Mask, Grids, DBGrids, ComCtrls, Buttons,
-//  {$IFDEF AK_LABEL}AKLabel,{$ENDIF}
-  {$ENDIF}
+  AKLabel,
   {$IFDEF FL_MIDASLIB}MidasLib,{$ENDIF}
   fbase, fdialogo, DB, DBClient, cxGraphics, cxControls, cxLookAndFeels,
   cxLookAndFeelPainters, cxStyles, dxSkinsCore, dxSkinsDefaultPainters,
   dxSkinscxPCPainter, cxCustomData, cxFilter, cxData, cxDataStorage,
   cxEdit, cxDBData, cxGridCustomTableView, cxGridTableView,
   cxGridDBTableView, cxLocalization, cxGridLevel, cxClasses,
-  cxGridCustomView, cxGrid, RxAnimate, RxGIFCtrl;
+  cxGridCustomView, cxGrid, cxNavigator;
 
 type
   TFrmLotacao = class(TFrmDialogo)

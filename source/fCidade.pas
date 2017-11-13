@@ -13,8 +13,8 @@ uses
   cxFilter, cxData, cxDataStorage, cxEdit, cxDBData, cxGridCustomTableView,
   cxGridTableView, cxGridDBTableView, cxGridLevel, cxClasses,
   cxGridCustomView, cxGrid, cxContainer, cxTextEdit, cxMaskEdit,
-  cxDropDownEdit, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox,
-  RxAnimate, RxGIFCtrl;
+  cxDropDownEdit, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox, cxNavigator,
+  Vcl.ComCtrls;
 
 type
   TFrmCidade = class(TFrmDialogo)

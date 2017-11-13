@@ -9,14 +9,13 @@ inherited FrmCadastro: TFrmCadastro
   OnClose = FormClose
   OnResize = FormResize
   OnShow = FormShow
-  ExplicitWidth = 320
-  ExplicitHeight = 240
   PixelsPerInch = 96
   TextHeight = 14
   inherited PnlEscuro: TPanel
     Width = 162
     Height = 548
     ExplicitWidth = 162
+    ExplicitHeight = 548
     inherited lblSeparador: TLabel
       Width = 162
       ExplicitWidth = 162
@@ -29,6 +28,7 @@ inherited FrmCadastro: TFrmCadastro
       Top = 448
       Width = 162
       Visible = True
+      ExplicitTop = 448
       ExplicitWidth = 162
       inherited lblPesquisa: TLabel
         Width = 162
@@ -46,9 +46,11 @@ inherited FrmCadastro: TFrmCadastro
     Height = 548
     ExplicitLeft = 162
     ExplicitWidth = 560
+    ExplicitHeight = 548
     inherited PnlControle: TPanel
       Top = 508
       Width = 560
+      ExplicitTop = 508
       ExplicitWidth = 560
       inherited btnExcluir: TSpeedButton
         Hint = 'Exclui Registro - [Ctrl+Delete]'

@@ -7,8 +7,6 @@ inherited FrmDialogo: TFrmDialogo
   ClientHeight = 402
   ClientWidth = 594
   Visible = False
-  ExplicitWidth = 320
-  ExplicitHeight = 240
   PixelsPerInch = 96
   TextHeight = 14
   inherited PnlEscuro: TPanel
@@ -60,6 +58,7 @@ inherited FrmDialogo: TFrmDialogo
       ExplicitWidth = 593
       inherited RxTitulo: TLabel
         Width = 101
+        Height = 30
         Caption = ' '#183' Listagem'
         ExplicitWidth = 101
       end

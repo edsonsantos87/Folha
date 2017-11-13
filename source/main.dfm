@@ -1,7 +1,6 @@
 object FrmFLivre: TFrmFLivre
   Left = 146
   Top = 151
-  AutoScroll = False
   Caption = 'FolhaLivre - Folha de Pagamento Livre'
   ClientHeight = 406
   ClientWidth = 792

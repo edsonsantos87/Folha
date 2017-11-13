@@ -7,25 +7,31 @@ inherited FrmFuncionario: TFrmFuncionario
   TextHeight = 14
   inherited PnlEscuro: TPanel
     Height = 534
+    ExplicitHeight = 534
     inherited lblPrograma: TPanel
       Caption = 'Funcion'#225'rio'
     end
     inherited pnlPesquisa: TPanel
       Top = 434
+      ExplicitTop = 434
     end
   end
   inherited PnlClaro: TPanel
     Height = 534
+    ExplicitHeight = 534
     inherited PnlControle: TPanel
       Top = 494
+      ExplicitTop = 494
     end
     inherited PageControl1: TPageControl
       Height = 464
       ActivePage = TabDetalhe
+      ExplicitHeight = 464
       inherited TabListagem: TTabSheet
         Caption = 'Listagem de Funcion'#225'rios'
         inherited grdCadastro: TcxGrid
           Height = 432
+          ExplicitHeight = 432
         end
       end
       inherited TabDetalhe: TTabSheet
@@ -111,6 +117,10 @@ inherited FrmFuncionario: TFrmFuncionario
           object TabPessoal: TTabSheet
             Caption = '&Dados Pessoais'
             ImageIndex = -1
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object pnlNascimento: TPanel
               Left = 0
               Top = 108
@@ -522,6 +532,10 @@ inherited FrmFuncionario: TFrmFuncionario
           object TabFuncional: TTabSheet
             Caption = 'Dados Funcionais'
             ImageIndex = 3
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object Bevel7: TBevel
               Left = 0
               Top = 181
@@ -872,6 +886,10 @@ inherited FrmFuncionario: TFrmFuncionario
           object TabAdicional: TTabSheet
             Caption = 'Dados Adicionais'
             ImageIndex = 5
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object Bevel9: TBevel
               Left = 0
               Top = 99
@@ -1127,6 +1145,10 @@ inherited FrmFuncionario: TFrmFuncionario
             ImageIndex = -1
             ParentShowHint = False
             ShowHint = True
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object pnlEndereco1: TPanel
               Left = 0
               Top = 0
@@ -1473,6 +1495,10 @@ inherited FrmFuncionario: TFrmFuncionario
           object TabRAIS: TTabSheet
             Caption = 'RAIS'
             ImageIndex = 4
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object Panel2: TPanel
               Left = 0
               Top = 0
@@ -1738,6 +1764,10 @@ inherited FrmFuncionario: TFrmFuncionario
           object TabObservacao: TTabSheet
             Caption = 'Observa'#231#227'o'
             ImageIndex = 2
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object dbObservacao: TDBMemo
               Left = 0
               Top = 0
@@ -1752,51 +1782,6 @@ inherited FrmFuncionario: TFrmFuncionario
           end
         end
       end
-    end
-  end
-  inherited pnlProgress: TPanel
-    inherited imgAguarde: TRxGIFAnimator
-      Width = 195
-      Image.Data = {
-        C5040000474946383961C3000D00B30D007F7E7DACABA7ACABA67777771B50A6
-        10459C62A0FC3E6FBD5D86C990BDFCBEBEBE686868EFEFEFFFFFFFFFFFFF0000
-        0021FF0B4E45545343415045322E30030100000021F9040500000D002C000000
-        00C3000D000004B7D005B0AABD38EBCDBBFF60288E64590281230C4AEBBE702C
-        CF746DDF78AEEF7CEF2B0301A0C5281A8FC8A472C96C3A9FD0A8744AAD565B14
-        4591C0ED36BEE0B0784C2E9BCFE8B47ACD6EBBDFE7A2A2A26D20EE78B87ECFEF
-        FBFF805F0C730B75078788818A8B8C8D8E6283740C0D0695968F98999A9B6491
-        859309A1A29CA4A5A67E9E75A2A3A7ADAEAF9D847505B4B5B0B7B8A6914345B9
-        BEBF9B72280356C5C6C7C8C9CACB4E03294226D1D2D3D4D5D6D71C00020E1100
-        21F9040500000D002C0B0003000600070000040F90C889AA3D389BCD93FFA057
-        8C64040021F9040500000D002C120003000600070000040F90C889AA3D389BCD
-        93FFA0578C64040021F9040500000D002C190003000600070000040F90C889AA
-        3D389BCD93FFA0578C64040021F9040500000D002C200003000600070000040F
-        90C889AA3D389BCD93FFA0578C64040021F9040500000D002C27000300060007
-        0000040F90C889AA3D389BCD93FFA0578C64040021F9040500000D002C2E0003
-        000600070000040F90C889AA3D389BCD93FFA0578C64040021F9040500000D00
-        2C350003000600070000040F90C889AA3D389BCD93FFA0578C64040021F90405
-        00000D002C3C0003000600070000040F90C889AA3D389BCD93FFA0578C640400
-        21F9040500000D002C430003000600070000040F90C889AA3D389BCD93FFA057
-        8C64040021F9040500000D002C4A0003000600070000040F90C889AA3D389BCD
-        93FFA0578C64040021F9040500000D002C510003000600070000040F90C889AA
-        3D389BCD93FFA0578C64040021F9040500000D002C580003000600070000040F
-        90C889AA3D389BCD93FFA0578C64040021F9040500000D002C5F000300060007
-        0000040F90C889AA3D389BCD93FFA0578C64040021F9040500000D002C660003
-        000600070000040F90C889AA3D389BCD93FFA0578C64040021F9040500000D00
-        2C6D0003000600070000040F90C889AA3D389BCD93FFA0578C64040021F90405
-        00000D002C740003000600070000040F90C889AA3D389BCD93FFA0578C640400
-        21F9040500000D002C7B0003000600070000040F90C889AA3D389BCD93FFA057
-        8C64040021F9040500000D002C820003000600070000040F90C889AA3D389BCD
-        93FFA0578C64040021F9040500000D002C890003000600070000040F90C889AA
-        3D389BCD93FFA0578C64040021F9040500000D002C900003000600070000040F
-        90C889AA3D389BCD93FFA0578C64040021F9040500000D002C97000300060007
-        0000040F90C889AA3D389BCD93FFA0578C64040021F9040500000D002C9E0003
-        000600070000040F90C889AA3D389BCD93FFA0578C64040021F9040500000D00
-        2CA50003000600070000040F90C889AA3D389BCD93FFA0578C64040021F90405
-        00000D002CAC0003000600070000040F90C889AA3D389BCD93FFA0578C640400
-        21F9040500000D002CB30003000600070000040F90C889AA3D389BCD93FFA057
-        8C64040021F9040500000D002CBA0003000600070000040F90C889AA3D389BCD
-        93FFA0578C6404003B}
     end
   end
   inherited dtsRegistro: TDataSource

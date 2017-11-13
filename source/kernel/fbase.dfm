@@ -33,7 +33,6 @@ object FrmBase: TFrmBase
     Color = clBlack
     Locked = True
     TabOrder = 0
-    ExplicitHeight = 521
     object lblSeparador: TLabel
       Left = 0
       Top = 30
@@ -80,7 +79,6 @@ object FrmBase: TFrmBase
       Visible = False
       OnEnter = pnlPesquisaEnter
       OnExit = pnlPesquisaEnter
-      ExplicitTop = 421
       object lblPesquisa: TLabel
         Left = 0
         Top = 0
@@ -155,12 +153,10 @@ object FrmBase: TFrmBase
     BevelOuter = bvNone
     ParentColor = True
     TabOrder = 1
-    ExplicitWidth = 648
-    ExplicitHeight = 521
     object PnlControle: TPanel
       Left = 0
-      Top = 481
-      Width = 648
+      Top = 469
+      Width = 640
       Height = 40
       Align = alBottom
       BevelOuter = bvNone
@@ -477,7 +473,7 @@ object FrmBase: TFrmBase
     object PnlTitulo: TPanel
       Left = 0
       Top = 0
-      Width = 648
+      Width = 640
       Height = 30
       Align = alTop
       BevelOuter = bvNone
@@ -487,7 +483,7 @@ object FrmBase: TFrmBase
         Left = 0
         Top = 0
         Width = 223
-        Height = 22
+        Height = 30
         Align = alLeft
         Caption = ' '#183' Listagem de Registros'
         Font.Charset = ANSI_CHARSET
@@ -498,9 +494,10 @@ object FrmBase: TFrmBase
         ParentFont = False
         Transparent = True
         Layout = tlCenter
+        ExplicitHeight = 22
       end
       object PnlFechar: TPanel
-        Left = 608
+        Left = 600
         Top = 0
         Width = 40
         Height = 30
@@ -548,22 +545,25 @@ object FrmBase: TFrmBase
       Left = 296
       Top = 3
       Width = 2
-      Height = 43
+      Height = 22
       Align = alRight
+      ExplicitHeight = 43
     end
     object shpBottom: TShape
       Left = 1
-      Top = 46
+      Top = 25
       Width = 297
       Height = 2
       Align = alBottom
+      ExplicitTop = 46
     end
     object shpleft: TShape
       Left = 1
       Top = 3
       Width = 2
-      Height = 43
+      Height = 22
       Align = alLeft
+      ExplicitHeight = 43
     end
     object lblAguarde: TLabel
       Left = 100
@@ -578,6 +578,13 @@ object FrmBase: TFrmBase
       Font.Name = 'Verdana'
       Font.Style = [fsBold]
       ParentFont = False
+    end
+    object Animate1: TAnimate
+      Left = 1
+      Top = 27
+      Width = 297
+      Height = 21
+      Align = alBottom
     end
   end
   object dtsRegistro: TDataSource

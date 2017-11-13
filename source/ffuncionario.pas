@@ -35,18 +35,16 @@ uses
   QControls, QButtons, QForms, QGraphics, QDialogs,
   {$IFDEF AK_LABEL}QAKLabel,{$ENDIF}
   {$ENDIF}
-  {$IFDEF VCL}
-  Windows, Messages, StdCtrls, DBCtrls, Mask, ExtCtrls, Grids, DBGrids, ComCtrls,
-  Controls, Buttons, Forms, Graphics, Dialogs,
-  {$IFDEF AK_LABEL}AKLabel,{$ENDIF}
-  {$ENDIF}
+  Windows, Messages, Grids, DBGrids, Forms, Graphics, Dialogs,
+
   {$IFDEF FL_MIDASLIB}MidasLib,{$ENDIF}
   DB, DBClient, MaskUtils, fcadastro, Math, cxGraphics, cxControls,
   cxLookAndFeels, cxLookAndFeelPainters, cxStyles, dxSkinsCore,
   dxSkinsDefaultPainters, dxSkinscxPCPainter, cxCustomData, cxFilter,
   cxData, cxDataStorage, cxEdit, cxDBData, cxLocalization, cxGridLevel,
   cxClasses, cxGridCustomView, cxGridCustomTableView, cxGridTableView,
-  cxGridDBTableView, cxGrid, cxNavigator, RxAnimate, RxGIFCtrl;
+  cxGridDBTableView, cxGrid, cxNavigator, Vcl.StdCtrls, Vcl.DBCtrls, AKLabel,
+  Vcl.ExtCtrls, Vcl.Mask, Vcl.ComCtrls, Vcl.Buttons, Vcl.Controls;
 
 type
   TFrmFuncionario = class(TFrmCadastro)

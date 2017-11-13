@@ -78,7 +78,7 @@ uses
 //  {$IFDEF FL_MIDASLIB}MidasLib,{$ENDIF}
 //  {$IFDEF FL_D6}Variants,{$ENDIF}
 
-  MidasLib, Variants, Qt, QForms, QControls,
+  MidasLib, Variants, //Qt, QForms, QControls,
   Windows, Forms, Controls,
   IniFiles, DB, DBClient, TypInfo,
 

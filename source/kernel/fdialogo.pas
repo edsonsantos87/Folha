@@ -29,9 +29,9 @@ uses
   QComCtrls, QButtons, {$IFDEF AK_LABEL}QAKLabel,{$ENDIF}
   {$ENDIF}
   {$IFDEF VCL}
-  Windows, Graphics, Controls, Forms, Dialogs,
-  ExtCtrls, StdCtrls, DBCtrls, Mask, Grids, DBGrids,
-  ComCtrls, Buttons, {$IFDEF AK_LABEL}AKLabel,{$ENDIF}
+  Windows, Graphics, Forms, Dialogs,
+  Mask, Grids, DBGrids,
+  AKLabel,
   {$ENDIF}
   {$IFDEF FL_MIDASLIB}MidasLib,{$ENDIF}
   Types, fbase, DB, DBClient,
@@ -41,8 +41,8 @@ uses
   dxSkinsDefaultPainters, dxSkinscxPCPainter, cxCustomData, cxFilter,
   cxData, cxDataStorage, cxEdit, cxDBData, cxGridLevel, cxClasses,
   cxGridCustomView, cxGridCustomTableView, cxGridTableView,
-  cxGridDBTableView, cxGrid, RxAnimate, RxGIFCtrl, cxNavigator, Vcl.ExtCtrls,
-  Vcl.Buttons, Vcl.DBCtrls, Vcl.StdCtrls, Vcl.Controls;
+  cxGridDBTableView, cxGrid, {RxAnimate, RxGIFCtrl,} cxNavigator, Vcl.ExtCtrls,
+  Vcl.Buttons, Vcl.DBCtrls, Vcl.StdCtrls, Vcl.Controls, Vcl.ComCtrls;
 
 type
   TFrmDialogo = class(TFrmBase)

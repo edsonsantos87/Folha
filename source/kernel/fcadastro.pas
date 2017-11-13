@@ -35,8 +35,8 @@ uses
   {$IFDEF AK_LABEL}QAKLabel,{$ENDIF}
   {$ENDIF}
   {$IFDEF VCL}
-  Windows, Messages, Graphics, Controls, Forms, Dialogs, StdCtrls, ExtCtrls,
-  Grids, DBGrids, ComCtrls, Menus, Buttons, Mask, DBCtrls,
+  Windows, Messages, Graphics, Forms, Dialogs,
+  Grids, DBGrids, Menus, Mask,
   {$IFDEF AK_LABEL}AKLabel,{$ENDIF}
   {$ENDIF}
   {$IFDEF VOLGAPAK}VolDBEdit,{$ENDIF}
@@ -49,7 +49,7 @@ uses
   dxSkinsDefaultPainters, dxSkinscxPCPainter, cxCustomData, cxFilter,
   cxData, cxDataStorage, cxEdit, cxDBData, cxGridLevel, cxClasses,
   cxGridCustomView, cxGridCustomTableView, cxGridTableView,
-  cxGridDBTableView, cxGrid, cxLocalization, RxAnimate, RxGIFCtrl,
+  cxGridDBTableView, cxGrid, cxLocalization,
   cxNavigator, Vcl.ComCtrls, Vcl.ExtCtrls, Vcl.Buttons, Vcl.DBCtrls,
   Vcl.StdCtrls, Vcl.Controls;
 

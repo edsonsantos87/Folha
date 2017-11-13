@@ -36,10 +36,8 @@ uses
   Qt, QGraphics, QControls, QForms, QDialogs, QGrids, QDBGrids, QComCtrls, QMask,
   QButtons, QStdCtrls, QExtCtrls, QDBCtrls, {$IFDEF AK_LABEL}QAKLabel,{$ENDIF}
   {$ENDIF}
-  {$IFDEF VCL}
-  Windows, Messages, Graphics, Controls, Forms, Dialogs, Grids, DBGrids, Mask,
-  ComCtrls, Buttons, StdCtrls, ExtCtrls, DBCtrls, {$IFDEF AK_LABEL}AKLabel,{$ENDIF}
-  {$ENDIF}
+
+  Windows, Messages, Graphics, Forms, Dialogs, Grids, DBGrids,
   {$IFDEF SYN_EDIT}
     {$IFDEF CLX}
     QSynHighlighterCAC, QSynEdit, QSynDBEdit, QSynEditExport, QSynExportRTF,
@@ -47,7 +45,7 @@ uses
     {$ENDIF}
     {$IFDEF VCL}
     SynHighlighterCAC, SynEdit, SynDBEdit, SynEditExport, SynExportRTF,
-    SynExportHTML, fcadastro, DB, DBClient,
+    SynExportHTML,
     {$ENDIF}
   {$ENDIF}
   {$IFDEF FL_MIDASLIB}MidasLib,{$ENDIF}
@@ -56,7 +54,9 @@ uses
   dxSkinscxPCPainter, cxCustomData, cxFilter, cxData, cxDataStorage,
   cxEdit, cxDBData, cxImageComboBox, cxGridCustomTableView,
   cxGridTableView, cxGridDBTableView, cxLocalization, cxGridLevel,
-  cxClasses, cxGridCustomView, cxGrid;
+  cxClasses, cxGridCustomView, cxGrid, fcadastro, cxNavigator, Data.DB,
+  Vcl.StdCtrls, Vcl.DBCtrls, AKLabel, Vcl.ExtCtrls, Vcl.Mask, Datasnap.DBClient,
+  Vcl.ComCtrls, Vcl.Buttons, Vcl.Controls;
 
 type
   TFrmEvento = class(TFrmCadastro)

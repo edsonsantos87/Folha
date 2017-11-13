@@ -36,7 +36,7 @@ uses
   dxSkinsCore, dxSkinsDefaultPainters, dxSkinscxPCPainter, cxCustomData,
   cxFilter, cxData, cxDataStorage, cxEdit, cxDBData, cxGridCustomTableView,
   cxGridTableView, cxGridDBTableView, cxGridLevel, cxClasses,
-  cxGridCustomView, cxGrid, RxAnimate, RxGIFCtrl, cxNavigator;
+  cxGridCustomView, cxGrid, cxNavigator, Vcl.ComCtrls;
 
 type
   TFrmGrupoEmpresa = class(TFrmDialogo)
