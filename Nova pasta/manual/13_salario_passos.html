@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>13o. Salário - Passos &mdash; FolhaLivre</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="flivre.css" type="text/css">
+</head>
+<body>
+  <div id="content">
+    <h1 class="heading">Manual do FolhaLivre</h1>
+    <h2 class="subheading">13o. Salário - Passos</h2>
+    
+      <a id="backlink" href="index.html">&laquo; Volta para índice</a>
+      
+        <div class="toc">
+          <h2>Sumário</h2>
+          <ul class="contents">
+          
+            <li><a href="#introdu-o">Introdução</a></li>
+          
+            <li><a href="#tipos-de-folhas">Tipos de Folhas</a></li>
+          
+            <li><a href="#eventos">Eventos</a></li>
+          
+            <li><a href="#sequ-ncia-de-c-lculo">Sequência de Cálculo</a></li>
+          
+            <li><a href="#eventos-padr-es">Eventos Padrões</a></li>
+          
+            <li><a href="#folha-de-pagamento">Folha de Pagamento</a></li>
+          
+          </ul>
+        </div>
+        <br>
+      
+          
+    <!-- -*- mode: rst -*- -->
+<div class="section">
+<h3><a id="introdu-o" name="introdu-o">Introdução</a></h3>
+<p>O FolhaLivre é bastante fléxivel para se adequar às inúmeras políticas de
+pagamentos e cálculo das empresas. Os procedimentos a seguir não tem por
+objetivo serem taxativos, mas orientativos. Os códigos, descrições e
+sequências dos eventos apresentados são apenas sugestivos, pois podem entrar
+em conflitos com os planos de fórmulas e eventos do seu sistema.</p>
+<p>Os procedimentos abaixos são para as folhas de pagamentos referentes a 1a, 2a
+parcelas e quitação do 13o salário processadas separadamente da folha normal.</p>
+</div>
+<div class="section">
+<h3><a id="tipos-de-folhas" name="tipos-de-folhas">Tipos de Folhas</a></h3>
+<ul class="simple">
+<li>Acesse a opção <strong>&lt;Tipos de Folhas&gt;</strong> no menu <strong>&lt;Movimentações&gt;</strong>;</li>
+<li>Cadastre os três tipos de folha de pagamento com seus código e descrição:<ul>
+<li><strong>0 - 13o. SALARIO - 1a. PARCELA</strong>;</li>
+<li><strong>1 - 13o. SALARIO</strong>;</li>
+<li><strong>2 - 13o. SALARIO - QUITAÇÃO</strong>.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section">
+<h3><a id="eventos" name="eventos">Eventos</a></h3>
+<ul class="simple">
+<li>Acesse a opção <strong>&lt;Eventos&gt;</strong> no menu <strong>&lt;Cálculos&gt;</strong>;</li>
+<li>Cadastre um evento para a primeira parcela do décimo terceiro salário com os seguintes dados:<ul>
+<li><strong>Código:</strong> 13 (sugestão)</li>
+<li><strong>Nome:</strong> 13o SALARIO - 1a PARCELA</li>
+<li><strong>Tipo de Evento:</strong> (•) Provento</li>
+<li><strong>Entrada:</strong> (•) Valor</li>
+<li><strong>Cálculo:</strong> (•) Fórmula</li>
+<li><strong>Opções:</strong><ul>
+<li>[x] Exibir em Contra-Cheque</li>
+<li>[x] Exibir em Total de Lotação</li>
+<li>[x] Assumir Valor Informado</li>
+<li>[x] Ativo</li>
+</ul>
+</li>
+<li><strong>Folha Complementar:</strong> (x) Não Complementar</li>
+<li><strong>Fórmula Local:</strong> <a class="reference" href="funcao-gn.html">GN</a> / 2</li>
+<li><strong>Incidências:</strong> [x] FGTS s/ 13o salário</li>
+</ul>
+</li>
+<li>Cadastre um evento para a segunda parcela do décimo terceiro salário com os sequintes dados:<ul>
+<li><strong>Código:</strong> 14 (sugestão)</li>
+<li><strong>Nome:</strong> 13o SALARIO</li>
+<li><strong>Tipo de Evento:</strong> (x) Provento</li>
+<li><strong>Entrada:</strong> (x) Valor</li>
+<li><strong>Cálculo:</strong> (x) Fórmula</li>
+<li><strong>Opções:</strong><ul>
+<li>[x] Exibir em Contra-Cheque</li>
+<li>[x] Exibir em Total de Lotação</li>
+<li>[x] Assumir Valor Informado</li>
+<li>[x] Ativo</li>
+</ul>
+</li>
+<li><strong>Folha Complementar:</strong> (x) Não Complementar</li>
+<li><strong>Fórmula Local:</strong> <a class="reference" href="funcao-gn.html">GN</a></li>
+<li><strong>Incidências:</strong><ul>
+<li>[x] FGTS s/ 13o salário</li>
+<li>[x] INSS s/ 13o salário</li>
+<li>[x] IRRF s/ 13o salário</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Cadastre um evento para a quitação do décimo terceiro salário com os sequintes dados:<ul>
+<li><strong>Código:</strong> 15 (sugestão)</li>
+<li><strong>Nome:</strong> 13o SALARIO - QUITACAO</li>
+<li><strong>Tipo de Evento:</strong> (x) Provento</li>
+<li><strong>Entrada:</strong> (x) Valor</li>
+<li><strong>Cálculo:</strong> (x) Fórmula</li>
+<li><strong>Opções:</strong><ul>
+<li>[x] Exibir em Contra-Cheque</li>
+<li>[x] Exibir em Total de Lotação</li>
+<li>[x] Assumir Valor Informado</li>
+<li>[x] Ativo</li>
+</ul>
+</li>
+<li><strong>Folha Complementar:</strong> (x) Não Complementar</li>
+<li><strong>Fórmula Local:</strong> <a class="reference" href="funcao-gn.html">GN</a> - TT('A','C',14)</li>
+<li><strong>Incidências:</strong><ul>
+<li>[x] FGTS s/ 13o salário</li>
+<li>[x] INSS s/ 13o salário</li>
+<li>[x] IRRF s/ 13o salário</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Cadastre um evento para o desconto (contra-partida) da 1a parcela do 13o salário
+com os sequintes dados:<ul>
+<li><strong>Código:</strong> 513 (sugestão)</li>
+<li><strong>Nome:</strong> Adiantamento 13o Salário</li>
+<li><strong>Tipo de Evento:</strong> (x) Desconto</li>
+<li><strong>Entrada:</strong> (x) Valor</li>
+<li><strong>Cálculo:</strong> (x) Fórmula</li>
+<li><strong>Opções:</strong><ul>
+<li>[x] Exibir em Contra-Cheque</li>
+<li>[x] Exibir em Total de Lotação</li>
+<li>[x] Assumir Valor Informado</li>
+<li>[x] Ativo</li>
+</ul>
+</li>
+<li><strong>Folha Complementar:</strong> (x) Não Complementar</li>
+<li><strong>Fórmula Local:</strong> TT('A','C',13)</li>
+<li><strong>Incidências:</strong> [x] FGTS s/ 13o salário</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section">
+<h3><a id="sequ-ncia-de-c-lculo" name="sequ-ncia-de-c-lculo">Sequência de Cálculo</a></h3>
+<ul class="simple">
+<li>Acesse a opção <strong>&lt;Sequência de Cálculo&gt;</strong> no menu <strong>&lt;Cálculos&gt;</strong>. Escolha
+o grupo de pagamento que você utiliza e adicione os seguintes eventos:<ul>
+<li>13o. Salário 1a. parcela;</li>
+<li>13o. Salário;</li>
+<li>13o. Salario - quitação;</li>
+<li>Adiantamento 13o Salario;</li>
+<li>FGTS s/ 13o salário - Base de Cálculo;</li>
+<li>FGTS s/ 13o salário;</li>
+<li>INSS s/ 13o salário - Base de Cálculo;</li>
+<li>INSS s/ 13o salário;</li>
+<li>IRRF s/ 13o salário - Base de Cálculo;</li>
+<li>IRRF s/ 13o salário.</li>
+</ul>
+</li>
+<li>O evento <strong>ADIANTAMENTO 13 SALARIO</strong> deve ser calculado antes do evento
+<strong>FGTS S/ 13 SALARIO - BASE DE CÁLCULO</strong>, pois o valor daquele evento é
+deduzido da base de cálculo deste.</li>
+</ul>
+</div>
+<div class="section">
+<h3><a id="eventos-padr-es" name="eventos-padr-es">Eventos Padrões</a></h3>
+<p>Este procedimento é necessário para que o FolhaLivre lance automáticamente os
+eventos para os funcionários na referida folha. Veja mais detalhes em
+[Eventos Padrões evento_padrao.html].</p>
+<ul class="simple">
+<li>Acesse a opção <strong>&lt;Eventos Padrões&gt;</strong> no menu <strong>&lt;Cálculos&gt;</strong>;</li>
+<li>Selecione o tipo de folha <tt class="docutils literal"><span class="pre">13</span> <span class="pre">SALARIO</span> <span class="pre">-</span> <span class="pre">1</span> <span class="pre">PARCELA</span></tt> (0).<ul>
+<li>Adicione à lista o evento <tt class="docutils literal"><span class="pre">13</span> <span class="pre">SALARIO</span> <span class="pre">-</span> <span class="pre">1</span> <span class="pre">PARCELA</span></tt> (3);</li>
+<li>Adicione à lista o evento de FGTS s/ 13o salário - Base de Cálculo;</li>
+<li>Adicione à lista os eventos de FGTS s/ 13o salário.</li>
+</ul>
+</li>
+<li>Selecione o tipo de folha <tt class="docutils literal"><span class="pre">13</span> <span class="pre">SALARIO</span> <span class="pre">-</span> <span class="pre">2a</span> <span class="pre">PARCELA</span></tt> (1).<ul>
+<li>Adicione à lista o evento <tt class="docutils literal"><span class="pre">13</span> <span class="pre">SALARIO</span> <span class="pre">-</span> <span class="pre">2</span> <span class="pre">PARCELA</span></tt> (4);</li>
+<li>Adicione à lista o evento <tt class="docutils literal"><span class="pre">DESCONTO</span> <span class="pre">13</span> <span class="pre">SALARIO</span> <span class="pre">-</span> <span class="pre">1</span> <span class="pre">PARCELA</span></tt> (513);</li>
+<li>Adicione à lista o evento de INSS s/ 13o salário - Base de Cálculo;</li>
+<li>Adicione à lista os eventos de INSS s/ 13o salário;</li>
+<li>Adicione à lista o evento de IRRF s/ 13o salário - Base de Cálculo;</li>
+<li>Adicione à lista os eventos de IRRF s/ 13o salário;</li>
+<li>Adicione à lista o evento de FGTS s/ 13o salário - Base de Cálculo;</li>
+<li>Adicione à lista os eventos de FGTS s/ 13o salário.</li>
+</ul>
+</li>
+<li>Selecione o tipo de folha <tt class="docutils literal"><span class="pre">13</span> <span class="pre">SALARIO</span> <span class="pre">-</span> <span class="pre">QUITAÇÃO</span></tt> (2).<ul>
+<li>Adicione à lista o evento <tt class="docutils literal"><span class="pre">13</span> <span class="pre">SALARIO</span> <span class="pre">-</span> <span class="pre">QUITAÇÃO</span></tt> (4);</li>
+<li>Adicione à lista o evento de INSS s/ 13o salário - Base de Cálculo;</li>
+<li>Adicione à lista os eventos de INSS s/ 13o salário;</li>
+<li>Adicione à lista o evento de IRRF s/ 13o salário - Base de Cálculo;</li>
+<li>Adicione à lista os eventos de IRRF s/ 13o salário;</li>
+<li>Adicione à lista o evento de FGTS s/ 13o salário - Base de Cálculo;</li>
+<li>Adicione à lista os eventos de FGTS s/ 13o salário.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section">
+<h3><a id="folha-de-pagamento" name="folha-de-pagamento">Folha de Pagamento</a></h3>
+<p>Neste ponto o FolhaLivre está preparado para realizar os cálculos referente a
+1a e 2a parcelas do 13o salário. Para processar as folhas de pagamento para as
+parcelas você deve ainda seguir os próximos passos como exemplo:</p>
+<ul class="simple">
+<li>Folha de Pagamento para a 1a parcela<ul>
+<li>Acesse a opção <strong>&lt;Folhas de Pagamento&gt;</strong> no menu <strong>&lt;Movimentação&gt;</strong>;</li>
+<li>Cadastre (Novo) uma nova folha de pagamento, com os sequintes dados;<ul>
+<li><strong>Descrição</strong>: 1 PARCELA - 13 SALARIO/2005;</li>
+<li><strong>Tipo</strong>: 0 (13 SALARIO - 1A PARCELA);</li>
+<li><strong>Início</strong>: 01/01/2005 e <strong>Fim</strong>: 30/10/2005;</li>
+<li><strong>Crédito</strong>: 20/11/2005;</li>
+<li><strong>Competência</strong>: 13;</li>
+<li><strong>Grupo</strong>: 1 (GRUPO DE PAGAMENTO PADRÃO).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Folha de Pagamento para a 2a parcela<ul>
+<li>Acesse a opção <strong>&lt;Folhas de Pagamento&gt;</strong> no menu <strong>&lt;Movimentação&gt;</strong>;</li>
+<li>Cadastre (Novo) uma nova folha de pagamento, com os seguintes dados;<ul>
+<li><strong>Descrição</strong>: 2A PARCELA - 13 SALARIO/2005;</li>
+<li><strong>Tipo</strong>: 1 (13 SALARIO - 2A PARCELA);</li>
+<li><strong>Início</strong>: 01/01/2005 e <strong>Fim</strong>: 30/11/2005 ou 31/12/2005;</li>
+<li><strong>Crédito</strong>: 20/12/2005;</li>
+<li><strong>Competência</strong>: 13;</li>
+<li><strong>Grupo</strong>: 1 (GRUPO DE PAGAMENTO PADRÃO).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Folha de Pagamento para a quitação (acerto)<ul>
+<li>Acesse a opção <strong>&lt;Folhas de Pagamento&gt;</strong> no menu <strong>&lt;Movimentação&gt;</strong>;</li>
+<li>Cadastre (Novo) uma nova folha de pagamento, com os seguintes dados;<ul>
+<li><strong>Descrição</strong>: QUITAÇÃO - 13 SALARIO/2005;</li>
+<li><strong>Tipo</strong>: 2 (13 SALARIO - QUITAÇÃO);</li>
+<li><strong>Início</strong>: 01/01/2005 e <strong>Fim</strong>: 31/12/2005;</li>
+<li><strong>Crédito</strong>: 05/01/2006;</li>
+<li><strong>Competência</strong>: 13;</li>
+<li><strong>Grupo</strong>: 1 (GRUPO DE PAGAMENTO PADRÃO).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Ative a folha em <strong>&lt;Ativar Folha de Pagamento&gt;</strong> no menu <strong>&lt;Movimentação&gt;</strong></li>
+<li>Calcule a folha na opção <strong>&lt;Calcular&gt;</strong> no menu <strong>&lt;Cálculos&gt;</strong>.</li>
+</ul>
+</div>
+
+  </div>
+</body>
+<!-- generated on: 2008-02-09 11:01:33
+     file id: 13_salario_passos -->
+</html>

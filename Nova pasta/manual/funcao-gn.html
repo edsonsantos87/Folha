@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Função GN - Gratificação Natalina &mdash; FolhaLivre</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="flivre.css" type="text/css">
+</head>
+<body>
+  <div id="content">
+    <h1 class="heading">Manual do FolhaLivre</h1>
+    <h2 class="subheading">Função GN - Gratificação Natalina</h2>
+    
+      <a id="backlink" href="index.html">&laquo; Volta para índice</a>
+      
+        <div class="toc">
+          <h2>Sumário</h2>
+          <ul class="contents">
+          
+            <li><a href="#introdu-o">Introdução</a></li>
+          
+            <li><a href="#preliminares">Preliminares</a></li>
+          
+            <li><a href="#processamento">Processamento</a></li>
+          
+            <li><a href="#tipo-de-sal-rio-sal-rio-fixo">Tipo de Salário: Salário Fixo</a></li>
+          
+            <li><a href="#tipo-de-sal-rio-sal-rio-vari-vel">Tipo de Salário: Salário Variável</a></li>
+          
+            <li><a href="#tipo-de-sal-rio-produ-o-pe-a-tarefa">Tipo de Salário: Produção/Peça/Tarefa</a></li>
+          
+          </ul>
+        </div>
+        <br>
+      
+          
+    <div class="section">
+<h3><a id="introdu-o" name="introdu-o">Introdução</a></h3>
+<p>O objetivo deste texto é descrever o processo utilizado pela função <strong>GN</strong>
+(Gratificação Natalina) para calcular o valor do décimo terceiro salário. Este
+processo é válido para a 1a. parcela, 2a. parcela e quitação do décimo terceiro salário.</p>
+<p>Alguns procedimentos prévios precisam ser realizados para que a pesquisa sobre
+os eventos que influenciam o 13o. salário resulte em valores corretos:</p>
+<ul class="simple">
+<li>O período da folha referente a 1a. parcela deve ser 01/01/xx a 31/10/xx.
+Sendo xx o ano de pesquisa do 13o salário;</li>
+<li>O período da folha referente a 2a. parcela deve ser 01/01/xx a 30/11/xx ou
+01/01/xx a 31/12/xx. Sendo xx o ano de pesquisa do 13o salário;</li>
+<li>O período da folha referente a quitação deve ser 01/01/xx a 31/12/xx.
+Sendo xx o ano de pesquisa do 13o salário;</li>
+<li>Todos os eventos que incidem sobre o 13o salário devem ter a incidência
+13 (T13) selecionada;</li>
+<li>O <strong>Tipo de Salário</strong> desses eventos deve ser corretamente preenchido, os
+valores possíveis para este campo são:<ul>
+<li>Salário Fixo (SF);</li>
+<li>Salário Variável (SV);</li>
+<li>Produção/Peça (PP);</li>
+<li>Indefinido (I).</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section">
+<h3><a id="preliminares" name="preliminares">Preliminares</a></h3>
+<p>Para facilitar a compreensão sobre o processamento do 13o. salário é
+necessário que entenda-se o significado de algumas funções:</p>
+<ul>
+<li><p class="first"><strong>HT</strong> (Hora Trabalhada)</p>
+<p>É o valor monetário que corresponde à remuneração de 1 (uma) hora de trabalho.</p>
+</li>
+<li><p class="first"><strong>DT</strong> (Dia Trabalhado)</p>
+<p>É o valor monetário que corresponde à remuneração de 1 (um) dia de trabalho.</p>
+</li>
+<li><p class="first"><strong>MT</strong> (Multiplicador)</p>
+<p>É o valor presente no campo <strong>Multiplicador</strong> do cadastro do evento.
+Normalmente, este campo é usado em conjunto com os tipos de cálculo
+<strong>Hora Trabalhada</strong> e <strong>Dia Trabalhado</strong>.</p>
+</li>
+<li><p class="first"><strong>MAA</strong> (Meses de Admissão no Ano)</p>
+<p>É o número de meses entre janeiro e dezembro do ano da folha que o
+funcionário trabalhará se não for demitido no ano.</p>
+<p>Se o funcionário foi admitido em anos anteriores <strong>MAA</strong> sempre será
+12 (doze). Para os funcionários admitidos no ano da folha <strong>MAA</strong> será a
+diferênça entre 12 e o mês de admissão desse funcionário. Se o funcionário
+trabalhou menos de 15 (quinze) dias no mês de sua admissão esse mês não
+será considerado na contagem.</p>
+</li>
+<li><p class="first"><strong>MM</strong> (Meses para Média)</p>
+<p>É o número de meses que será considerado para o cálculo de médias. Esse
+número é calculado do seguinte modo:</p>
+<pre class="literal-block">
+NUMERO_DE_MESES_NO_PERIODO - (12 - MAA)
+</pre>
+</li>
+</ul>
+</div>
+<div class="section">
+<h3><a id="processamento" name="processamento">Processamento</a></h3>
+<ul>
+<li><p class="first">Seleciona todos os eventos que incidem sobre o 13o. salário. Internamente
+o FolhaLivre executa a seguinte consulta SQL:</p>
+<pre class="literal-block">
+SELECT * FROM F_EVENTO WHERE INC_13_X = 1
+</pre>
+</li>
+<li><p class="first">Os eventos encontrados são colocados em uma lista que será percorrida
+item a item. Sobre cada item (evento) desta lista será realizado o cálculo
+de acordo com o <strong>tipo de salário</strong>.</p>
+</li>
+<li><p class="first">A cada evento calculado o resultado será acumulado internamente e o
+processamento passará para o próximo evento.</p>
+</li>
+</ul>
+</div>
+<div class="section">
+<h3><a id="tipo-de-sal-rio-sal-rio-fixo" name="tipo-de-sal-rio-sal-rio-fixo">Tipo de Salário: Salário Fixo</a></h3>
+<ul>
+<li><p class="first">Se o <strong>Tipo de Cálculo</strong> do evento for <strong>&quot;Contra-partida&quot;</strong>, o calculador
+efetuará o seguinte cálculo:</p>
+<pre class="literal-block">
+VALOR_CALCULADO_NO_ULTIMO_MES / 12 * MAA
+</pre>
+</li>
+<li><p class="first">Se o <strong>Tipo de Cálculo</strong> do evento for <strong>&quot;Valor Informado&quot;</strong>, o calculador
+efetuará o seguinte cálculo:</p>
+<pre class="literal-block">
+VALOR_CALCULADO_NO_ULTIMO_MES / 12 * MAA
+</pre>
+</li>
+<li><p class="first">Se o <strong>Tipo de Cálculo</strong> do evento for <strong>&quot;Hora Trabalhada&quot;</strong>, o calculador
+efetuará o seguinte cálculo:</p>
+<pre class="literal-block">
+( VALOR_INFORMADO_NO_ULTIMO_MES * HT * MT ) / 12 * MAA
+</pre>
+</li>
+<li><p class="first">Se o <strong>Tipo de Cálculo</strong> do evento for <strong>&quot;Dia Trabalhado&quot;</strong>, o calculador
+efetuará o seguinte cálculo:</p>
+<pre class="literal-block">
+( VALOR_INFORMADO_NO_ULTIMO_MES * DT * MT ) / 12 * MAA
+</pre>
+</li>
+<li><p class="first">Se o <strong>Tipo de Cálculo</strong> do evento for <strong>&quot;Fórmula&quot;</strong>, o calculador
+efetuará o seguinte cálculo:</p>
+<ol class="arabic simple">
+<li>Considera o <strong>VALOR_INFORMADO_NO_ULTIMO_MES</strong> como <strong>VALOR_INFORMADO (VI)</strong>;</li>
+<li>Processa a fórmula do evento;</li>
+<li>RESULTADO_DA_FORMULA / 12 * MAA.</li>
+</ol>
+</li>
+</ul>
+</div>
+<div class="section">
+<h3><a id="tipo-de-sal-rio-sal-rio-vari-vel" name="tipo-de-sal-rio-sal-rio-vari-vel">Tipo de Salário: Salário Variável</a></h3>
+<ul>
+<li><p class="first">Se o <strong>Tipo de Cálculo</strong> do evento for <strong>&quot;Contra-Partida&quot;</strong>, o calculador
+efetuará o seguinte cálculo:</p>
+<pre class="literal-block">
+( TOTAL_VALOR_CALCULADO_NO_PERIODO / MM ) / 12 * MAA
+</pre>
+</li>
+<li><p class="first">Se o <strong>Tipo de Cálculo</strong> do evento for <strong>&quot;Valor Informado&quot;</strong>, o calculador
+efetuará o seguinte cálculo:</p>
+<pre class="literal-block">
+( TOTAL_VALOR_CALCULADO_NO_PERIODO / MM ) / 12 * MAA
+</pre>
+</li>
+<li><p class="first">Se o <strong>Tipo de Cálculo</strong> do evento for <strong>&quot;Hora Trabalhada&quot;</strong>, o calculador
+efetuará o seguinte cálculo:</p>
+<pre class="literal-block">
+(( TOTAL_VALOR_INFORMADO_NO_PERIODO / MM) / 12 * MAA ) * HT * MT
+</pre>
+</li>
+<li><p class="first">Se o <strong>Tipo de Cálculo</strong> do evento for <strong>&quot;Dia Trabalhado&quot;</strong>, o calculador
+efetuará o seguinte cálculo:</p>
+<pre class="literal-block">
+(( TOTAL_VALOR_INFORMADO_NO_PERIODO / MM) / 12 * MAA ) * DT * MT
+</pre>
+</li>
+<li><p class="first">Se o <strong>Tipo de Cálculo</strong> do evento for <strong>&quot;Fórmula&quot;</strong>, o calculador
+efetuará o seguinte cálculo:</p>
+<ol class="arabic">
+<li><p class="first">Considera como <strong>VALOR INFORMADO (VI)</strong> a expressão:</p>
+<pre class="literal-block">
+(TOTAL_VALOR_INFORMADO_NO_PERIODO / MM ) / 12 * MAA;
+</pre>
+</li>
+<li><p class="first">Processa a fórmula do evento;</p>
+</li>
+<li><p class="first">Assume o retorno da fórmula com resultado do cálculo.</p>
+</li>
+</ol>
+</li>
+</ul>
+</div>
+<div class="section">
+<h3><a id="tipo-de-sal-rio-produ-o-pe-a-tarefa" name="tipo-de-sal-rio-produ-o-pe-a-tarefa">Tipo de Salário: Produção/Peça/Tarefa</a></h3>
+<ul>
+<li><p class="first">Se o <strong>Tipo de Cálculo</strong> do evento for <strong>&quot;Contra-Partida&quot;</strong>, o calculador
+efetuará o seguinte cálculo:</p>
+<pre class="literal-block">
+( TOTAL_VALOR_CALCULADO_NO_PERIODO / MM ) / 12 * MAA
+</pre>
+</li>
+<li><p class="first">Se o <strong>Tipo de Cálculo</strong> do evento for <strong>&quot;Valor Informado&quot;</strong>, o calculador
+efetuará o seguinte cálculo:</p>
+<pre class="literal-block">
+( TOTAL_VALOR_CALCULADO_NO_PERIODO / MM ) / 12 * MAA
+</pre>
+</li>
+<li><p class="first">Se o <strong>Tipo de Cálculo</strong> do evento for <strong>&quot;Hora Trabalhada&quot;</strong>, o calculador
+efetuará o seguinte cálculo:</p>
+<pre class="literal-block">
+( ( TOTAL_VALOR_INFORMADO_NO_PERIODO / MM ) / 12 * MAA ) * HT * MT
+</pre>
+</li>
+<li><p class="first">Se o <strong>Tipo de Cálculo</strong> do evento for <strong>&quot;Dia Trabalhado&quot;</strong>, o calculador
+efetuará o seguinte cálculo:</p>
+<pre class="literal-block">
+( ( TOTAL_VALOR_INFORMADO_NO_PERIODO / MM ) / 12 * MAA ) * DT * MT
+</pre>
+</li>
+<li><p class="first">Se o <strong>Tipo de Cálculo</strong> do evento for <strong>&quot;Fórmula&quot;</strong>, o calculador
+efetuará o seguinte cálculo:</p>
+<ol class="arabic">
+<li><p class="first">Considera como <strong>VALOR INFORMADO (VI)</strong> o resultado da expressão:</p>
+<pre class="literal-block">
+( ( TOTAL_VALOR_INFORMADO_NO_PERIODO / MM ) / 12 * MAA )
+</pre>
+</li>
+<li><p class="first">Processa a fórmula do evento;</p>
+</li>
+<li><p class="first">Assume o retorno da fórmula como resultado.</p>
+</li>
+</ol>
+</li>
+</ul>
+</div>
+
+  </div>
+</body>
+<!-- generated on: 2008-02-09 11:01:39.281000
+     file id: funcao-gn -->
+</html>

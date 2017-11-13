@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Eventos &mdash; FolhaLivre</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="flivre.css" type="text/css">
+</head>
+<body>
+  <div id="content">
+    <h1 class="heading">Manual do FolhaLivre</h1>
+    <h2 class="subheading">Eventos</h2>
+    
+      <a id="backlink" href="index.html">&laquo; Volta para índice</a>
+      
+        <div class="toc">
+          <h2>Sumário</h2>
+          <ul class="contents">
+          
+            <li><a href="#defini-o">Definição</a></li>
+          
+            <li><a href="#objetivo">Objetivo</a></li>
+          
+            <li><a href="#cadastro">Cadastro</a></li>
+          
+          </ul>
+        </div>
+        <br>
+      
+          
+    <div class="section">
+<h3><a id="defini-o" name="defini-o">Definição</a></h3>
+<p>O evento é uma entidade global e está disponível para todas as empresas. Serve
+para guardar os valores a serem pagos, descontados ou acumulados na folha de
+pagamento dos funcionários.</p>
+</div>
+<div class="section">
+<h3><a id="objetivo" name="objetivo">Objetivo</a></h3>
+<p>Na realidade, toda a infra-estrutura que o FolhaLivre fornece por meio dos
+diversos cadastros, interfaces e configurações é para permitir que os eventos
+serão calculados corretamente e guardados para o funcionário dentro de uma
+folha de pagamento.</p>
+<p>O cadastro de eventos é uma parte muito importante do FolhaLivre, por isso, a
+manuntenção dos eventos deve ser realizada com cuidado e critério. A qualidade
+e velocidade de seus cálculos dependem da qualidade do seu cadastro de eventos.</p>
+</div>
+<div class="section">
+<h3><a id="cadastro" name="cadastro">Cadastro</a></h3>
+<p>O evento possui as sequintes informações:</p>
+<ul>
+<li><p class="first"><strong>Código</strong> - É um número inteiro que o identifica como único para todas as empresas
+cadastradas no sistema.</p>
+</li>
+<li><p class="first"><strong>Nome</strong> - É um título alfanumérico que serve para descreve-lo brevemente.</p>
+<p>Exemplos: Salário-Família, Hora Extra 50%, Vale Transportes.</p>
+</li>
+<li><p class="first"><strong>Tipo do Evento</strong> - Indica como o evento se comporta em relação ao líquido do
+funcionário. Os tipos são:</p>
+<ul class="simple">
+<li><strong>Provento (P):</strong> Indica rendimento, soma-se ao líquido;</li>
+<li><strong>Desconto (D):</strong> Indica deduções, subtrai-se do líquido;</li>
+<li><strong>Base (B):</strong> Armazena valor que poderá servir como base para o cálculo de outros eventos ou
+apenas para informação. A base não altera o líquido.</li>
+</ul>
+</li>
+<li><p class="first"><strong>Modo de Entrada</strong> - Indica a maneira como o evento seja informado para a folha.
+Os modos de entrada são:</p>
+<ul class="simple">
+<li><strong>Hora (H):</strong> A entrada será informada em horas;</li>
+<li><strong>Dia (D):</strong> A entrada será informada em dias;</li>
+<li><strong>Valor (V):</strong> A entrada será informada será um número monetário.</li>
+</ul>
+</li>
+<li><p class="first"><strong>Tipo de Cálculo</strong> - Indica como o cálculo será processado. Os tipos de cálculos são:</p>
+<ul>
+<li><p class="first"><strong>Contra-Partida (P)</strong></p>
+<p>O calculador efetuará a somatória dos valores calculados para o evento
+especificado em <strong>Contra-Partida</strong> das folhas incluídas como contra-partida
+para folha em cálculo. Na realidade, o calculador internamente executa a
+função <strong>CP()</strong>. Para obter mais detalhes veja
+<a class="reference" href="contra_partida.html">Folhas de Contra-Partida</a>.</p>
+</li>
+<li><p class="first"><strong>Fórmula (F)</strong></p>
+<p>O calculador avaliará a expressão matemática referenciada em <strong>Fórmula Padrão</strong> ou
+na ausência desta avaliará <strong>Fórmula Local</strong>.</p>
+</li>
+<li><p class="first"><strong>Hora Trabalhada (H)</strong></p>
+<p>O calculador efetuará o produto de <strong>valor informado</strong> x <strong>valor da hora trabalhada</strong> x <strong>multiplicador</strong>.</p>
+</li>
+<li><p class="first"><strong>Dia Trabalhado (D)</strong></p>
+<p>O calculador efetuará a operação <strong>valor informado</strong> x <strong>valor do dia trabalhado</strong> x <strong>multiplicador</strong>.</p>
+</li>
+<li><p class="first"><strong>Valor Informado (V)</strong></p>
+<p>O calculador resgatará o valor informado nas entradas do sistema como
+resultado para o evento.</p>
+</li>
+</ul>
+</li>
+<li><p class="first"><strong>Tipo de Salário</strong></p>
+<ul class="simple">
+<li><strong>Fixo</strong></li>
+<li><strong>Variável</strong></li>
+<li><strong>Produção</strong></li>
+<li><strong>Indefinido</strong></li>
+</ul>
+</li>
+<li><p class="first"><strong>Valor Mínimo</strong></p>
+<p>Valor mínimo que o evento poderá assumir. Se durante o processamento o valor
+calculado for menor que o <strong>mínimo</strong> será assumido o valor 0,00 (zero).</p>
+<p>Nas fórmulas o <strong>Valor Mínimo</strong> poderá ser usado através das constantes
+<strong>MIN</strong> ou <strong>MINIMO</strong>.</p>
+</li>
+<li><p class="first"><strong>Valor Máximo</strong></p>
+<p>Valor Máximo que o evento poderá assumir. Se durante o processamento o valor
+calculado for maior que o <strong>máximo</strong> será assumido o valor máximo.</p>
+<p>Nas fórmulas o <strong>Valor Máximo</strong> poderá ser usado através das constantes
+<strong>MAX</strong> ou <strong>MAXIMO</strong>.</p>
+</li>
+<li><p class="first"><strong>Multiplicador</strong></p>
+<p>É um número decimal que será usado no cálculo do evento caso o
+&quot;Tipo de Cálculo&quot; seja &quot;Hora Trabalhada&quot; ou &quot;Dia Trabalhado&quot;.</p>
+<p>Exemplo:</p>
+<p>Suponhamos que no evento &quot;Hora Extra 50%&quot; tenha:</p>
+<ul class="simple">
+<li><strong>Modo de Entrada</strong> igual a &quot;Hora&quot;;</li>
+<li><strong>Tipo de Cálculo</strong> igual a &quot;Hora Trabalhada&quot;;</li>
+<li><strong>Multiplicador</strong> igual a 1,5.</li>
+</ul>
+<p>E o funcionário tenha:</p>
+<ul class="simple">
+<li>Um salário mensal de R$ 484,00;</li>
+<li>Carga horária de 220 horas mensais.</li>
+<li>E seja informado que o funcionário realizou 30 horas extras.</li>
+</ul>
+<p>Então teremos:</p>
+<ul class="simple">
+<li><strong>SN</strong> representará seu salario mensal e <strong>CH</strong> sua carga horária mensal;</li>
+<li><strong>MT</strong> representará o multiplicador do evento;</li>
+<li><strong>VI</strong> representará as horas informadas em <strong>Eventos Informados</strong>;</li>
+<li>O cálculo será efetuado pela avaliação da sequinte fórmula: <cite>VI*(SN/CH)*MT</cite>;</li>
+<li>Cálculo real: <cite>30 * (484.0/220) * 1.5</cite> -&gt; <cite>30 * 2.2 * 1.5</cite> -&gt; <cite>99.0</cite>;</li>
+<li>Resultado: R$ 99,00 (Noventa e nove reais).</li>
+</ul>
+<p>Nas fórmulas o <strong>Multiplicador</strong> poderá ser usado através da constante <strong>MT</strong>.</p>
+</li>
+<li><p class="first"><strong>Contra-Partida</strong></p>
+<p>Código do evento que será totalizado das folhas de contra-partida da folha
+em cálculo caso o &quot;Tipo de Cálculo&quot; seja &quot;Contra-Partida&quot;. Para mais
+detalhes veja <a class="reference" href="contra_partida.html">Folhas de Contra-Partida</a>.</p>
+</li>
+<li><p class="first"><strong>Exibir em Totais de Lotações</strong></p>
+<p>Se esta opção estiver selecioada o evento
+será exibido no relatório <strong>Total de Lotações</strong>.</p>
+</li>
+<li><p class="first"><strong>Exibir em Contra-Cheque</strong></p>
+<p>O evento só será exibido no contra-cheque do funcionário se esta opção estiver
+marcada. De preferência todos os proventos e descontos devem ter esta opção marcada.</p>
+</li>
+<li><p class="first"><strong>Assumir Valor Informado</strong></p>
+<p>Indica que se houver algum valor informado (Eventos Informados, Eventos
+Automáticos, Eventos Programados, Eventos Padrões) para o evento, o
+valor informado nesta entrada será assumido como resultado para o evento.</p>
+</li>
+<li><p class="first"><strong>Proporcional</strong></p>
+<p>O calculador considerará os atrasos e as faltas e deduzirá
+proporcionalmente aos dias trabalhados.</p>
+</li>
+<li><p class="first"><strong>Fórmula Padrão</strong></p>
+<p>Código da fórmula que será avaliada durante o cálculo
+do evento caso o <strong>Tipo de Cálculo</strong> seja <em>&quot;Fórmula&quot;</em>.</p>
+</li>
+<li><p class="first"><strong>Fórmula Local</strong></p>
+<p>Texto que será avaliado como fórmula durante o cálculo do
+evento caso o <strong>Tipo de Cálculo</strong> seja &quot;Fórmula&quot; e a <strong>Fórmula Padrão</strong> seja
+0 (zero).</p>
+</li>
+<li><p class="first"><strong>Ativo</strong></p>
+<p>Indica se o evento será considerado no processamento. Se esta opção estiver
+desmarcada, o evento não será processado mesmo que esteja na sequência de cálculo.</p>
+</li>
+<li><p class="first"><strong>Incidências</strong> (01 a 20)</p>
+<p>Indica em quais totalizações o evento incide (soma ou subtrai):</p>
+<ul class="simple">
+<li>Os proventos somam-se aos totalizadores;</li>
+<li>Os descontos substrai-se dos totalizadores;</li>
+<li>As bases não incidem nos totalizadores.</li>
+</ul>
+<p>Os valores dos totalizadores poderão serem acessados nas fórmulas através da
+expressão <strong>T?</strong>, onde <strong>?</strong> é o número do totalizador (1 a 20). Para mais
+detalhes consulte <a class="reference" href="total_incidencia.html">Totais de Incidência</a>.</p>
+</li>
+</ul>
+</div>
+
+  </div>
+</body>
+<!-- generated on: 2008-02-09 11:01:37.296000
+     file id: evento -->
+</html>

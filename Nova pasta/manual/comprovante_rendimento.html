@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Comprovante de Rendimentos &mdash; FolhaLivre</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="flivre.css" type="text/css">
+</head>
+<body>
+  <div id="content">
+    <h1 class="heading">Manual do FolhaLivre</h1>
+    <h2 class="subheading">Comprovante de Rendimentos</h2>
+    
+      <a id="backlink" href="index.html">&laquo; Volta para índice</a>
+      
+        <div class="toc">
+          <h2>Sumário</h2>
+          <ul class="contents">
+          
+            <li><a href="#introdu-o">Introdução</a></li>
+          
+            <li><a href="#o-comprovante-e-o-folhalivre">O Comprovante e o FolhaLivre</a></li>
+          
+            <li><a href="#configurando-o-comprovante">Configurando o Comprovante</a></li>
+          
+            <li><a href="#processando-o-comprovante">Processando o Comprovante</a></li>
+          
+            <li><a href="#perguntas-frequentes">Perguntas Frequentes</a></li>
+          
+          </ul>
+        </div>
+        <br>
+      
+          
+    <div class="section">
+<h3><a id="introdu-o" name="introdu-o">Introdução</a></h3>
+<p>O comprovante de rendimento é regulamentado pela Receita Federal através da
+<a class="reference" href="in1202000.html">Instrução Normativa nº 120</a>, de 28 de dezembro de 2000.</p>
+<p>A fonte pagadora, pessoa física ou jurídica, deverá fornecer à pessoa física
+beneficiária, até o último dia útil do mês de fevereiro do ano subseqüente
+àquele a que se referirem os rendimentos, o comprovante de rendimentos, em uma
+via, com indicação da natureza e do montante do pagamento, das deduções e do
+imposto retido, conforme modelo oficial.</p>
+<p>No caso de retenção na fonte e não-fornecimento do comprovante, o contribuinte
+deve comunicar o fato à unidade local da Receita Federal de sua jurisdição,
+para as medidas legais cabíveis.</p>
+<p>Ocorrendo inexatidão nas informações, tais como salários que não foram pagos
+nem creditados no ano-calendário ou rendimentos tributáveis e isentos
+computados em conjunto, o interessado deve solicitar à fonte pagadora outro
+comprovante preenchido corretamente.</p>
+</div>
+<div class="section">
+<h3><a id="o-comprovante-e-o-folhalivre" name="o-comprovante-e-o-folhalivre">O Comprovante e o FolhaLivre</a></h3>
+<p>O <strong>comprovante</strong> foi implementado no FolhaLivre a partir da versão 1.5.
+Portanto, para processá-lo você precisará da versão 1.5 ou superior.</p>
+<p>Uma das qualidades do FolhaLivre é a flexibilidade, assim sendo, é possível
+criar eventos, elaborar fórmulas, estabelecer sequências de cálculos, realizar
+lançamentos automáticos individual, em grupo ou por período, etc.</p>
+<p>Essa flexibidade permite que cada empresa possua seu próprio sistema de cálculo
+(eventos, incidências, fórmulas, sequências e lançamentos). Como consequência
+disso, o FolhaLivre permite que você configure o <strong>comprovante</strong> para se
+adequar o seu sistema de cálculo.</p>
+</div>
+<div class="section">
+<h3><a id="configurando-o-comprovante" name="configurando-o-comprovante">Configurando o Comprovante</a></h3>
+<p>São necessárias duas etapas para preparar o <strong>comprovante</strong>:</p>
+<ol class="arabic">
+<li><p class="first">Definir os eventos e os totalizadores</p>
+<p>Para cadastrar os totalizadores utilize a opção <strong>&gt;Cadastro&gt;Totalizadores</strong>. O
+sistema já vem com alguns totalizadores cadastrados.</p>
+<div class="figure">
+<img alt="images\totalizador-lista.png" src="images\totalizador-lista.png" />
+</div>
+<p>Se o valor a ser fornecido numa linha do <strong>comprovante</strong> envolver mais de
+um evento, você deverá criar um totalizador para processar esse valor, e
+informá-lo na próxima etapa.</p>
+<p>A criação do totalizador é opcional para os valores do <strong>comprovante</strong> que
+envolver apenas um evento.</p>
+</li>
+<li><p class="first">Configurar o <strong>comprovante</strong></p>
+<p>Escolha a opção <strong>&gt;Configurações&gt;Comprovante de Rendimentos</strong> para entrar na
+<strong>&quot;Configuração do Comprovante de Rendimentos&quot;</strong>.</p>
+<div class="figure">
+<img alt="images\cr-config.png" src="images\cr-config.png" />
+</div>
+<p>Os valores expressos no <strong>comprovante</strong> estão divididos em grupos que
+variam de 3 (três) a 6 (seis). Os cabeçalhos dos grupos aparecem na cor
+vermelha e têm o campo <em>subgrupo</em> igual a 0 (zero). As linhas que
+representam os valores aparecem na cor preta e deverão ter campo <em>evento</em> ou
+o campo <em>totalizador</em> preenchido.</p>
+<p>O sistema já vem com um modelo de <strong>comprovante</strong> pré-configurado,
+modifique-o conforme a sua necessidade.</p>
+</li>
+</ol>
+</div>
+<div class="section">
+<h3><a id="processando-o-comprovante" name="processando-o-comprovante">Processando o Comprovante</a></h3>
+<p>Depois de configurado o <strong>comprovante</strong> você já poderá processá-lo. Escolha a
+opção <strong>&gt;Relatório&gt;Comprovante de Rendimentos</strong>.</p>
+<p>No diálogo <strong>&lt;Impressão de Comprovante de Rendimentos&gt;</strong> informe o
+ano-calendário desejado e, sem for o caso, aplique os filtros para selecionar
+um grupo de funcionário.</p>
+<div class="figure">
+<img alt="images\cr-dialogo.png" src="images\cr-dialogo.png" />
+</div>
+<p>A opção <strong>[Gravar PDF]</strong> irá gravar o <strong>comprovante</strong> de cada funcionário
+selecionado em um arquivo PDF. O FolhaLivre amarzenará esses arquivos na pasta
+<strong>cr&lt;ano&gt;</strong>. Por exemplo, se o ano-caledário informado for 2007, então a pasta
+se chamará <strong>cr2007</strong>. Se a pasta não existir o FolhaLivre a criará.</p>
+<p>Os nomes dos arquivos PDF armazenados terão o seguinte padrão:
+<strong>&lt;ano&gt;-&lt;cpf&gt;-&lt;primeiro nome&gt;.pdf</strong>.</p>
+<p><strong>Importante:</strong> Não esqueça que antes de armazenar o primeiro arquivo PDF o
+FolhaLivre removerá da pasta todos dos arquivos PDF existentes e uma vez
+excluídos, não será possível recuperá-los. Portanto, para a segurança das
+informações, realize regularmente cópias de segurança dos seus dados.</p>
+<p>A opção <strong>[Imprimir]</strong> apresentar o diálogo <strong>&lt;Imprimir&gt;</strong> no qual você
+escolherá a impressora e fornecerá alguns dados da impressão.</p>
+<div class="figure">
+<img alt="images\print.png" src="images\print.png" />
+</div>
+<p>Pressione <strong>[Imprimir]</strong> para enviar os comprovantes selecionados para a
+impressora escolhida ou pressione <strong>[Cancelar]</strong> para desistir da impressão.</p>
+<p>A opção <strong>[Visualizar]</strong> permite que você veja em tela os comprovantes
+selecionados.</p>
+<div class="figure">
+<img alt="images\preview.png" src="images\preview.png" />
+</div>
+<p>Também é possível realizar a impressão ou armazenar os <strong>comprovantes</strong>
+em arquivo PDF.</p>
+</div>
+<div class="section">
+<h3><a id="perguntas-frequentes" name="perguntas-frequentes">Perguntas Frequentes</a></h3>
+<p>Com o objetivo de contribuir para um melhor aproveitamento dos recursos do
+módulo <strong>comprovante</strong> foram selecionadas algumas questões que abordam assuntos
+que provavelmente causarão dúvidas no usuário iniciante.</p>
+<p>Então, siga para as <a class="reference" href="comprovante_rendimento_faq.html">Perguntas mais frequentes</a>
+sobre <strong>Comprovante de Rendimentos</strong>.</p>
+</div>
+
+  </div>
+</body>
+<!-- generated on: 2008-02-09 11:01:36.156000
+     file id: comprovante_rendimento -->
+</html>

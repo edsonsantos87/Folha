@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Manual de Instalação &mdash; FolhaLivre</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="flivre.css" type="text/css">
+</head>
+<body>
+  <div id="content">
+    <h1 class="heading">Manual do FolhaLivre</h1>
+    <h2 class="subheading">Manual de Instalação</h2>
+    
+      <a id="backlink" href="index.html">&laquo; Volta para índice</a>
+      
+        <div class="toc">
+          <h2>Sumário</h2>
+          <ul class="contents">
+          
+            <li><a href="#instala-o-do-sistema-gerenciador-de-banco-de-dados-interbase-ou-firebird">Instalação do sistema gerenciador de banco de dados Interbase ou Firebird</a></li>
+          
+            <li><a href="#instala-o-do-bin-rio-e-da-base-de-dados">Instalação do binário e da base de dados</a></li>
+          
+            <li><a href="#instala-o-dos-c-digos-fontes">Instalação dos códigos-fontes</a></li>
+          
+            <li><a href="#bibliotecas">Bibliotecas</a></li>
+          
+          </ul>
+        </div>
+        <br>
+      
+          
+    <!-- -*- mode: rst -*- -->
+<p>Os arquivos do FolhaLivre referentes aos binários, base de dados e código-fonte
+estão armazenados na área de download do Projeto <a class="reference" href="http://sourceforge.net/projects/folha-livre/">FolhaLivre</a> no <a class="reference" href="https://sourceforge.net/">SourceForge.net</a>.
+Estes arquivos possuem um sufixo no formato x.y, onde x.y é o número da versão
+estável. De preferência, sempre escolha a versão mais recente destes arquivos.</p>
+<p>Os outros arquivos aqui mencionados estão armazenados na área de arquivos do
+grupo de discussão <a class="reference" href="http://sourceforge.net/projects/folha-livre/">FolhaLivre</a> em suas respectivas pastas. Lembramos que para
+ter acesso a área de arquivos do grupo é obrigatório que você esteja logado no
+<a class="reference" href="http://br.groups.yahoo.com/">Yahoo!Grupos</a>. Esclarecemos que essa
+obrigatoriedade não faz parte da política do Grupo FolhaLivre e sim do Yahoo!Grupos.</p>
+<div class="section">
+<h3><a id="instala-o-do-sistema-gerenciador-de-banco-de-dados-interbase-ou-firebird" name="instala-o-do-sistema-gerenciador-de-banco-de-dados-interbase-ou-firebird">Instalação do sistema gerenciador de banco de dados Interbase ou Firebird</a></h3>
+<ul class="simple">
+<li>Faça o download do Firebird 1.5 (o FolhaLivre ainda não é compatível com a versão 2)
+em <a class="reference" href="http://www.firebirdsql.org/">http://www.firebirdsql.org/</a> para a plataforma win32. Opcionalmente o
+Firebird 1.5 pode ser baixado da área de arquivos do grupo FolhaLivre (pasta SGDB);</li>
+<li>Execute o programa de instalação do Firebird baixado e instale-o completamente, escolhendo
+a opção <strong>&quot;Full installation of Super Server e Development Tools&quot;</strong> para o
+servidor (computador onde ficará a base de dados);</li>
+<li>Para os computadores que serão os clientes, execute o programa de instalação do Firebird e
+escolha a opção <strong>&quot;Minimun client install - no server, no tools&quot;</strong>;</li>
+<li>O Firebird precisa está em execução na máquina <tt class="docutils literal"><span class="pre">servidor</span></tt> para que o FolhaLivre funcione adequadamente.</li>
+</ul>
+</div>
+<div class="section">
+<h3><a id="instala-o-do-bin-rio-e-da-base-de-dados" name="instala-o-do-bin-rio-e-da-base-de-dados">Instalação do binário e da base de dados</a></h3>
+<ul>
+<li><p class="first">Para o máquina servidor</p>
+<ol class="arabic">
+<li><p class="first">Faça o download do arquivo <tt class="docutils literal"><span class="pre">flivre-binario-x.y.zip</span></tt>. Descompacte-o
+(extrair) o arquivo baixado para pasta <tt class="docutils literal"><span class="pre">c:\flivre\</span></tt> ou para outra pasta
+de sua preferência. Esta pasta conterá os sequintes arquivos:</p>
+<pre class="literal-block">
+flivre.exe - Binário (executável);
+splashscreen - Imagem de apresentação em formato bitmap;
+licence-gpl.txt - Contrato da Licença GNU-GPL;
+flivre.ini - Configuração;
+update.txt - Histórico das modificações;
+alguns arquivos jpeg - Papéis de parede.
+</pre>
+</li>
+<li><p class="first">Faça o download do arquivo <tt class="docutils literal"><span class="pre">flivre-data-x.y.zip</span></tt>. Descompacte-o
+(extrair) para a mesma pasta onde encontra-se o binário. Este arquivo
+contém o arquivo <tt class="docutils literal"><span class="pre">flivre.gdb</span></tt>.</p>
+</li>
+<li><p class="first">O arquivo <tt class="docutils literal"><span class="pre">flivre.ini</span></tt> deve está localizado na mesma pasta do binário
+<tt class="docutils literal"><span class="pre">flivre.exe</span></tt> e  possuir a chave DATABASE na seção [DATA] que informa o
+caminho da base de dados. Se o arquivo <tt class="docutils literal"><span class="pre">flivre.ini</span></tt> não existe ou a
+chave DATABASE estiver em branco o sistema procurará a base de dados na
+mesma pasta onde o mesmo está localizado.</p>
+</li>
+</ol>
+</li>
+<li><p class="first">Para a máquina cliente</p>
+<ol class="arabic">
+<li><p class="first">Repita o passo 1 da instalação para a máquina servidor;</p>
+</li>
+<li><p class="first">Altere no arquivo <tt class="docutils literal"><span class="pre">flivre.ini</span></tt> a entrada <strong>DATABASE</strong> para informar a
+localização da base de dados (que deverá estar na máquina &quot;servidor&quot;).</p>
+<p>Abaixo um exemplo do conteúdo de <tt class="docutils literal"><span class="pre">flivre.ini</span></tt>:</p>
+<pre class="literal-block">
+[DATA]
+SERVER=servidor
+CONECTOR=:
+DATABASE=c:\flivre\flivre.fdb
+</pre>
+</li>
+</ol>
+<blockquote>
+<p>ou ainda,</p>
+<pre class="literal-block">
+[DATA]
+SERVER=10.41.0.127
+CONECTOR=:
+DATABASE=c:\flivre\flivre.fdb
+</pre>
+</blockquote>
+</li>
+<li><p class="first">Para a atualização servidor/cliente</p>
+<ol class="arabic simple">
+<li>Faça o download do arquivo <tt class="docutils literal"><span class="pre">flivre-binario-x.y.zip</span></tt>. Escolha Sempre a
+versão mais recente.</li>
+<li>Descompacte (extrair) o arquivo baixado para pasta onde está instalado o
+FolhaLivre, substituindo o arquivo <tt class="docutils literal"><span class="pre">flivre.exe</span></tt> tanto na máquina
+&quot;servidor&quot; quanto na(s) máquina(s) &quot;cliente&quot; (se for o caso).</li>
+<li>Execute o FolhaLivre da máquina <strong>servidor</strong> e escolha a opção
+<strong>&lt;Atualização da Base de Dados&gt;</strong> do menu <strong>&lt;Ferramentas&gt;</strong> e confirme a operação.</li>
+<li><strong>Importante</strong>: O arquivo <tt class="docutils literal"><span class="pre">flivre-data-x.y.zip</span></tt> deve ser baixado com
+cautela, pois sua descompactação para a pasta onde estar a base de dados
+provocará a perda da base de dados antiga.</li>
+</ol>
+</li>
+</ul>
+</div>
+<div class="section">
+<h3><a id="instala-o-dos-c-digos-fontes" name="instala-o-dos-c-digos-fontes">Instalação dos códigos-fontes</a></h3>
+<p>Esta seção é exclusiva para desenvolvedores e exige um relativo conhecimento do programa
+Borland Delphi/Kylix. Se você não é desenvolvedor ou não tem interesse em programação, por favor
+desconsidere esta parte.</p>
+<ul>
+<li><p class="first">Descompacte o arquivo <tt class="docutils literal"><span class="pre">flivre-source.zip</span></tt> na pasta <tt class="docutils literal"><span class="pre">c:\flivre\</span></tt> ou em outra pasta
+mantendo a hierarquia das subpastas. O nome da pasta onde você descompactou
+o arquivo <tt class="docutils literal"><span class="pre">flivre-source.zip</span></tt> será chamada de <tt class="docutils literal"><span class="pre">~</span></tt> por questão de praticidade.
+Depois da descompactação são criadas as sequintes pastas::</p>
+<pre class="literal-block">
+~\source\         - arquivos de fontes exclusivos do FolhaLivre;
+~\source\kernel\  - núcleo básico para vários projetos;
+~\aklib\          - arquivos da biblioteca AKLib.
+</pre>
+</li>
+<li><p class="first">No Borland Delphi/Kylix acesse a opção <strong>Environment Options...</strong> no menu <strong>Tools</strong>.
+Na guia (aba) <strong>Library</strong> esolha o botão <strong>...</strong> em
+<strong>Library Path</strong> e adicione a pasta <tt class="docutils literal"><span class="pre">~\source\kernel\</span></tt> na lista
+de pastas apresentadas. Isto é necessário para que o Delphi/Kylix encontre
+as respectivas units (arquivos/unidades) durante o desenvolvimento e compilação,
+pois as mesmas não são adicionadas explicitamente no projeto <tt class="docutils literal"><span class="pre">flivre.dpr</span></tt>.</p>
+</li>
+</ul>
+</div>
+<div class="section">
+<h3><a id="bibliotecas" name="bibliotecas">Bibliotecas</a></h3>
+<p>Esta seção é exclusiva para desenvolvedores e exige um relativo conhecimento do programa
+Borland Delphi/Kylix. Se você não é desenvolvedor ou não tem interesse em programação, por favor
+desconsidere esta parte.</p>
+<p>O FolhaLivre utiliza algumas bibliotecas de componentes para auxiliar no desenvolvimento.
+Estas bibliotecas não fazem parte do Projeto FolhaLivre, com exceção da AKLib, sendo
+de seus respectivos autores a responsabilidade de seus aprimoramentos.</p>
+<p>Seus códigos fontes estão disponíveis e suas licenças permitem sua inclusão em um
+software livre/aberto.</p>
+<p>As bibliotecas utilizadas pelo FolhaLivre são as sequintes:</p>
+<ul class="simple">
+<li>AKLib [<a class="reference" href="http://br.groups.yahoo.com/group/folha_livre/">http://br.groups.yahoo.com/group/folha_livre/</a>];</li>
+<li>SynEdit [<a class="reference" href="http://synedit.sourceforge.net/">http://synedit.sourceforge.net/</a>];</li>
+<li>MDIWallPaper [<a class="reference" href="http://home.t-online.de/home/Robert.Rossmair/">http://home.t-online.de/home/Robert.Rossmair/</a>].</li>
+</ul>
+<div class="section">
+<h4><a id="instala-o-das-bibliotecas" name="instala-o-das-bibliotecas">Instalação das Bibliotecas</a></h4>
+<ul>
+<li><p class="first">Faça o download das bibliotecas, com exceção da AKLib, que vem junto ao código-fonte do
+FolhaLivre e encontra-se na pasta <tt class="docutils literal"><span class="pre">~\aklib\</span></tt>;</p>
+</li>
+<li><p class="first">Descompacte cada biblioteca em uma pasta diferente mantendo a hierarquia das subpastas;</p>
+</li>
+<li><p class="first">No Borland Delphi/Kylix acesse a opção <strong>Environment Options...</strong> no menu <strong>Tools</strong>.
+Na guia <strong>Library</strong> clique no botão <strong>[...]</strong> em <strong>Library Path</strong>. Na lista
+apresentada inclua a pasta onde  estão as units <tt class="docutils literal"><span class="pre">*.pas</span></tt> da biblioteca. Isso
+permite que o Borland Delphi/Kylix encontre todas as units necessárias à compilação.</p>
+<p>Por exemplo, se você descompactou a biblioteca <tt class="docutils literal"><span class="pre">SynEdit.zip</span></tt> na pasta de instalação do
+Borland Delphi/Kylix, informe na lista a seguinte entrada: <tt class="docutils literal"><span class="pre">$(DELPHI)\SynEdit\Source\</span></tt>.</p>
+</li>
+<li><p class="first">No menu principal do Borland Delphi/Kylix <strong>File-&gt;Open</strong>, na caixa de diálogo <strong>Open</strong> altere
+a opção <strong>Arquivos do Tipo</strong> para <strong>Delphi package (*.dpk)</strong>, mude
+para a pasta onde está o pacote dpk (package) da biblioteca a ser instalada
+correspondente à versão do Delphi/Kylix, pressione o botão <strong>[Abrir]</strong>.</p>
+</li>
+<li><p class="first">Uma caixa de diálogo <strong>Package</strong> será apresentada, pressione o botão <strong>[Install]</strong> e a partir
+deste ponto o Borland Delphi/Kylix compilará as units e tentará instalar no IDE os respectivos
+componentes. Se nenhum erro for encontrado, uma janela de confirmação será mostrada.
+Se a instalação foi bem sucedida feche a caixa de diálogo &quot;Package&quot;.</p>
+</li>
+<li><p class="first">O projeto <tt class="docutils literal"><span class="pre">flivre.dpr</span></tt> está configurado para gerar o executável na pasta <tt class="docutils literal"><span class="pre">~</span></tt>.</p>
+</li>
+</ul>
+</div>
+</div>
+
+  </div>
+</body>
+<!-- generated on: 2008-01-31 07:03:43.568000
+     file id: instalacao -->
+</html>

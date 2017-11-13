@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Imposto de Renda Retido na Fonte - IRRF &mdash; FolhaLivre</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="flivre.css" type="text/css">
+</head>
+<body>
+  <div id="content">
+    <h1 class="heading">Manual do FolhaLivre</h1>
+    <h2 class="subheading">Imposto de Renda Retido na Fonte - IRRF</h2>
+    
+      <a id="backlink" href="index.html">&laquo; Volta para índice</a>
+      
+        <div class="toc">
+          <h2>Sumário</h2>
+          <ul class="contents">
+          
+            <li><a href="#qual-a-lei-que-regulamenta-o-irrf">Qual a Lei que regulamenta o IRRF?</a></li>
+          
+            <li><a href="#como-se-calcula-o-irrf">Como se calcula o IRRF?</a></li>
+          
+            <li><a href="#qual-a-f-rmula-completa-para-c-lculo-do-irrf">Qual a fórmula completa para cálculo do IRRF?</a></li>
+          
+            <li><a href="#como-cadastro-a-tabela-de-irrf">Como cadastro a tabela de IRRF?</a></li>
+          
+            <li><a href="#como-cadastro-a-f-rmula-para-o-evento-irrf">Como cadastro a fórmula para o evento IRRF?</a></li>
+          
+          </ul>
+        </div>
+        <br>
+      
+          
+    <!-- -*- mode: rst -*- -->
+<div class="section">
+<h3><a id="qual-a-lei-que-regulamenta-o-irrf" name="qual-a-lei-que-regulamenta-o-irrf">Qual a Lei que regulamenta o IRRF?</a></h3>
+<p>A <a class="reference" href="http://www.receita.fazenda.gov.br/Legislacao/Ins/2007/in7042007.htm">Instrução Normativa SRF nº 704, de 2 de janeiro de 2007</a>.</p>
+</div>
+<div class="section">
+<h3><a id="como-se-calcula-o-irrf" name="como-se-calcula-o-irrf">Como se calcula o IRRF?</a></h3>
+<p>O cálculo do IRRF é baseado no mês-caixa, ou seja, os rendimentos tributados são referente
+ao mês de pagamento dos proventos.</p>
+<p>Exemplo: Consideremos que a data de crédito da folha <strong>&quot;JUNHO/2006&quot;</strong> seja 05/07/2006.
+O processo de cálculo será o seguinte:</p>
+<ul>
+<li><p class="first">Obter o total de rendimentos tributáveis pagos entre 01/07/2006 a 04/07/2006</p>
+<p>Utiliza-se a função <strong>XI</strong>. A função <strong>XI</strong> pesquisa no histórico de pagamentos do funcionário o total
+calculado para os eventos de determinada incidência. Por padrão, o FolhaLivre usa a
+<a class="reference" href="total_incidencia.html">incidência</a> 2 (dois) para o IRRF, então <strong>XI(2)</strong> nos informará o total de
+rendimentos (já deduzido os descontos) tributáveis pagos no mês-caixa da folha.</p>
+<div class="syntax" ><pre><span class="n">a</span> <span class="o">:=</span> <span class="n">XI</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1">// Verbas tributadas para IRRF de folhas anteriores no mesmo mes-caixa</span>
+</pre></div>
+</li>
+<li><p class="first">Obter o total de rendimentos tributáveis na folha atual (que será pago em 05/07/2006)</p>
+<p>Utiliza-se a função <strong>TI</strong>. A função <strong>ti</strong> retorna o acumulado dos valores calculados até o momento
+para os eventos de determinada incidência. Por padrão, o FolhaLivre usa a incidência 2 (dois) para o IRRF,
+então <strong>TI(2)</strong> nos informará o total calculado para os eventos (PROVENTOS-DESCONTOS) de incidência 2 (dois).</p>
+<div class="syntax" ><pre><span class="n">b</span> <span class="o">:=</span> <span class="n">TI</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1">// Verbas tributadas para IRRF da folha atual</span>
+</pre></div>
+<p><strong>Importante</strong>: O evento <strong>IRRF</strong> deve ser calculado após o cálculo dos eventos que deduzem da sua base de
+cálculo, por exemplo, <strong>INSS</strong> e <strong>PENSÃO ALIMENTÍCIA</strong>.</p>
+<p>Para determinar a ordem de cálculo, consulte <a class="reference" href="sequencia_calculo.html">sequência de cálculo</a>.</p>
+</li>
+<li><p class="first">Calcular a dedução de dependentes</p>
+<p>Para obter o número de dependentes ativos para o <strong>IRRF</strong> usa-se a função <strong>DR</strong>.
+Os dependentes deverão estar cadastrados e o tipo <strong>&quot;R&quot;</strong> ativado. O FolhaLivre
+automaticamente calcula a idade do dependente e o desconsidera se for o caso,
+salvo se for deficiente. Veja mais detalhes em <a class="reference" href="dependente.html">dependentes</a>.</p>
+<p>Por padrão, o valor da dedução por dependente encontra-se na <a class="reference" href="tabela_calculo.html">tabela</a>
+global 2 (dois) no item 1 (um). Para acessar esse valor utilize a função <strong>TGI</strong>
+informando os números da tabela e o número do item. Para calcular o total de dedução
+escreva <strong>DR*TGI(2,1)</strong>.</p>
+<div class="syntax" ><pre><span class="n">c</span> <span class="o">:=</span> <span class="n">DR</span><span class="o">*</span><span class="n">TGI</span><span class="p">(</span><span class="mi">2</span><span class="o">,</span><span class="mi">1</span><span class="p">)</span>  <span class="c1">// Deducao por dependentes do tipo [r]</span>
+</pre></div>
+</li>
+<li><p class="first">Calcular a dedução de aposentadoria</p>
+<p>Por padrão, o valor da dedução de aposentadoria encontra-se na tabela global 2 (dois) no item 3 (três).
+Para acessar esse valor utilize a função <strong>TGI</strong> informando os números da tabela e do item. Escreva
+assim <strong>TGI(2,2)</strong>. Esta dedução só é permitida para pessoas a partir dos 65 anos de idade.</p>
+<div class="syntax" ><pre><span class="n">d</span> <span class="o">:=</span> <span class="mf">0.0</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">TN</span><span class="o">/</span><span class="mi">12</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">TGI</span><span class="p">(</span><span class="mi">2</span><span class="o">,</span><span class="mi">2</span><span class="p">)</span> <span class="c1">// TN - Tempo de nascimento em meses</span>
+  <span class="n">d</span> <span class="o">:=</span> <span class="n">TGI</span><span class="p">(</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">endif</span>
+</pre></div>
+</li>
+<li><p class="first">Calcular a base de cálculo</p>
+<p>Soma-se os valores tributáveis e aplica-se as deduções de dependentes e aposentadoria.</p>
+<div class="syntax" ><pre><span class="n">bc</span> <span class="o">:=</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">c</span> <span class="o">+</span> <span class="n">d</span><span class="p">)</span>
+</pre></div>
+</li>
+<li><p class="first">Pesquisar a base de cálculo (bc) contra a tabela de IRRF</p>
+<p>A função que pesquisa um valor contra uma tabela de cálculo global é a <strong>TG</strong>.
+Sobre o valor informado são aplicados o percentual e a dedução conforme faixa
+apropriada;</p>
+<div class="syntax" ><pre><span class="n">bc</span> <span class="o">=</span> <span class="n">TG</span><span class="p">(</span><span class="mi">2</span><span class="o">,</span><span class="n">bc</span><span class="p">)</span>  <span class="c1">// Checar tabela - faixa, percentual e deducao</span>
+</pre></div>
+</li>
+<li><p class="first">Descontar o IRRF pago entre 01/07/2006 a 04/07/2006.</p>
+<p>Para que o IRRF não seja cobrado novamente é preciso que se pesquise até antes
+da data do pagamento o imposto já pago, e fazer o desconto (abatimento) se necessário.</p>
+<p>Para isso, utiliza-se a função <strong>XE</strong> que retorna o total de valores calculados
+para o evento em cálculo pagos entre o dia 1o. e um dia antes do crédito da folha
+em questão.</p>
+<div class="syntax" ><pre><span class="n">v</span> <span class="o">:=</span> <span class="n">v</span> <span class="o">-</span> <span class="n">XE</span>  <span class="c1">// Desconto IRRF ja descontado no mes-caixa</span>
+</pre></div>
+</li>
+<li><p class="first">Verificar o valor minímo para o imposto</p>
+<p>Se o valor calculado para o imposto (v) for menor que o valor minímo, então o valor do imposto
+deve ser desconsiderado. O valor minímo encontra-se no item 4 (quatro) da tabela global 2 (dois).
+Para acessar esse valor utilize a função <strong>TGI</strong> informando os números da tabela e o número do
+item. Escreva assim <strong>TGI(2,4)</strong>.</p>
+<div class="syntax" ><pre><span class="k">if</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="n">TGI</span><span class="p">(</span><span class="mi">2</span><span class="o">,</span><span class="mi">4</span><span class="p">)</span>  <span class="c1">// Se o imposto for menor que o valor minimo nao descontar</span>
+  <span class="n">v</span> <span class="o">:=</span> <span class="mf">0.00</span>
+<span class="n">endif</span>
+</pre></div>
+</li>
+</ul>
+</div>
+<div class="section">
+<h3><a id="qual-a-f-rmula-completa-para-c-lculo-do-irrf" name="qual-a-f-rmula-completa-para-c-lculo-do-irrf">Qual a fórmula completa para cálculo do IRRF?</a></h3>
+<blockquote>
+<div class="syntax" ><pre><span class="n">a</span> <span class="o">:=</span> <span class="n">XI</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1">// Verbas tributadas para IRRF de folhas anteriores no mesmo mes-caixa</span>
+<span class="n">b</span> <span class="o">:=</span> <span class="n">TI</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1">// Verbas tributadas para IRRF da folha atual</span>
+
+<span class="c1">// Deducao por dependentes - Tipo: R</span>
+<span class="n">c</span> <span class="o">:=</span> <span class="n">DR</span><span class="o">*</span><span class="n">TGI</span><span class="p">(</span><span class="mi">2</span><span class="o">,</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1">// Deducao de Aposentaria</span>
+<span class="n">d</span> <span class="o">:=</span> <span class="mf">0.00</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">TN</span><span class="o">/</span><span class="mi">12</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">TGI</span><span class="p">(</span><span class="mi">2</span><span class="o">,</span><span class="mi">2</span><span class="p">)</span>  <span class="c1">// TN - Tempo de nascimento em meses</span>
+  <span class="n">d</span> <span class="o">:=</span> <span class="n">TGI</span><span class="p">(</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">endif</span>
+
+<span class="c1">// Calculo da base de calculo</span>
+<span class="n">v</span> <span class="o">:=</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">c</span> <span class="o">+</span> <span class="n">d</span><span class="p">)</span>
+
+<span class="c1">// Checar tabela - faixa - percentual e deducao</span>
+<span class="n">v</span> <span class="o">:=</span> <span class="n">TG</span><span class="p">(</span><span class="mi">2</span><span class="o">,</span><span class="n">v</span><span class="p">)</span>
+
+<span class="c1">// Desconto IRRF ja descontado no mes-caixa</span>
+<span class="n">v</span> <span class="o">:=</span> <span class="n">v</span> <span class="o">-</span> <span class="n">XE</span>
+
+<span class="k">if</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="n">TGI</span><span class="p">(</span><span class="mi">2</span><span class="o">,</span><span class="mi">4</span><span class="p">)</span>  <span class="c1">// Se o imposto for menor que o valor minimo nao descontar</span>
+  <span class="n">v</span> <span class="o">:=</span> <span class="mf">0.00</span>
+<span class="n">endif</span>
+
+<span class="n">return</span> <span class="n">v</span>
+</pre></div>
+</blockquote>
+</div>
+<div class="section">
+<h3><a id="como-cadastro-a-tabela-de-irrf" name="como-cadastro-a-tabela-de-irrf">Como cadastro a tabela de IRRF?</a></h3>
+<p>Para que a tabela do IRRF fique acessível a todas as empresas, a mesma deve
+ser cadastrada na empresa global. Cadastre a tabela na opção <strong>&lt;Tabelas&gt;</strong>
+do menu <strong>&lt;Cadastro&gt;</strong>.</p>
+<p>Para informar as faixas, aliquotas e deduções para a tabela vá para o menu
+<strong>&lt;Movimentação&gt;</strong> e acione a opção <strong>&lt;Tabelas&gt;</strong>.</p>
+<p>Por padrão o FolhaLivre já traz cadastrada a tabela de IRFF na empresa global.
+Quando a tabela sofrer modificações você deve incluir uma nova competência e
+alterar os valores da tabela.</p>
+</div>
+<div class="section">
+<h3><a id="como-cadastro-a-f-rmula-para-o-evento-irrf" name="como-cadastro-a-f-rmula-para-o-evento-irrf">Como cadastro a fórmula para o evento IRRF?</a></h3>
+<p>Acesse a opção <strong>&lt;Fórmulas&gt;</strong> do menu <strong>&lt;Cálculos&gt;</strong>. Pressione <strong>[Novo]</strong> e informe os dados e clique em <strong>[Gravar]</strong>.</p>
+<p><strong>Observação:</strong> O FolhaLivre já traz a fórmula <strong>&quot;505 - I.R.R.F&quot;</strong> cadastrada, neste caso, apenas altere a fórmula pressionando
+<strong>[Editar]</strong> e colando o texto da fórmula acima no campo apropriado.</p>
+<p>Para ligar a fórmula ao evento IRRF acesse a opção <strong>&lt;Eventos&gt;</strong> do menu <strong>&lt;Cálculos&gt;</strong>, escolha o evento <strong>&quot;505 - I.R.R.F&quot;</strong> e
+pressione <strong>[Editar]</strong> e altere a fórmula padrão para &quot;505 - I.R.R.F&quot;.</p>
+</div>
+
+  </div>
+</body>
+<!-- generated on: 2008-02-09 11:01:39.859000
+     file id: imposto_renda -->
+</html>

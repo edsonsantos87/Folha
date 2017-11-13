@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Sequência de Cálculo &mdash; FolhaLivre</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="flivre.css" type="text/css">
+</head>
+<body>
+  <div id="content">
+    <h1 class="heading">Manual do FolhaLivre</h1>
+    <h2 class="subheading">Sequência de Cálculo</h2>
+    
+      <a id="backlink" href="index.html">&laquo; Volta para índice</a>
+      
+        <div class="toc">
+          <h2>Sumário</h2>
+          <ul class="contents">
+          
+            <li><a href="#defini-o">Definição</a></li>
+          
+            <li><a href="#objetivos">Objetivos</a></li>
+          
+            <li><a href="#cadastro">Cadastro</a></li>
+          
+            <li><a href="#estrutura">Estrutura</a></li>
+          
+            <li><a href="#tabela">Tabela</a></li>
+          
+            <li><a href="#consulta-sql">Consulta SQL</a></li>
+          
+          </ul>
+        </div>
+        <br>
+      
+          
+    <div class="section">
+<h3><a id="defini-o" name="defini-o">Definição</a></h3>
+<p>A sequência de cálculo (SC) é uma lista de eventos. Essa lista está
+vinculada a um grupo de pagamento (GP). Cada grupo de pagamento possui
+sua própria sequência de cálculo.</p>
+<p>É uma entidade subordinada a um grupo de pagamento. Para cada grupo de
+pagamentos existe uma lista de eventos que poderão constar nas folhas de
+pagamento deste grupo. A esta lista chamamos de sequência de cálculo.
+É nela que definimos os eventos, a ordem que os mesmos serão calculados e as
+fórmulas para cálculos (se o cálculo for personalizado para o grupo).</p>
+</div>
+<div class="section">
+<h3><a id="objetivos" name="objetivos">Objetivos</a></h3>
+<p>A sequência de cálculo tornar-se necessária porque os eventos são
+globais, ou seja, estão disponíveis para todas as empresas. Por isso,
+é necessário estabelecer critérios para os cálculos do eventos, dentre
+os quais são:</p>
+<ul>
+<li><p class="first">A escolha dos eventos</p>
+<p>É através da sequência que são escolhidos (selecionados) os eventos que
+serão processados para determinado grupo de pagamento. Somente os eventos
+presentes na sequência serão considerados pelo calculador.</p>
+<p>Deve-se observar que determinado evento (verba) só será processado se
+estiver na sequência do GP. Além disso, a simples presença do evento
+na sequência não garante seu cálculo, apenas significa que o evento será
+pesquisado nas entradas de eventos (eventos informados, eventos automáticos
+e eventos padrões) e se encontrado nestas entradas será calculado.</p>
+</li>
+<li><p class="first">Ordem de cálculo</p>
+<p>Cada evento presente na sequência possui uma ordem de cálculo. Portanto,
+é na sequência que definimos a ordem em que os eventos serão calculados.
+O calculador utilizará a sequência para se guiar durante o processamento
+da folha de pagamento.</p>
+<p>A ordem é importante porque determinados eventos necessitam de valores
+de outros eventos, que já devem estar processados. Exemplo: O <strong>IRRF</strong>
+deve ser processado depois do <strong>INSS</strong> visto que este deduz a base de
+cálculo daquele.</p>
+</li>
+<li><p class="first">Personalização de cálculo</p>
+<p>O cálculo de um evento pode ser personalizado (modificado) para GP,
+sem que o cálculo padrão do evento seja modificado. Para isso, devemos
+informar uma fórmula para o evento na sequência. Com isso, o calculador
+utilizar essa fórmula para efetuar o cálculo desconsiderando qualquer
+informação do evento.</p>
+</li>
+</ul>
+</div>
+<div class="section">
+<h3><a id="cadastro" name="cadastro">Cadastro</a></h3>
+<p>O cadastro da sequência de cálculo é alcançado atráves da opção <strong>&lt;Sequência de Cálculo&gt;</strong>
+do menu <strong>&lt;Cálculos&gt;</strong>.</p>
+<div class="figure">
+<img alt="images\sequencia_cadastro.jpg" src="images\sequencia_cadastro.jpg" />
+</div>
+<ul class="simple">
+<li><strong>Grupo de Empresa</strong>: Código do grupo de empresas.</li>
+<li><strong>Grupo de Pagamento</strong>: Código do grupo de pagamento.</li>
+<li><strong>Evento</strong>: Código do evento a ser processado para o grupo.</li>
+<li><strong>Fórmula</strong>: Código da fórmula que será usada para realizar o cálculo do evento para este grupo.</li>
+<li><strong>Sequência</strong>: Número inteiro que representa a ordem de cálculo na lista. Se houver dois ou mais
+eventos com a mesma sequência a ordem obecedecerá o número (id) do evento.</li>
+</ul>
+</div>
+<div class="section">
+<h3><a id="estrutura" name="estrutura">Estrutura</a></h3>
+<p>Para auxiliar no entendimento da importância e do funcionamento da &quot;sequência de cálculo&quot; foi
+elaborado um esquema gráfico que apresenta a <strong>sequência</strong> e suax relações com o <strong>grupo de pagamento</strong>,
+os <strong>eventos</strong> e as <strong>fórmulas</strong>.</p>
+<div class="figure">
+<img alt="images\sequencia_estrutura.png" src="images\sequencia_estrutura.png" />
+</div>
+</div>
+<div class="section">
+<h3><a id="tabela" name="tabela">Tabela</a></h3>
+<p>Apenas a tabela <strong>F_SEQUENCIA</strong> dá suporte à sequência de cálculo. Veja a estrutura
+desta tabela:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="54%" />
+<col width="46%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Field Name</th>
+<th class="head">Data Type</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td># IDGP</td>
+<td>Integer</td>
+</tr>
+<tr><td># IDEvento</td>
+<td>Integer</td>
+</tr>
+<tr><td>IDFormula</td>
+<td>Integer</td>
+</tr>
+<tr><td>Sequencia</td>
+<td>SmallInt</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section">
+<h3><a id="consulta-sql" name="consulta-sql">Consulta SQL</a></h3>
+<p>Este comando SQL é enviado ao servidor de banco de dados para recuperar a
+sequência de cálculo de determinado grupo de pagamento. Este comando foi
+testado nos SGDBs Interbase 6.0 e Firebird 1.0/1.5 e provavelmente funcionará
+sem alteração em outros SGDBs.</p>
+<div class="syntax" ><pre><span class="k">SELECT</span>
+  <span class="n">S</span><span class="p">.</span><span class="o">*</span><span class="p">,</span> <span class="n">F</span><span class="p">.</span><span class="n">NOME</span> <span class="n">FORMULA</span><span class="p">,</span> <span class="n">E</span><span class="p">.</span><span class="n">NOME</span> <span class="n">EVENTO</span><span class="p">,</span> <span class="n">E</span><span class="p">.</span><span class="n">TIPO_EVENTO</span><span class="p">,</span> <span class="n">E</span><span class="p">.</span><span class="n">ATIVO_X</span>
+<span class="k">FROM</span>
+  <span class="n">F_SEQUENCIA</span> <span class="n">S</span>
+  <span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">F_FORMULA</span> <span class="n">F</span> <span class="k">ON</span> <span class="p">(</span><span class="n">F</span><span class="p">.</span><span class="n">IDFORMULA</span> <span class="o">=</span> <span class="n">S</span><span class="p">.</span><span class="n">IDFORMULA</span><span class="p">),</span>
+  <span class="n">F_EVENTO</span> <span class="n">E</span>
+<span class="k">WHERE</span>
+  <span class="n">S</span><span class="p">.</span><span class="n">IDGP</span> <span class="o">=</span> <span class="p">:</span><span class="n">GRUPO</span> <span class="k">AND</span> <span class="n">E</span><span class="p">.</span><span class="n">IDEVENTO</span> <span class="o">=</span> <span class="n">S</span><span class="p">.</span><span class="n">IDEVENTO</span>
+<span class="k">ORDER</span> <span class="k">BY</span>
+  <span class="n">S</span><span class="p">.</span><span class="n">SEQUENCIA</span><span class="p">,</span> <span class="n">S</span><span class="p">.</span><span class="n">IDEVENTO</span>
+</pre></div>
+</div>
+
+  </div>
+</body>
+<!-- generated on: 2008-02-09 11:01:41.781000
+     file id: sequencia_calculo -->
+</html>

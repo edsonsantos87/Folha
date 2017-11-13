@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Perguntas sobre o Comprovante de Rendimentos &mdash; FolhaLivre</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="flivre.css" type="text/css">
+</head>
+<body>
+  <div id="content">
+    <h1 class="heading">Manual do FolhaLivre</h1>
+    <h2 class="subheading">Perguntas sobre o Comprovante de Rendimentos</h2>
+    
+      <a id="backlink" href="index.html">&laquo; Volta para índice</a>
+      
+        <div class="toc">
+          <h2>Sumário</h2>
+          <ul class="contents">
+          
+            <li><a href="#qual-o-per-odo-considerado-no-processamento-do-comprovante">Qual o período considerado no processamento do comprovante?</a></li>
+          
+            <li><a href="#como-escolho-os-eventos-que-ser-o-totalizados-no-comprovante">Como escolho os eventos que serão totalizados no comprovante?</a></li>
+          
+            <li><a href="#quais-os-tipos-de-folha-considerados-no-processamento-do-comprovante">Quais os tipos de folha considerados no processamento do comprovante?</a></li>
+          
+            <li><a href="#e-se-no-totalizador-n-o-for-ativado-nenhum-tipo-de-folha">E se no totalizador não for ativado nenhum tipo de folha?</a></li>
+          
+            <li><a href="#como-devo-tratar-os-adiantamentos-de-sal-rios">Como devo tratar os adiantamentos de salários?</a></li>
+          
+            <li><a href="#como-fa-o-para-que-o-sistema-considere-os-adiantamentos-salariais">Como faço para que o sistema considere os adiantamentos salariais?</a></li>
+          
+            <li><a href="#se-o-sistema-soma-os-sal-rios-e-os-adiantamentos-de-sal-rios-n-o-haver-duplicidade-de-valores">Se o sistema soma os salários e os adiantamentos de salários, não haverá duplicidade de valores?</a></li>
+          
+          </ul>
+        </div>
+        <br>
+      
+          
+    <div class="section">
+<h3><a id="qual-o-per-odo-considerado-no-processamento-do-comprovante" name="qual-o-per-odo-considerado-no-processamento-do-comprovante">Qual o período considerado no processamento do comprovante?</a></h3>
+<p>Os valores são pesquisados no movimento mensal, recebidos durante o período de
+01/01 a 31/12 do ano-calendário em questão.</p>
+<p>O FolhaLivre considera apenas o dia de crédito da folha, ou seja, a data de
+pagamento dos rendimentos e não o período da folha.</p>
+<p>Considere que sua empresa realiza os pagamentos dos salários no mês subsequente
+ao mês trabalhado. Por exemplo, os salários de dezembro/2007 são pago em
+janeiro/2008. Neste caso, o sistema processará os valores da folha
+<strong>Dezembro/2007</strong> no ano-calendário de 2008.</p>
+<p>Isso acontecerá para todos os tipos de folha envolvidos no processamento do
+<strong>comprovante</strong>, seja, do tipo normal, décimo terceiro, adiantamento, ferias ou
+rescisão.</p>
+</div>
+<div class="section">
+<h3><a id="como-escolho-os-eventos-que-ser-o-totalizados-no-comprovante" name="como-escolho-os-eventos-que-ser-o-totalizados-no-comprovante">Como escolho os eventos que serão totalizados no comprovante?</a></h3>
+<p>Há 2 (duas) maneiras de escolher os eventos para uma linha do <strong>comprovante</strong>:
+Pelo <strong>evento</strong> ou pelo <strong>totalizador</strong>.</p>
+<ul>
+<li><p class="first"><strong>Pelo evento</strong></p>
+<p>Se o valor a ser apresentado no <strong>comprovante</strong> envolver apenas um evento,
+podemos informá-lo diretamente no &quot;modelo de comprovante&quot;. Escolha a opção
+<strong>&gt;Configuração&gt;Comprovante de Rendimentos</strong> e informe o código do evento a
+ser processado no campo <strong>Evento</strong> da linha desejada do &quot;modelo&quot;.</p>
+<div class="figure">
+<img alt="images\cr-evento.png" src="images\cr-evento.png" />
+</div>
+</li>
+<li><p class="first"><strong>Pelo totalizador</strong></p>
+<p>Se o valor a ser apresentado no <strong>comprovante</strong> envolver mais de um evento,
+um ou mais tipos de folha ou eventos de determinadas incidências, deve-se
+criar um <strong>totalizador</strong>. Escolha a opção <strong>&gt;Cadastros&gt;Totalizadores</strong>,
+cadastre o totalizador e escolha os tipos de folhas, os eventos e as
+incidências para o mesmo. Em seguida, informe o código do totalizador no
+campo <strong>Totalizador</strong> da linha desejada do &quot;modelo&quot;.</p>
+<div class="figure">
+<img alt="images\cr-totalizador.png" src="images\cr-totalizador.png" />
+</div>
+</li>
+</ul>
+</div>
+<div class="section">
+<h3><a id="quais-os-tipos-de-folha-considerados-no-processamento-do-comprovante" name="quais-os-tipos-de-folha-considerados-no-processamento-do-comprovante">Quais os tipos de folha considerados no processamento do comprovante?</a></h3>
+<p>Se você informou um <strong>evento</strong> no &quot;modelo de comprovante&quot;, o sistema
+considerará todos os tipos de folha encontrados no ano-calendário solicitado.</p>
+<p>Se você informou um <strong>totalizador</strong> no &quot;modelo de comprovante&quot;, o sistema
+considerará apenas os tipos de folha ativados na guia <strong>Tipos de Folha</strong> no
+registro do totalizador.</p>
+<p>Veja um exemplo na figura abaixo:</p>
+<div class="figure">
+<img alt="images\cr-folha.png" src="images\cr-folha.png" />
+</div>
+<p>Quando este <strong>totalizador</strong> (Rendimentos Tributaveis) for processado durante a
+geração do <strong>comprovante</strong> serão considerados apenas os tipos de folha:
+<strong>Adiantamento Salarial</strong>, <strong>Férias</strong>, <strong>Normal</strong>, <strong>Quinzena</strong> e <strong>Rescisão</strong>.</p>
+</div>
+<div class="section">
+<h3><a id="e-se-no-totalizador-n-o-for-ativado-nenhum-tipo-de-folha" name="e-se-no-totalizador-n-o-for-ativado-nenhum-tipo-de-folha">E se no totalizador não for ativado nenhum tipo de folha?</a></h3>
+<p>Neste caso, o sistema desconsiderá o tipo de folha e processará todas as folhas
+arquivadas no ano-calendário solicitado.</p>
+</div>
+<div class="section">
+<h3><a id="como-devo-tratar-os-adiantamentos-de-sal-rios" name="como-devo-tratar-os-adiantamentos-de-sal-rios">Como devo tratar os adiantamentos de salários?</a></h3>
+<p>Tanto os <a class="reference" href="adiantamento_salarial.html">adiantamentos salariais</a>
+(antecipações, quinzenas, etc) quanto os salários incidem sobre imposto de
+renda e são tributados no mês dos seus respectivos créditos (mês caixa). Por
+isso, os adiantamentos devem ser processados no mês que ocorrem. Por exemplo,
+se o adiantamento foi pago em 10/01, será somado aos valores de janeiro.</p>
+</div>
+<div class="section">
+<h3><a id="como-fa-o-para-que-o-sistema-considere-os-adiantamentos-salariais" name="como-fa-o-para-que-o-sistema-considere-os-adiantamentos-salariais">Como faço para que o sistema considere os adiantamentos salariais?</a></h3>
+<p>Os eventos de <strong>adiantamentos</strong> e de <strong>salários</strong> devem ter a incidência
+<strong>IRRF</strong> ativada.</p>
+<blockquote>
+e o totalizador <strong>31 - Rendimentos Tributáveis</strong> deve ter</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">&lt;string&gt;</tt>, line 95)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<p>a incidência <strong>IRRF</strong> ativada somente para os proventos e a operação marcada
+para '+' (soma). Isso fará com que os adiantamentos e os salários, que são
+proventos, sejam totalizados.</p>
+<div class="figure">
+<img alt="images\totalizador-incidencia.png" src="images\totalizador-incidencia.png" />
+</div>
+</div>
+<div class="section">
+<h3><a id="se-o-sistema-soma-os-sal-rios-e-os-adiantamentos-de-sal-rios-n-o-haver-duplicidade-de-valores" name="se-o-sistema-soma-os-sal-rios-e-os-adiantamentos-de-sal-rios-n-o-haver-duplicidade-de-valores">Se o sistema soma os salários e os adiantamentos de salários, não haverá duplicidade de valores?</a></h3>
+<p>Sim. Por isso deve-se estornar os valores dos <strong>adiantamentos descontados</strong>
+para que o valor totalizado no ano não &quot;dobre&quot;.</p>
+<p>Para isso, adicione na guia &quot;Eventos&quot; do <strong>totalizador</strong> o evento de
+&quot;desconto do adiantamento&quot; mudando a operação para '-' (subtração). Veja um
+exemplo.</p>
+<div class="figure">
+<img alt="images\totalizador-evento.png" src="images\totalizador-evento.png" />
+</div>
+<p>Isso fará com que os valores do evento de &quot;desconto de adiantamento&quot; sejam
+subtraídos do montante dos eventos que incidem sobre o <strong>IRRF</strong>.</p>
+</div>
+
+  </div>
+</body>
+<!-- generated on: 2008-02-09 11:01:45.859000
+     file id: comprovante_rendimento_faq -->
+</html>

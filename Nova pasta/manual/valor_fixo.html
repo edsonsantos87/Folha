@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Valor Fixo &mdash; FolhaLivre</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="flivre.css" type="text/css">
+</head>
+<body>
+  <div id="content">
+    <h1 class="heading">Manual do FolhaLivre</h1>
+    <h2 class="subheading">Valor Fixo</h2>
+    
+      <a id="backlink" href="index.html">&laquo; Volta para índice</a>
+      
+        <div class="toc">
+          <h2>Sumário</h2>
+          <ul class="contents">
+          
+            <li><a href="#defini-o">Definição</a></li>
+          
+            <li><a href="#objetivos">Objetivos</a></li>
+          
+            <li><a href="#cadastro">Cadastro</a></li>
+          
+            <li><a href="#f-rmula">Fórmula</a></li>
+          
+            <li><a href="#tabela">Tabela</a></li>
+          
+            <li><a href="#ddl">DDL</a></li>
+          
+            <li><a href="#consulta-sql">Consulta SQL</a></li>
+          
+          </ul>
+        </div>
+        <br>
+      
+          
+    <div class="section">
+<h3><a id="defini-o" name="defini-o">Definição</a></h3>
+<p>É uma entidade subordinada à empresa, seu valor monetário não se modifica no
+decorrer do tempo ou quando se modifica a data dessa modificação é
+irrelevante. A única informação que nos interessa é o seu valor monetário
+atual, por isso a razão da demoninação <strong>VALOR FIXO</strong>.</p>
+<p>Quando o <strong>Valor Fixo</strong> estiver vinculado à empresa global chama-se-á
+<strong>VALOR GLOBAL</strong> e quando estiver ligado somente a uma empresa chama-se-á
+<strong>VALOR LOCAL</strong>.</p>
+</div>
+<div class="section">
+<h3><a id="objetivos" name="objetivos">Objetivos</a></h3>
+<p>O recurso de <strong>valor fixo</strong> visa fornecer uma referência para um valor monetário
+para evitar a escrita real do valor nas fórmulas. Quando o <strong>valor fixo</strong> mudar
+não será necessário a alteração das fórmulas que façam referência ao este valor.</p>
+</div>
+<div class="section">
+<h3><a id="cadastro" name="cadastro">Cadastro</a></h3>
+<ul class="simple">
+<li><strong>Empresa:</strong> Número inteiro que identifica a empresa que o valor está subordinado.</li>
+<li><strong>Código:</strong> Número inteiro que identifica o <strong>valor fixo</strong> no sistema.</li>
+<li><strong>Nome:</strong> Texto que descreve simplificadamente o valor.</li>
+<li><strong>Valor:</strong> Número monetário que representa o conteúdo do <strong>valor fixo</strong>.</li>
+</ul>
+</div>
+<div class="section">
+<h3><a id="f-rmula" name="f-rmula">Fórmula</a></h3>
+<p>O acesso a um <strong>valor fixo</strong> se faz por intermédio de fórmulas através de
+de funções apropriadas.</p>
+<p>As funções que operam sobre os <strong>valores fixos</strong> são as sequintes:</p>
+<ul>
+<li><p class="first"><strong>v&lt;n&gt;</strong> ou <strong>vv&lt;n&gt;</strong> ou <strong>vv(&lt;n&gt;)</strong></p>
+<p>Retorna o valor númerico do <strong>valor fixo</strong> identificado por &lt;n&gt;. O
+<strong>valor fixo</strong> será primeiramente pesquisado na empresa atual, caso o valor
+não seja encontrado o mesmo será pesquisado na empresa global. Se mesmo assim
+o <strong>valor fixo</strong> não for encontrado, será exibida a mensagem
+<cite>Valor Fixo &lt;n&gt; não existe</cite>.</p>
+</li>
+<li><p class="first"><strong>vl&lt;n&gt;</strong> ou <strong>vl(&lt;n&gt;)</strong></p>
+<p>Retorna o valor númerico do <strong>valor fixo</strong> identificado por &lt;n&gt;. O
+<strong>valor fixo</strong> será pesquisado apenas na empresa atual, caso o valor não seja
+encontrado será exibida uma mensagem de erro <cite>Valor Fixo &lt;n&gt; não existe</cite>.</p>
+</li>
+<li><p class="first"><strong>vg&lt;n&gt;</strong> ou <strong>vg(&lt;n&gt;)</strong></p>
+<p>Retorna o valor númerico do <strong>valor fixo</strong> identificado por &lt;n&gt;. O
+<strong>valor fixo</strong> será pesquisado apenas na empresa global, caso o valor não
+seja encontrado será exibida a mensagem de erro <cite>Valor Fixo &lt;n&gt; não existe</cite>.</p>
+</li>
+</ul>
+</div>
+<div class="section">
+<h3><a id="tabela" name="tabela">Tabela</a></h3>
+<p>Apenas a tabela <strong>F_VALOR_FIXO</strong> dar suporte aos valores fixos. Veja abaixo a
+estrutura desta tabela:</p>
+<p>.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="52%" />
+<col width="48%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Field Name</th>
+<th class="head">Field Type</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td># IDEMPRESA</td>
+<td>INTEGER</td>
+</tr>
+<tr><td># IDVFIXO</td>
+<td>INTEGER</td>
+</tr>
+<tr><td>NOME</td>
+<td>VARCHAR(30)</td>
+</tr>
+<tr><td>VALOR</td>
+<td>NUMERIC(15,3)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section">
+<h3><a id="ddl" name="ddl">DDL</a></h3>
+<p>Este script SQL é utilizado para a criação da tabela <strong>F_VALOR_FIXO</strong> e seu
+respectivo índice (primary key). É compatível com os SGDBs Interbase e
+Firebird. Para se adequar a outros SGDBs talvez seja necessário efetuar
+pequenas adaptações.</p>
+<div class="syntax" ><pre><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">F_VALOR_FIXO</span> <span class="p">(</span>
+  <span class="n">IDEMPRESA</span>  <span class="n">ID</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="n">IDVFIXO</span>    <span class="n">ID</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="n">NOME</span>       <span class="n">DESCRICAO</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="n">VALOR</span>      <span class="n">NUMERO</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="p">);</span>
+
+<span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">F_VALOR_FIXO</span> <span class="k">ADD</span> <span class="k">CONSTRAINT</span> <span class="n">PK_F_VALOR_FIXO</span>
+<span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">IDEMPRESA</span><span class="p">,</span> <span class="n">IDVFIXO</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="section">
+<h3><a id="consulta-sql" name="consulta-sql">Consulta SQL</a></h3>
+<p>Para que o valor monetário de determinado <strong>valor fixo</strong> seja acessado, o
+sistema executa a seguinte instrução SQL:</p>
+<div class="syntax" ><pre><span class="k">SELECT</span>
+  <span class="n">VALOR</span>
+<span class="k">FROM</span>
+  <span class="n">F_VALOR_FIXO</span>
+<span class="k">WHERE</span>
+  <span class="n">IDEMPRESA</span> <span class="o">=</span> <span class="p">:</span><span class="n">EMPRESA</span>
+  <span class="k">AND</span> <span class="n">IDVFIXO</span> <span class="o">=</span> <span class="p">:</span><span class="n">VALOR</span>
+</pre></div>
+<p>Para os valores locais <strong>:EMPRESA</strong> representa o código da empresa atual
+e para os valores globais <strong>:EMPRESA</strong> representa o 0 (zero) que é o
+código da empresa global.</p>
+</div>
+
+  </div>
+</body>
+<!-- generated on: 2008-02-09 11:01:45.406000
+     file id: valor_fixo -->
+</html>

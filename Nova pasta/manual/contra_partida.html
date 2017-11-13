@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Folhas de Contra-Partida &mdash; FolhaLivre</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="flivre.css" type="text/css">
+</head>
+<body>
+  <div id="content">
+    <h1 class="heading">Manual do FolhaLivre</h1>
+    <h2 class="subheading">Folhas de Contra-Partida</h2>
+    
+      <a id="backlink" href="index.html">&laquo; Volta para índice</a>
+      
+        <div class="toc">
+          <h2>Sumário</h2>
+          <ul class="contents">
+          
+            <li><a href="#defini-o">Definição</a></li>
+          
+            <li><a href="#objetivo">Objetivo</a></li>
+          
+            <li><a href="#cadastro">Cadastro</a></li>
+          
+            <li><a href="#f-rmula">Fórmula</a></li>
+          
+          </ul>
+        </div>
+        <br>
+      
+          
+    <div class="section">
+<h3><a id="defini-o" name="defini-o">Definição</a></h3>
+<p>É qualquer folha de pagamento que esteja incluída na relação de folha de
+contra-partida de determinada folha de pagamento.</p>
+<p>Uma folha de pagamento pode possuir uma lista de outras folhas vinculadas à
+ela para efeito de pesquisas. Qualquer folha pode ser incluída na relação de
+contra-partida de uma folha.</p>
+</div>
+<div class="section">
+<h3><a id="objetivo" name="objetivo">Objetivo</a></h3>
+<p>O recurso de contra-partida visa fornecer uma maneira fácil de pesquisa de
+valores que fazem parte de outras folhas.</p>
+<p>O <strong>Adiantamento Salarial</strong> é um exemplo clássico. A folha de adiantamento
+salarial possui basicamente 2 (dois) eventos: <cite>Adiantamento Salarial</cite> e <cite>IRRF</cite>.
+O provento <cite>Adiantamento Salarial</cite> é uma antecipação de salário que deverá ser
+descontado na folha de pagamento do mês.</p>
+</div>
+<div class="section">
+<h3><a id="cadastro" name="cadastro">Cadastro</a></h3>
+<p>Para que um evento seja calculado com base nas folha de contra-partida da
+folha em cálculo são necessários 2 (dois) procedimentos:</p>
+<ul>
+<li><p class="first">Incluir no cadastro da folha de pagamento a relação das folhas de contra-partida.</p>
+<p>.</p>
+<img alt="folha_contra_partida.jpg" src="folha_contra_partida.jpg" />
+</li>
+<li><p class="first">Informar no cadastro do evento o &quot;Tipo de Cálculo&quot; como <strong>Contra-partida</strong> e
+o código do evento em &quot;Evento de Contra-partida&quot; a ser pesquisado nas
+folhas de contra-partida.</p>
+<p>.</p>
+<img alt="evento_a_salarial_2.jpg" src="evento_a_salarial_2.jpg" />
+</li>
+</ul>
+</div>
+<div class="section">
+<h3><a id="f-rmula" name="f-rmula">Fórmula</a></h3>
+<p>Também é possível pesquisar determinado evento nas folhas de contra-partida.
+Utilize função <strong>CP()</strong> na fórmula para realizar essa pesquisa.</p>
+<p>Exemplo:</p>
+<div class="syntax" ><pre><span class="n">cp</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span> <span class="c1">// pesquisa o evento 40 (adiantamento salarial)</span>
+</pre></div>
+<p>mesmo que</p>
+<div class="syntax" ><pre><span class="n">cp40</span> <span class="c1">// pesquisa o evento 40 (adiantamento salarial)</span>
+</pre></div>
+</div>
+
+  </div>
+</body>
+<!-- generated on: 2008-02-09 11:01:36.421000
+     file id: contra_partida -->
+</html>

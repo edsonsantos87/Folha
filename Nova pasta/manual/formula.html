@@ -1,0 +1,361 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Fórmulas &mdash; FolhaLivre</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="flivre.css" type="text/css">
+</head>
+<body>
+  <div id="content">
+    <h1 class="heading">Manual do FolhaLivre</h1>
+    <h2 class="subheading">Fórmulas</h2>
+    
+      <a id="backlink" href="index.html">&laquo; Volta para índice</a>
+      
+        <div class="toc">
+          <h2>Sumário</h2>
+          <ul class="contents">
+          
+            <li><a href="#introdu-o">Introdução</a></li>
+          
+            <li><a href="#cadastro">Cadastro</a></li>
+          
+            <li><a href="#coment-rios">Comentários</a></li>
+          
+            <li><a href="#constantes">Constantes</a></li>
+          
+            <li><a href="#fun-es-do-calculador">Funções do calculador</a></li>
+          
+            <li><a href="#fun-es-de-n-meros">Funções de números</a></li>
+          
+            <li><a href="#fun-es-de-textos">Funções de textos</a></li>
+          
+            <li><a href="#fun-es-de-datas">Funções de datas</a></li>
+          
+          </ul>
+        </div>
+        <br>
+      
+          
+    <div class="section">
+<h3><a id="introdu-o" name="introdu-o">Introdução</a></h3>
+<p>O FolhaLivre tem a intenção de ser um software totalmente configurável,
+flexível na sua operação para que possa se adaptar à inumeras situações
+(mesmo aquelas não previstas por seus desenvolvedores). Por esta razão é que
+o cálculo de seus eventos é totalmente baseado em fórmulas
+configuradas pelo administrador/usuário.</p>
+<p>A fórmula é uma entidade global, isto é, está disponível para qualquer empresa.
+Ela é escrita em um dialeto baseado na liguaguem xBase, sendo que a sua
+validação e processamento são verificados somente durante a execução do cálculo
+da folha.</p>
+<p>Uma fórmula pode possuir uma ou mais linhas. O resultado da última linha
+válida será o resultado da fórmula.</p>
+</div>
+<div class="section">
+<h3><a id="cadastro" name="cadastro">Cadastro</a></h3>
+<p>A manuntenção das fórmulas é realizada pela opção <strong>&lt;Fórmulas&gt;</strong> do
+menu <strong>&lt;Cálculos&gt;</strong>. Uma fórmula possui os seguintes campos:</p>
+<blockquote>
+<ul class="simple">
+<li><strong>Código:</strong> É um número inteiro que identifica a fórmula no sistema;</li>
+<li><strong>Descrição:</strong> É um texto alfanumérico que resume a função da fórmula;</li>
+<li><strong>Fórmula:</strong> É o texto que contém os comandos que calcula a fórmula.</li>
+</ul>
+</blockquote>
+<p>Você também pode escrever uma fórmula no campo <strong>Fórmula Local</strong> no cadastro
+de um evento. No entanto, existem algumas limitações nesse modo. Não há
+comentários, destaque de cores e o texto está limitado a uma linha.</p>
+</div>
+<div class="section">
+<h3><a id="coment-rios" name="coment-rios">Comentários</a></h3>
+<p>São partes do texto que não são considerados no processamento. Servem para
+tornar o código mais compreensivo ou explicar o funcionamento do mesmo.
+Durante a edição da fórmula os comentários aparecem em vermelho. São
+considerado comentários:</p>
+<blockquote>
+<ul class="simple">
+<li>A linha que iniciar como o carater &quot;*&quot; (asterisco);</li>
+<li>O trecho posterior aos caracteres &quot;//&quot; (duas barras) na mesma linha.</li>
+</ul>
+</blockquote>
+<p>Veja exemplo da fórmula que calcula a <strong>Contribuição Sindical</strong> que contém comentários:</p>
+<div class="syntax" ><pre><span class="o">*</span> <span class="n">A</span> <span class="n">contribui</span><span class="err">çã</span><span class="n">o</span> <span class="n">sindical</span> <span class="n">ser</span><span class="err">á</span> <span class="n">cobrada</span> <span class="n">no</span> <span class="n">mes</span> <span class="n">de</span> <span class="n">mar</span><span class="err">ç</span><span class="n">o</span>
+<span class="o">*</span> <span class="n">Ou</span> <span class="n">no</span> <span class="n">m</span><span class="err">ê</span><span class="n">s</span> <span class="n">sequinte</span> <span class="n">ao</span> <span class="n">mes</span> <span class="n">da</span> <span class="n">admissao</span>
+<span class="o">*</span> <span class="n">O</span> <span class="n">valor</span> <span class="n">a</span> <span class="n">ser</span> <span class="n">cobrado</span> <span class="n">corresponder</span><span class="err">á</span> <span class="n">a</span> <span class="n">um</span> <span class="n">dia</span> <span class="n">de</span> <span class="n">trabalho</span> <span class="n">normal</span>
+
+<span class="n">ano_a</span> <span class="o">:=</span> <span class="n">year</span><span class="p">(</span><span class="n">f</span><span class="o">:</span><span class="n">admissao</span><span class="p">)</span>          <span class="c1">// ano de admissao</span>
+<span class="n">mes_a</span> <span class="o">:=</span> <span class="n">month</span><span class="p">(</span><span class="n">f</span><span class="o">:</span><span class="n">admissao</span><span class="p">)</span>         <span class="c1">// mes de admissao</span>
+<span class="n">ano_f</span> <span class="o">:=</span> <span class="n">year</span><span class="p">(</span><span class="n">l</span><span class="o">:</span><span class="n">periodo_inicio</span><span class="p">)</span>    <span class="c1">// ano da folha</span>
+<span class="n">mes_f</span> <span class="o">:=</span> <span class="n">year</span><span class="p">(</span><span class="n">l</span><span class="o">:</span><span class="n">periodo_inicio</span><span class="p">)</span>    <span class="c1">// mes da folha</span>
+
+<span class="n">pagar</span> <span class="o">:=</span> <span class="k">FALSE</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">l</span><span class="o">:</span><span class="n">competencia</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span> <span class="err">&amp;</span> <span class="p">(</span><span class="n">ano_a</span> <span class="o">&lt;</span> <span class="n">ano_f</span><span class="p">)</span>
+  <span class="n">pagar</span> <span class="o">:=</span> <span class="k">TRUE</span>
+<span class="k">else</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">ano_a</span> <span class="o">=</span> <span class="n">ano_f</span><span class="p">)</span> <span class="err">&amp;</span> <span class="p">(</span><span class="n">mes_f</span> <span class="o">&gt;</span> <span class="n">mes_a</span><span class="p">)</span> <span class="err">&amp;</span> <span class="p">(</span><span class="n">AA</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span>
+    <span class="n">pagar</span> <span class="o">:=</span> <span class="err">!</span><span class="n">f</span><span class="o">:</span><span class="n">imposto_sindical_x</span>
+  <span class="n">endif</span>
+<span class="n">endif</span>
+
+<span class="k">if</span><span class="p">(</span> <span class="n">pagar</span><span class="o">,</span> <span class="n">SM</span><span class="o">/</span><span class="mi">30</span><span class="o">,</span> <span class="mf">0.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section">
+<h3><a id="constantes" name="constantes">Constantes</a></h3>
+<p>São palavras formadas por duas ou mais letras e representam uma informação.
+São utilizadas para acessar um valor ou campo específico do funcionário
+ou evento. Além de reduzir o tamanho do código da fórmula torná-o mais
+compreensivo. As constantes válidas são as seguintes:</p>
+<blockquote>
+<ul class="simple">
+<li><strong>CG</strong> - Código do cargo;</li>
+<li><strong>CH</strong> - Carga horária mensal</li>
+<li><strong>GI</strong> - Grau de instrução;</li>
+<li><strong>HT</strong> - Valor da hora trabalhada;</li>
+<li><strong>ID</strong> - Código identificador do funcionário;</li>
+<li><strong>LT</strong> - Código da lotação;</li>
+<li><strong>MM</strong> - Número de meses usados na média;</li>
+<li><strong>MMA</strong> - Número de meses de admissão no ano;</li>
+<li><strong>MN</strong> ou <strong>MINIMO</strong> - Valor minimo do evento;</li>
+<li><strong>MX</strong> ou <strong>MAXIMO</strong> - Valor máximo do evento;</li>
+<li><strong>MT</strong> - Multiplicador do evento;</li>
+<li><strong>SN</strong> - Salário Normal (Mensal), não considera o valor informado nem altera a referência;</li>
+<li><strong>SM</strong> - Salário Mensal, considera o valor informado e altera a referência;</li>
+<li><strong>SALARIO</strong> - Valor do campo salário do cadastro do funcionário;</li>
+<li><strong>TN</strong> - Tempo de nascimento (em meses);</li>
+<li><strong>TS</strong> - Tempo de serviço (em meses);</li>
+<li><strong>VC</strong> - Valor calculado;</li>
+<li><strong>VI</strong> - Valor informado;</li>
+<li><strong>VR</strong> - Valor referência;</li>
+<li><strong>VT</strong> - Valor totalizado;</li>
+<li><strong>TX</strong> - Valor da taxa referente à faixa da última tabela pesquisada na fórmula;</li>
+<li><strong>TB</strong> - Total dos eventos do tipo BASE;</li>
+<li><strong>TD</strong> - Total dos eventos do tipo DESCONTO;</li>
+<li><strong>TP</strong> - Total dos eventos do tipo PROVENTO.</li>
+</ul>
+</blockquote>
+</div>
+<div class="section">
+<h3><a id="fun-es-do-calculador" name="fun-es-do-calculador">Funções do calculador</a></h3>
+<p>São procedimentos que precisam receber alguma informação (entrada/argumento)
+para devolver um resultado-valor (saída). São iniciadas com duas letras
+seguidas por um número inteiro &lt;i&gt;, às vezes é necessário fornecer um ou mais
+argumentos. Os argumentos deverão estar entre parenteses que pode ser uma
+constante, um valor literal, uma função ou uma expressão válida.</p>
+<p>Alguns exemplos de funções:</p>
+<ul>
+<li><p class="first"><strong>TI - Total de Incidência</strong></p>
+<p><tt class="docutils literal"><span class="pre">Formato:</span> <span class="pre">ti&lt;i&gt;,</span> <span class="pre">t&lt;i&gt;</span> <span class="pre">ou</span> <span class="pre">ti(&lt;i&gt;),</span> <span class="pre">onde</span> <span class="pre">&lt;i&gt;</span> <span class="pre">é</span> <span class="pre">um</span> <span class="pre">número</span> <span class="pre">inteiro</span> <span class="pre">que</span> <span class="pre">representa</span> <span class="pre">a</span> <span class="pre">incidência</span> <span class="pre">desejada.</span></tt></p>
+<p>Retorna o total acumulado para a incidência indicada em &lt;i&gt;. Ou seja,
+retorna o total dos valores calculados para os eventos cuja incidência &lt;i&gt;
+está ativada. A entrada &lt;i&gt; pode variar de 1 a 20. Para mais detalhes veja
+<a class="reference" href="total_incidencia.html">Totais de Incidência</a>.</p>
+</li>
+<li><p class="first"><strong>IG - Índice Global</strong></p>
+<p><tt class="docutils literal"><span class="pre">Formato:</span> <span class="pre">ig&lt;i&gt;</span> <span class="pre">ou</span> <span class="pre">ig(&lt;i&gt;),</span> <span class="pre">onde</span> <span class="pre">&lt;i&gt;</span> <span class="pre">é</span> <span class="pre">um</span> <span class="pre">número</span> <span class="pre">inteiro</span> <span class="pre">que</span> <span class="pre">representa</span> <span class="pre">o</span> <span class="pre">índice</span> <span class="pre">desejado.</span></tt></p>
+<p>Retorna o valor do índice global (da empresa global) de número &lt;i&gt;. Para mais
+detalhes veja <a class="reference" href="indice.html">Índices.html</a>.</p>
+</li>
+<li><p class="first"><strong>VG - Valor Fixo Global</strong></p>
+<p><tt class="docutils literal"><span class="pre">Formato:</span> <span class="pre">vg&lt;i&gt;</span> <span class="pre">ou</span> <span class="pre">vg(&lt;i&gt;),</span> <span class="pre">onde</span> <span class="pre">&lt;i&gt;</span> <span class="pre">é</span> <span class="pre">um</span> <span class="pre">número</span> <span class="pre">inteiro</span> <span class="pre">que</span> <span class="pre">representa</span> <span class="pre">o</span> <span class="pre">valor</span> <span class="pre">global</span> <span class="pre">desejado.</span></tt></p>
+<p>Retorna o valor do valor global (da empresa global) número &lt;i&gt;. Para mais
+detalhes veja <a class="reference" href="valor_fixo.html">Valores Fixos</a>.</p>
+</li>
+<li><p class="first"><strong>TG - Tabela Global de Cálculo</strong></p>
+<p><tt class="docutils literal"><span class="pre">Formato:</span> <span class="pre">tg&lt;t&gt;(&lt;v&gt;)</span> <span class="pre">ou</span> <span class="pre">tg(&lt;t&gt;,&lt;v&gt;),</span> <span class="pre">onde</span> <span class="pre">&lt;t&gt;</span> <span class="pre">é</span> <span class="pre">o</span> <span class="pre">código</span> <span class="pre">da</span> <span class="pre">tabela</span> <span class="pre">e</span> <span class="pre">&lt;v&gt;</span> <span class="pre">é</span> <span class="pre">o</span> <span class="pre">valor</span> <span class="pre">a</span> <span class="pre">ser</span> <span class="pre">pesquisado.</span></tt></p>
+<p>Retorna o valor resultante da aplicação de taxa (tx), redução (rd) e/ou
+acréscimo (ac) sobre o valor-alvo &lt;v&gt; conforme a faixa apropriada pesquisada
+na tabela global &lt;t&gt;. Para detalhes veja <a class="reference" href="tbela_calculo.html">Tabela de Cálculo</a>.</p>
+</li>
+<li><p class="first"><strong>CP - Contra-Partida</strong></p>
+<p><tt class="docutils literal"><span class="pre">Formato:</span> <span class="pre">cp&lt;e&gt;</span> <span class="pre">ou</span> <span class="pre">cp(&lt;e&gt;),</span> <span class="pre">onde</span> <span class="pre">&lt;e&gt;</span> <span class="pre">é</span> <span class="pre">o</span> <span class="pre">código</span> <span class="pre">do</span> <span class="pre">evento</span> <span class="pre">a</span> <span class="pre">ser</span> <span class="pre">pesquisado.</span></tt></p>
+<p>Retorna o total de valores calculados do evento &lt;e&gt; nas folhas de
+contra-partida especificadas na folha atual (em cálculo) para funcionário.</p>
+<p>Exemplo: <strong>cp2</strong> ou <strong>cp(2)</strong> - Retorna a somatória (ou zero) dos valores calculados
+para o evento 2 nas folhas de contra-partida informadas na folha atual.</p>
+</li>
+<li><p class="first"><strong>XI - Total de Incidência por Mês-Crédito</strong></p>
+<p><tt class="docutils literal"><span class="pre">Formato:</span> <span class="pre">XI</span></tt></p>
+<p>Retorna o total de valores calculados para os eventos cuja incidência tenha o
+mesmo nome do evento em cálculo. O período pesquisado será ao mês de crédito
+da folha em cálculo.</p>
+<p>Exemplo: Suponhamos que o nome evento em cálculo seja &quot;I.R.R.F&quot; e que a data
+de crédito da folha seja 05/05/2005. Então, <strong>xi</strong> retornará o total de
+valores calculados para os eventos cuja incidência &quot;I.R.R.F&quot; está ativada.
+O período pesquisando será de 01/05/2005 a 04/05/2005 para a data de crédito
+das folhas.</p>
+<p><tt class="docutils literal"><span class="pre">Formato:</span> <span class="pre">XI&lt;i&gt;</span> <span class="pre">ou</span> <span class="pre">XI(&lt;i&gt;,&lt;mes&gt;,&lt;ano&gt;),</span> <span class="pre">onde</span> <span class="pre">&lt;i&gt;</span> <span class="pre">é</span> <span class="pre">o</span> <span class="pre">código</span> <span class="pre">da</span> <span class="pre">incidência</span> <span class="pre">a</span> <span class="pre">ser</span> <span class="pre">pesquisada.</span></tt></p>
+<p>Retorna o total de valores calculados para os eventos cuja incidência &lt;i&gt;
+esteja ativa. O período pesquisado referente ao mês de crédito da folha
+em cálculo ou ao especificado em &lt;mes&gt; e &lt;ano&gt;.</p>
+<p>Exemplo: Suponhamos que o nome evento em cálculo seja &quot;I.R.R.F&quot; e que a data de crédito
+da folha seja 05/05/2005. Então, <strong>xi1</strong> ou <strong>xi(1)</strong> retornará o total de valores
+calculados para os eventos cuja incidência 1 esteja ativada. O período pesquisando
+será de 01/05/2005 a 04/05/2005 para a data de crédito das folhas.</p>
+</li>
+<li><p class="first"><strong>XE - Total de Evento por Mês-Crédito</strong></p>
+<p><tt class="docutils literal"><span class="pre">Formato:</span> <span class="pre">XE</span></tt></p>
+<p>Retorna o total de valores calculados para o evento em cálculo. O período
+pesquisado será do dia 1o. ao dia anterior ao crédito da folha em cálculo.</p>
+<p>Exemplo: Suponhamos que o evento em cálculo seja &quot;102-Gratificação Especial&quot; e que a data
+de crédito da folha atual seja &quot;05/05/2005&quot;. A função <strong>xe</strong> totalizará os valores calculados
+para o evento 102 das folhas cuja data de crédito esteja entre &quot;01/05/2005&quot; e &quot;04/05/2005&quot;.</p>
+<p><tt class="docutils literal"><span class="pre">Formmato:</span> <span class="pre">XE&lt;e&gt;</span> <span class="pre">ou</span> <span class="pre">XE(&lt;e&gt;[,&lt;mes&gt;[,[&lt;ano&gt;]]),</span> <span class="pre">onde</span> <span class="pre">&lt;e&gt;</span> <span class="pre">é</span> <span class="pre">o</span> <span class="pre">código</span> <span class="pre">do</span> <span class="pre">evento</span> <span class="pre">a</span> <span class="pre">ser</span> <span class="pre">pesquisado.</span></tt></p>
+<p>Retorna o total de valores calculados para o evento &lt;e&gt;. O período
+pesquisado referente ao mês de crédito da folha em cálculo ou ao especificado
+em &lt;mes&gt; e &lt;ano&gt;.</p>
+<p>Exemplo: <strong>xe1</strong> ou <strong>xe(1)</strong> - Retorna o total calculado para o evento 1 referente às
+folhas cujo mês de crédito da folha em cálculo.</p>
+</li>
+</ul>
+</div>
+<div class="section">
+<h3><a id="fun-es-de-n-meros" name="fun-es-de-n-meros">Funções de números</a></h3>
+<ul>
+<li><p class="first">abs(x)</p>
+<p>Retorna o valor absoluto do número &quot;x&quot;.
+Exemplo: <strong>abs(-1)</strong> retorna 1.</p>
+</li>
+<li><p class="first">and(x , y, a, b, ...)</p>
+<p>Retorna 0 (zero/falso) se um de seus parametros for 0 (zero/falso). Se
+todos os valores informados forem diferente de 0 (zero/falso) retorna 1 (um).</p>
+</li>
+<li><p class="first">frac(x)</p>
+<p>Retorna a parte decimal do número &quot;x&quot;. Exemplo: <strong>frac(1.02)</strong> retorna 0.02.</p>
+</li>
+<li><p class="first">int(x)</p>
+<p>Retorna a parte inteiro do número &quot;x&quot;.
+Exemplo: <strong>int(1.02)</strong> retorna 1 e <strong>int(0.1)</strong> retorna 0.</p>
+</li>
+<li><p class="first">or(x , y, a, b, ...)</p>
+<p>Retorna 1 (um/verdadeiro) se um de seus parametros for 1 (um/verdadeiro).
+Se todos os valores informados forem diferente de 1 (um/verdadeiro)
+retorna 0 (zero/falso).</p>
+</li>
+<li><p class="first">max(x, y, a, b, ...)</p>
+<p>Retorna o maior número da lista fornecida.
+Exemplo: <strong>max(1, 5, 1.02, 3, 2)</strong> retorna 5.</p>
+</li>
+<li><p class="first">mod(x, y)</p>
+<p>Retorna o módulo dos dois números informados. Internamente é realizado o
+seguinte cálculo (x - (x div y) * y).
+Exemplos: <strong>mod(11, 2)</strong> retorna 1 e <strong>mod(15, 4)</strong> retorna 3.</p>
+</li>
+<li><p class="first">round(x, y)</p>
+<p>Realiza o arrendodamento de &quot;x&quot; conforme o número de casas decimais informado em &quot;y&quot;.
+Se &quot;y&quot; for omitido será assumido 2.
+Exemplos: <strong>round(1.01, 1)</strong> retorna 1.00; <strong>round(2.027)</strong> retorna 2.03.</p>
+</li>
+<li><p class="first">sign(x)</p>
+<p>Indica se o número &quot;x&quot; é negativo, zero ou positivo.
+Se &quot;x&quot; for negativo retorna -1, se &quot;x&quot; for zero retorna 0, se &quot;x&quot; for positivo retorna 1.
+Exemplo: <strong>sign(2.02)</strong> retorna 1 e <strong>sign(-10)</strong> retorna -1.</p>
+</li>
+<li><p class="first">sqrt(x)</p>
+<p>Retorna a raiz quadrada do número &quot;x&quot;.
+Exemplo: <strong>sqrt(9)</strong> retorna 3.</p>
+</li>
+<li><p class="first">sin(x)</p>
+<p>Retorna o sinal da argumento &quot;x&quot;. <strong>sin</strong> retorna o sinal do ângulo &quot;x&quot; em radianos.</p>
+</li>
+<li><p class="first">cos(x)</p>
+<p>Retorna o cosseno do ângulo <strong>x</strong>, em radianos.</p>
+</li>
+<li><p class="first">tan(x)</p>
+<p>Retorna a tangente de <strong>x</strong>. <strong>tan(x)</strong> é o mesmo que <strong>sin(x)/cos(x)</strong>.</p>
+</li>
+<li><p class="first">atan(x)</p>
+<p>Retorna o arcotangente de &quot;x&quot;.</p>
+</li>
+<li><p class="first">ln(x)</p>
+<p>Retorna o logaritmo natural de &quot;x&quot;. (ln(e) = 1).</p>
+</li>
+<li><p class="first">sum( x, y, z, a, b, ...)</p>
+<p>Retorna a somatória dos números informados.
+Exemplo: <strong>sum( 1, 2.02, 5, 42)</strong> é igual a 50.02.</p>
+</li>
+<li><p class="first">trunc(x)</p>
+<p>Converte &quot;x&quot; em um número inteiro.
+Exemplo: <strong>trunc(248.02) = 248</strong>.</p>
+</li>
+<li><p class="first">if(x,v,f)</p>
+<p>Se &quot;x&quot; uma expressao verdadeira, retorna &quot;v&quot;, caso contrário retorna &quot;f&quot;.</p>
+<p>Exemplo: <strong>if( vi=0, ch, vi)</strong>. Se o valor informado (vi) for zero usa-se a
+carga horária (ch), caso contrário, utiliza-se o valor informado (vi).</p>
+</li>
+<li><p class="first">randomize</p>
+<p>Inicia o procedimento para geração de números aleatórios. Deverá ser chamado
+antes de uma sequência de <strong>random</strong>.</p>
+</li>
+<li><p class="first">random(x)</p>
+<p>Retorna um número aleatório entre 0 e &quot;x&quot;. Se &quot;x&quot; não for especificado será
+assumido 1. A função <strong>randomize</strong> deve ser executada primeiramente.</p>
+</li>
+</ul>
+</div>
+<div class="section">
+<h3><a id="fun-es-de-textos" name="fun-es-de-textos">Funções de textos</a></h3>
+<ul>
+<li><p class="first">asc(c)</p>
+<p>Retorna um número (0 a 255) da tabela ASCII correspondente ao caracter &quot;c&quot;.</p>
+</li>
+<li><p class="first">chr(n)</p>
+<p>Retorna o caracter ASCII conforme o número &quot;n&quot;.</p>
+</li>
+<li><p class="first">copy(s,i,c), substr(s,i,c), mid(s,i,c).</p>
+<p>Retorna uma sequência de caracteres retirada de &quot;s&quot; começando na posição &quot;i&quot;
+com até &quot;c&quot; caracteres. Exemplo: copy('ALLAN LIMA',2,4) retorna 'LLAN' e
+copy('ALLAN LIMA',7,4) retorna 'LIMA'.</p>
+</li>
+<li><p class="first">lower(s), lowercase(s) ou lcase(s).</p>
+<p>Retorna o texto &quot;s&quot; transformado em minúsculas. Exemplo: Lower('ALLAN LIMA') retorna 'allan lima'.</p>
+</li>
+<li><p class="first">upper(s), uppercase(s) ou ucase(s).</p>
+<p>Retorna o texto &quot;s&quot; transformado em maiúsculas.
+Exemplo: Upper('allan lima') retorna 'ALLAN LIMA'.</p>
+</li>
+<li><p class="first">pos( t1, t2)</p>
+<p>Retorna a posição onde o texto &quot;t1&quot; se inicia no texto &quot;t2&quot;. Se &quot;t1&quot; não
+estiver em &quot;t2&quot; retorna 0 (zero).
+Exemplo: Pos('n', 'Allan Lima') retorna 5.</p>
+</li>
+<li><p class="first">trim(t)</p>
+<p>Retira os espaços do início e final do texto &quot;t&quot;.
+Exemplo: Trim(' Allan Lima  ') retorna 'Allan Lima'.</p>
+</li>
+</ul>
+</div>
+<div class="section">
+<h3><a id="fun-es-de-datas" name="fun-es-de-datas">Funções de datas</a></h3>
+<ul>
+<li><p class="first">date</p>
+<p>Retorna a data atual.</p>
+</li>
+<li><p class="first">day, dayOf, day(&lt;d&gt;), dayOf(&lt;d&gt;)</p>
+<p>Retorna o dia da data atual ou o dia da data informada &lt;d&gt;.</p>
+</li>
+<li><p class="first">month, month(&lt;d&gt;)</p>
+<p>Retorna o número do mês da data atual ou da data informada &lt;d&gt;.</p>
+</li>
+<li><p class="first">monthOf(&lt;d&gt;)</p>
+<p>Retorna o número do mês da data informada &lt;d&gt;.</p>
+</li>
+<li><p class="first">year, year(&lt;d&gt;)</p>
+<p>Retorna o ano da data atual ou da data informada &lt;d&gt;.</p>
+</li>
+<li><p class="first">yearOf(&lt;d&gt;)</p>
+<p>Retorna o ano da data informada &lt;d&gt;.</p>
+</li>
+<li><p class="first">time</p>
+<p>Retorna a hora atual.</p>
+</li>
+</ul>
+</div>
+
+  </div>
+</body>
+<!-- generated on: 2008-02-09 11:01:38.609000
+     file id: formula -->
+</html>

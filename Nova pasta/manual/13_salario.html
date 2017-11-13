@@ -1,0 +1,246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Decimo Terceiro Salário &mdash; FolhaLivre</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="flivre.css" type="text/css">
+</head>
+<body>
+  <div id="content">
+    <h1 class="heading">Manual do FolhaLivre</h1>
+    <h2 class="subheading">Decimo Terceiro Salário</h2>
+    
+      <a id="backlink" href="index.html">&laquo; Volta para índice</a>
+      
+        <div class="toc">
+          <h2>Sumário</h2>
+          <ul class="contents">
+          
+            <li><a href="#introdu-o">Introdução</a></li>
+          
+            <li><a href="#primeira-parcela">Primeira Parcela</a></li>
+          
+            <li><a href="#fgts-no-13o-sal-rio">FGTS no 13o. Salário</a></li>
+          
+            <li><a href="#imposto-de-renda-no-13o-sal-rio">Imposto de Renda no 13o Salário</a></li>
+          
+            <li><a href="#inss-no-13o-sal-rio">INSS no 13o Salário</a></li>
+          
+            <li><a href="#reembolso-do-13o-sal-rio-correspondente-ao-per-odo-de-licen-a-maternidade">Reembolso do 13o salário correspondente ao período de licença-maternidade</a></li>
+          
+            <li><a href="#eventos">Eventos</a></li>
+          
+            <li><a href="#refer-ncias">Referências</a></li>
+          
+          </ul>
+        </div>
+        <br>
+      
+          
+    <div class="section">
+<h3><a id="introdu-o" name="introdu-o">Introdução</a></h3>
+<p>O art. 7o., inciso VIII, da Constituição Federal estabeleceu a expressão
+<strong>&quot;décimo terceiro salário&quot;</strong>, para a gratificação natalina. É importante
+ressaltar que a Constituição determina que o décimo terceiro seja pago com
+base na remuneração integral.</p>
+<p>O pagamento do 13o. salário possui características próprias, diferindo do
+pagamento da folha normal. Assim sendo, é conveniente que algumas considerações
+sejam expostas, principalmente referentes ao FGTS, INSS, IRRF e eventos
+envolvidos na primeira, segunda e acerto das parcelas.</p>
+<p>Após a leitura destas considerações teóricas, você é convidado a seguir para a
+página <a class="reference" href="13_salario_passos.html">13o. Salário - Passos</a> a fim de configurar e
+operar seu sistema para o processamento das folhas relacionadas ao 13o. salário.</p>
+</div>
+<div class="section">
+<h3><a id="primeira-parcela" name="primeira-parcela">Primeira Parcela</a></h3>
+<p>A primeira parcela será paga entre o meses de fevereiro e novembro (até o
+dia 30) do ano em curso, salvo se paga juntamente com as férias.</p>
+<p>Os empregados admitidos até 17 de janeiro recebem a metade do salário contratual.</p>
+<p>Aos empregados admitidos após 17 de janeiro, paga-se o referente ao período
+posterior à admissão, atribuindo-se 1/12 do salário mensal percebido ou apurado,
+por mês de serviço, ou fração igual ou superior a 15 dias, contado da admissão
+até o mês anterior ao pagamento; paga-se a metade do total encontrado.</p>
+</div>
+<div class="section">
+<h3><a id="fgts-no-13o-sal-rio" name="fgts-no-13o-sal-rio">FGTS no 13o. Salário</a></h3>
+<p>O FGTS incide sobre o pagamento das duas parcelas do 13o salário.</p>
+<p>No FolhaLivre há vários eventos relacionados ao FGTS para as folhas de
+13o salário. Os eventos abaixo com [x] devem ter a incidência
+<tt class="docutils literal"><span class="pre">FGTS</span> <span class="pre">s/</span> <span class="pre">13o</span> <span class="pre">salário</span></tt> selecionada.</p>
+<ul class="simple">
+<li>Para a folha da primeira parcela temos os seguintes eventos:<ol class="arabic">
+<li>[x] 13o. salário - 1a parcela (+);</li>
+<li>FGTS s/ 13o salário - Base de Cálculo (*);</li>
+<li>FGTS s/ 13o salário (*).</li>
+</ol>
+</li>
+<li>Para a folha da segunda parcela temos os seguintes eventos:<ol class="arabic">
+<li>[x] 13o salário (+);</li>
+<li>[x] Adiantamento 13o salário (-);</li>
+<li>FGTS s/ 13o salário - Base de Cálculo (*);</li>
+<li>FGTS s/ 13o salário (*).</li>
+</ol>
+</li>
+</ul>
+<p>Os eventos acima devem ser calculados, obrigatoriamente, nesta ordem
+(sequência). O <tt class="docutils literal"><span class="pre">Adiantamento</span> <span class="pre">13o</span> <span class="pre">salário</span></tt> tem a incidência
+<tt class="docutils literal"><span class="pre">FGTS</span> <span class="pre">s/</span> <span class="pre">13o</span> <span class="pre">salário</span></tt> selecionada porque o valor da primeira parcela
+(que é esse adiantamento) deduz da base de cálculo da segunda parcela, neste
+caso, o <tt class="docutils literal"><span class="pre">13o</span> <span class="pre">salário</span></tt>.</p>
+</div>
+<div class="section">
+<h3><a id="imposto-de-renda-no-13o-sal-rio" name="imposto-de-renda-no-13o-sal-rio">Imposto de Renda no 13o Salário</a></h3>
+<p>O 13o salário será tributado sobre o valor total no mês de sua quitação, não
+havendo retenção nas antecipações.</p>
+<p>De acordo com a Lei no. 8.134, de 27-12-90, art. 16., a tributação do imposto
+de renda será exclusiva na fonte e separada dos demais rendimentos do
+funcionário.</p>
+<p>Em visto disso, no FolhaLivre deve-se marcar a incidência <tt class="docutils literal"><span class="pre">IRRF</span> <span class="pre">s/</span> <span class="pre">13</span> <span class="pre">salário</span></tt>
+apenas para o evento <tt class="docutils literal"><span class="pre">13o</span> <span class="pre">salário</span></tt>.</p>
+<ul class="simple">
+<li>Para a folha da segunda parcela temos os sequintes eventos:<ol class="arabic">
+<li>[x] 13o salário (+);</li>
+<li>IRFF s/ 13o salário - Base de cálculo (*);</li>
+<li>IRFF s/ 13o salário (-);</li>
+</ol>
+</li>
+</ul>
+<p>Os eventos acima devem ser calculados, obrigatoriamente, nesta ordem (sequência).</p>
+</div>
+<div class="section">
+<h3><a id="inss-no-13o-sal-rio" name="inss-no-13o-sal-rio">INSS no 13o Salário</a></h3>
+<p>Como no IRFF, para o INSS o 13o salário será tributado somente sobre o valor
+total no mês de sua quitação, não havendo retenção nas antecipações.</p>
+<p>Em visto disso, no FolhaLivre deve-se marcar a incidência <tt class="docutils literal"><span class="pre">INSS</span> <span class="pre">s/</span> <span class="pre">13</span> <span class="pre">salário</span></tt>
+apenas para o evento <tt class="docutils literal"><span class="pre">13o</span> <span class="pre">salário</span></tt>.</p>
+<ul class="simple">
+<li>Para a folha da segunda parcela temos os sequintes eventos:<ol class="arabic">
+<li>[x] 13o salário (+);</li>
+<li>INSS s/ 13o salário - Base de cálculo (*);</li>
+<li>INSS s/ 13o salário (-);</li>
+</ol>
+</li>
+</ul>
+<p>Os eventos acima devem ser calculados, obrigatoriamente, nesta ordem (sequência).</p>
+</div>
+<div class="section">
+<h3><a id="reembolso-do-13o-sal-rio-correspondente-ao-per-odo-de-licen-a-maternidade" name="reembolso-do-13o-sal-rio-correspondente-ao-per-odo-de-licen-a-maternidade">Reembolso do 13o salário correspondente ao período de licença-maternidade</a></h3>
+<p>De acordo com Aristeu de Oliveira <a class="footnote-reference" href="#id2" id="id1" name="id1">[1]</a>:</p>
+<pre class="literal-block">
+Entendemos que o reembolso da gratificação natalina (13o. salário)
+proporcional ao período correspondente ao salário-maternidade a que se
+refere o art. 120 do Decreto no. 3.048/99 do RPS, deverá ser efetuado pela
+empresa por ocasião do recolhimento de contribuição previdenciária
+incidente sobre o pagamento da última parcela do 13o. salário ou das verbas
+rescisórias.
+
+Para efeito da apuração do montante a ser deduzido na GPS, será considerado
+o período em que a empregada esteve em gozo de licença gestante, contando
+dia a dia, dentro do exercício.
+
+Somente para o cálculo do campo 6 da GPS, a empresa deverá proceder da
+seguinte forma:
+
+a) dividir o valor do 13o salário por 30 (trinta);
+b) Dividir o resultado da operação anterior (a) pelo número de meses
+   considerado no cálculo do 13o salário;
+c) Multiplicar o resultado dessa operação (b) pelo número de dias de gozo da
+   licença-maternidade no ano respectivo.
+</pre>
+<p>Baseando-se nos passos acima elaborei uma fórmula que calcula o <tt class="docutils literal"><span class="pre">REEMBOLSO</span></tt>
+no FolhaLivre.</p>
+<div class="syntax" ><pre><span class="c1">// Esta formula somente eh valida a partir da versao 1.4 do FolhaLivre</span>
+
+<span class="n">valor</span> <span class="o">:=</span> <span class="mf">0.0</span>
+<span class="n">dias</span> <span class="o">:=</span> <span class="n">SHD</span><span class="p">(</span><span class="s">&#39;LM&#39;</span><span class="p">)</span>  <span class="c1">// SHD - Dias de gozo na situacao &quot;Licenca-Maternidade&quot; no ano da folha</span>
+
+<span class="k">if</span> <span class="n">dias</span> <span class="o">&gt;</span> <span class="mi">0</span>
+  <span class="n">valor</span> <span class="o">:=</span> <span class="n">VC100</span> <span class="o">/</span> <span class="mi">30</span>    <span class="c1">// VC100 significa o valor do evento 100 que deve ser o 13o. salario</span>
+  <span class="n">valor</span> <span class="o">:=</span> <span class="n">valor</span> <span class="o">/</span> <span class="n">MAA</span>  <span class="c1">// &quot;MAA&quot; significa o numero de meses de admissao no ano</span>
+  <span class="n">valor</span> <span class="o">:=</span> <span class="n">valor</span> <span class="o">*</span> <span class="n">dias</span>
+<span class="n">endif</span>
+
+<span class="n">valor</span>
+</pre></div>
+<p>Para uma melhor compreensão do processamento desta fórmula verifique a
+explicação das funções <strong>SHD</strong> e <strong>MAA</strong> em <a class="reference" href="formula.html">Fórmulas</a>.</p>
+</div>
+<div class="section">
+<h3><a id="eventos" name="eventos">Eventos</a></h3>
+<p>Os eventos envolvidos no processamento da folha de 13o. salário, incluindo
+a 1a. parcela, a 2a. parcela e a quitação (para os funcionários que
+possuam salário variável), são:</p>
+<ul class="simple">
+<li><strong>Proventos</strong> (+)<ul>
+<li>13o salário - 1a parcela;</li>
+<li>13o. salário (2a parcela);</li>
+<li>13o. salário - quitação (acerto/diferença).</li>
+</ul>
+</li>
+<li><strong>Descontos</strong> (-)<ul>
+<li>Adiantamento 13o salário (ref. 1a. parcela 13o. salário);</li>
+<li>INSS s/ 13o. salário;</li>
+<li>IRFF s/ 13o. salário.</li>
+</ul>
+</li>
+<li><strong>Base de Cálculo</strong> (*)<ul>
+<li>FGTS s/ 13o. salário - Base de cálculo;</li>
+<li>FGTS s/ 13o. salário;</li>
+<li>Reembolso 13o. salário - ref. Salário-Maternidade;</li>
+<li>INSS s/ 13o. salário - Base de cálculo;</li>
+<li>IRFF s/ 13o. salário - Base de cálculo;</li>
+<li>Salário Base - ref. 13 salário</li>
+</ul>
+</li>
+</ul>
+<p>Para a folha de pagamento referente à primeira parcela do 13o salário nem todos
+os eventos estarão envolvidos, apenas os seguintes:</p>
+<ul class="simple">
+<li>13o. salário - 1a. parcela (+);</li>
+<li>Salário Base - ref. 13o. salário (*);</li>
+<li>FGTS s/ 13o. salário - Base de cálculo (*).</li>
+<li>FGTS s/ 13o. salário (*);</li>
+</ul>
+<p>Para a folha de pagamento referente à segunda parcela do 13. salário estarão
+envolvidos os sequintes eventos:</p>
+<ul class="simple">
+<li>13o. salário (+);</li>
+<li>Salário Base - ref. 13 salário (*).</li>
+<li>Reembolso 13o. salário - ref. Salário-Maternidade (*);</li>
+<li>Adiantamento 13o. salário (ref. 1a. parcela 13o. salário) (-);</li>
+<li>INSS s/ 13o. salário - Base de cálculo (*);</li>
+<li>INSS s/ 13o. salário (-);</li>
+<li>IRFF s/ 13o. salário - Base de cálculo (*);</li>
+<li>IRFF s/ 13o. salário (-);</li>
+<li>FGTS s/ 13o. salário - Base de cálculo (*);</li>
+<li>FGTS s/ 13o. salário (*).</li>
+</ul>
+<p>Para a folha de pagamento referente ao acerto de diferenças para os funcionário
+que recebem salário variável, os eventos envolvidos são os seguintes:</p>
+<ul class="simple">
+<li>13o. salário (+);</li>
+<li>Salário Base - ref. 13 salário (*).</li>
+<li>INSS s/ 13o. salário - Base de cálculo (*);</li>
+<li>INSS s/ 13o. salário (-);</li>
+<li>IRFF s/ 13o. salário - Base de cálculo (*);</li>
+<li>IRFF s/ 13o. salário (-);</li>
+<li>FGTS s/ 13o. salário - Base de cálculo (*);</li>
+<li>FGTS s/ 13o. salário (*).</li>
+</ul>
+</div>
+<div class="section">
+<h3><a id="refer-ncias" name="refer-ncias">Referências</a></h3>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1" name="id2">[1]</a></td><td><strong>OLIVEIRA</strong>, Aristeu de. <em>Cálculos Trabalhistas</em>. Editora Atlas S.A.: São Paulo, 2006.</td></tr>
+</tbody>
+</table>
+</div>
+
+  </div>
+</body>
+<!-- generated on: 2008-02-09 11:01:32.281000
+     file id: 13_salario -->
+</html>

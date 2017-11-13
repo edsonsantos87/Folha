@@ -1,0 +1,374 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Totalizadores &mdash; FolhaLivre</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="flivre.css" type="text/css">
+</head>
+<body>
+  <div id="content">
+    <h1 class="heading">Manual do FolhaLivre</h1>
+    <h2 class="subheading">Totalizadores</h2>
+    
+      <a id="backlink" href="index.html">&laquo; Volta para índice</a>
+      
+        <div class="toc">
+          <h2>Sumário</h2>
+          <ul class="contents">
+          
+            <li><a href="#defini-o">Definição</a></li>
+          
+            <li><a href="#cadastro">Cadastro</a></li>
+          
+            <li><a href="#f-rmula">Fórmula</a></li>
+          
+            <li><a href="#tabelas">Tabelas</a></li>
+          
+            <li><a href="#consulta-sql">Consulta SQL</a></li>
+          
+          </ul>
+        </div>
+        <br>
+      
+          
+    <div class="section">
+<h3><a id="defini-o" name="defini-o">Definição</a></h3>
+<p>É um recurso de cálculo que visa fornecer um valor que representará uma
+consulta sobre outros valores de determinado período. O totalizador será
+pesquisado no histórico de pagamento do funcionário podendo abranger várias
+folhas.</p>
+<p>O totalizador é uma entidade global, não subordinada a empresas. Está
+disponível ao sistema desde o momento de sua criação.</p>
+<p>O valor do totalizador será do tipo numérico, poderá ser o resultado de uma
+acumulação, contagem, máximo ou mínimo aplicado ao conjunto dos valores
+pesquisados. Os valores pesquisados poderão ser os valores informado,
+calculado, referência ou totalizado dos eventos.</p>
+<p>A seleção dos valores a serem pesquisados se fará em vários nivéis, a saber:</p>
+<ul class="simple">
+<li><strong>Período:</strong> O período a ser aplicado no histórico de pagamento será o
+intervalo de datas definidos entre os valores dos campos <cite>INICIO</cite> e
+<cite>FINAL</cite> da folha em cálculo;</li>
+<li><strong>Tipos de Folhas:</strong> Somente as folhas que pertencerem a determinado(s)
+tipo(s) serão consideradas pelo totalizador. Quando nenhum tipo estiver
+definido, somente os tipos de folha cujo campo <tt class="docutils literal"><span class="pre">Totalizar</span></tt> estiver marcado;</li>
+<li><strong>Eventos:</strong> Apenas os valores de determinados eventos serão considerados
+pelo totalizador. Quando não for definido nenhum evento, será considerado
+apenas o evento em cálculo.</li>
+</ul>
+</div>
+<div class="section">
+<h3><a id="cadastro" name="cadastro">Cadastro</a></h3>
+<ul class="simple">
+<li><strong>Código:</strong> Número inteiro que identifica o totalizador, tornando-o único
+para o sistema.</li>
+<li><strong>Nome:</strong> Texto descritivo que visa fornecer informações simplicadas sobre
+a função ou qualquer itens que o usuário/administrador julgue necessária.</li>
+<li><strong>Cálculo:</strong> Indica a operação de totalização sobre os valores pesquisados. O
+<cite>Cálculo</cite> poderá ser um dos seguintes valores:<ul>
+<li>Acumulado (A) (Padrão);</li>
+<li>Contagem (Q);</li>
+<li>Média (M);</li>
+<li>Máximo (X);</li>
+<li>Mínimo (N);</li>
+<li>Último (U).</li>
+</ul>
+</li>
+<li><strong>Valor:</strong> Indica o valor (campo) que será considerado no cálculo do
+totalizador. O <cite>Valor</cite> poderá ser um dos seguinte valores:<ul>
+<li>Calculado (C) (Padrão);</li>
+<li>Informado (I);</li>
+<li>Referência (R);</li>
+<li>Totalizado (T).</li>
+</ul>
+</li>
+<li><strong>Tipos de Folha:</strong> Relação dos tipos de folhas que serão considerados pelo
+totalizador.</li>
+<li><strong>Eventos:</strong> Relação dos eventos que serão considerados pelo totalizador.</li>
+</ul>
+</div>
+<div class="section">
+<h3><a id="f-rmula" name="f-rmula">Fórmula</a></h3>
+<p>A utilização dos totalizadores cadastrados se fará por intermédio de fórmulas
+através da função:</p>
+<ul>
+<li><p class="first"><strong>TT&lt;n&gt;</strong> ou <strong>TT(&lt;n&gt;)</strong></p>
+<p>Executa o totalizador de código &lt;n&gt;.</p>
+<p>Se o totalizador não existir será gerado um erro <cite>Totalizador não existe</cite>.
+A operação e o valor de totalização serão o que estiverem informado para o
+totalizador. Somente as folhas que pertencerem aos tipos especificados
+para o totalizador serão consideradas. Se nenhum tipo estiver definido,
+somente as folhas cujo tipo de folhas tiverem o campo <cite>Totalizar</cite> marcado
+serão consideradas. Somentes os eventos especificados no totalizador serão
+pesquisados. Se nenhum eventos estiver definido, será considerado apenas o
+evento em cálculo.</p>
+</li>
+</ul>
+<p>Existe também outras funções que executam totalizações, mas não estão
+relacionadas a um totalizador específico. Os nomes destas funções começam por
+<strong>AA</strong>, <strong>TA</strong> ou <strong>TT</strong>. As funções são:</p>
+<ul>
+<li><p class="first"><strong>AA</strong> ou <strong>AA()</strong></p>
+<p>Executa uma totalização padrão. Será considerado apenas o evento em cálculo,
+as folhas cujo tipo seja igual ao tipo da folha em cálculo. Haverá uma
+acumulação do valor <strong>CALCULADO</strong> do histórico de pagamentos do funcionário,
+o período considerado será o primeiro dia do ano até o ínicio do período da
+folha em cálculo.</p>
+</li>
+<li><p class="first"><strong>AA[A,M,Q,X,N,U][C,I,R,T]</strong> ou <strong>AA([A,M,Q,X,N],[C,I,R,T],[&lt;evento&gt;])</strong></p>
+<p>Executa a mesma totalização de <strong>AA()</strong>. A totalização dependerá dos
+modificadores [A,M,Q,X,N,U] e o valor de cálculo dependerá dos modificadores
+[C,I,R,T]. O totalização ocorrerá sobre o evento em cálculo ou sobre aquele
+informado em &lt;evento&gt;.</p>
+<p>Os modificadores não são obrigatórios e as suas respectivas ordens não são
+importantes. Isto permite uma variedade de formas de escritas de totalização,
+como exemplo:</p>
+<ul class="simple">
+<li>AAC  - Acumulado do valor calculado;</li>
+<li>AAAC - Idem;</li>
+<li>AAA  - Idem;</li>
+<li>AAMI - Média do valor informado;</li>
+<li>AAXT - Máximo do valor totalizado.</li>
+</ul>
+<p>ou</p>
+<ul class="simple">
+<li>AA('C') - Acumulado do valor calculado;</li>
+<li>AA('A','C') - Idem;</li>
+<li>AA('A') - Idem;</li>
+<li>AA('M','I') - Média do valor informado;</li>
+<li>AA('X','T') - Máximo do valor totalizado.</li>
+</ul>
+</li>
+<li><p class="first"><strong>TA[( )]</strong></p>
+<p>Executa uma totalização padrão. Será considerado apenas o evento em cálculo, as
+folhas cujo tipo seja igual ao tipo da folha em cálculo. Haverá uma acumulação
+do valor <strong>CALCULADO</strong> do histórico de pagamentos do funcionário.</p>
+</li>
+<li><p class="first"><strong>TA[A,M,Q,X,N,U][C,I,R,T]</strong> ou <strong>TA([A,M,Q,X,N,U],[C,I,R,T],[&lt;evento&gt;])</strong></p>
+<p>Executa uma totalização padrão. Será considerado apenas o evento em cálculo
+ou aquele informado em &lt;evento&gt; e as folhas cujos tipos sejão igual ao tipo
+da folha em cálculo. A operação de totalização dependerá dos modificadores
+[A,M,Q,X,N,U] e o campo de cálculo dependerá dos modificadores [C,I,R,T].</p>
+<p>Os modificadores não são obrigatórios  e as respectivas ordens não são
+importantes. Isto permite uma variedade de formas de escritas de totalização,
+como exemplo:</p>
+<ul class="simple">
+<li>TAC  - Acumulado do valor calculado;</li>
+<li>TAAC - Idem;</li>
+<li>TAA  - Idem;</li>
+<li>TAMI - Média do valor informado;</li>
+<li>TAXT - Máximo do valor totalizado.</li>
+</ul>
+<p>ou</p>
+<ul class="simple">
+<li>TA('A','C') - Acumulado do valor calculado;</li>
+<li>TA('A')     - Idem;</li>
+<li>TA('M','I') - Média do valor informado;</li>
+<li>TA('X','T') - Máximo do valor totalizado.</li>
+</ul>
+</li>
+<li><p class="first"><strong>TT[( )]</strong></p>
+<p>Executa uma totalização padrão. Será considerado apenas o evento em
+cálculo, as folhas cujo tipo esteja com o campo <cite>Totalizar</cite> ativado. Haverá
+uma acumulação do valor <strong>CALCULADO</strong> do histórico de pagamentos do
+funcionário.</p>
+</li>
+<li><p class="first"><strong>TT[A,M,Q,X,N,U][C,I,R,T][Z]</strong> ou <strong>TT([A,M,Q,X,N,U],[C,I,R,T],[Z],[&lt;evento&gt;])</strong></p>
+<p>Executa uma totalização padrão. Será considerado apenas o evento em cálculo
+ou aquele informado em &lt;evento&gt; e as folhas cujos tipos estejam com o campo
+<cite>Totalizar</cite> ativado. A operação de totalização dependerá dos modificadores
+[A,M,Q,X,N,U] e o valor de cálculo dependerá dos modificadores [C,I,R,T].</p>
+<p>Se for utilizado o modificador [Z] a verificação do campo &quot;Totalizar&quot;
+será desativada.</p>
+<p>Os modificadores não são obrigatórios e as suas respectivas ordens não são
+importantes. Isto permite uma variedade de formas de escritas de totalização,
+como exemplos temos:</p>
+<ul class="simple">
+<li>TTC  - Acumulado do valor calculado;</li>
+<li>TTAC - Idem;</li>
+<li>TTA  - Idem;</li>
+<li>TTMI - Média do valor informado;</li>
+<li>TTXT - Máximo do valor totalizado.</li>
+</ul>
+<p>ou</p>
+<ul class="simple">
+<li>TT('C')     - Acumulado do valor calculado;</li>
+<li>TT('A','C') - Idem;</li>
+<li>TT('A')     - Idem;</li>
+<li>TT('M','I') - Média do valor informado;</li>
+<li>TT('X','T') - Máximo do valor totalizado.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section">
+<h3><a id="tabelas" name="tabelas">Tabelas</a></h3>
+<p>São três as tabelas que dão suporte ao recurso de totalizadores. O nome e a
+estrutura das tabelas estão listadas abaixo:</p>
+<ul>
+<li><p class="first">F_TOTALIZADOR</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head"><p class="first last">Field Name</p>
+</th>
+<th class="head"><p class="first last">Data Type</p>
+</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><p class="first last"># IDTotal</p>
+</td>
+<td><p class="first last">Integer</p>
+</td>
+</tr>
+<tr><td><p class="first last">Nome</p>
+</td>
+<td><p class="first last">Varchar(50)</p>
+</td>
+</tr>
+<tr><td><p class="first last">Calculo</p>
+</td>
+<td><p class="first last">Char(1)</p>
+</td>
+</tr>
+<tr><td><p class="first last">Valor</p>
+</td>
+<td><p class="first last">Char(1)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p class="first">F_TOTALIZADOR_FOLHA</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="55%" />
+<col width="45%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head"><p class="first last">Field Name</p>
+</th>
+<th class="head"><p class="first last">Data Type</p>
+</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><p class="first last"># IDTotal</p>
+</td>
+<td><p class="first last">Integer</p>
+</td>
+</tr>
+<tr><td><p class="first last">IDFolha_tipo</p>
+</td>
+<td><p class="first last">Char(1)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p class="first">F_TOTALIZADOR_EVENTO</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head"><p class="first last">Field Name</p>
+</th>
+<th class="head"><p class="first last">Data Type</p>
+</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><p class="first last"># IDTotal</p>
+</td>
+<td><p class="first last">Integer</p>
+</td>
+</tr>
+<tr><td><p class="first last">IDEvento</p>
+</td>
+<td><p class="first last">Integer</p>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</div>
+<div class="section">
+<h3><a id="consulta-sql" name="consulta-sql">Consulta SQL</a></h3>
+<p>Os códigos a seguir estão escritos na linguagem SQL, e são enviados ao SGDB
+no momento apropriado a fim de fornecer suporte às operações de totalizadores.</p>
+<p>As linhas iniciadas por &quot;/&quot; são comentários, não fazendo parte do comando
+da consulta. Os textos entre colchetes são opcionais. Quando formarem lista,
+um dos itens deve obrigatoriamente ser utilizado.</p>
+<p>Não fazem parte do comando SQL: as linha de comentários, as linhas em branco,
+os colchetes e a vírgula entre os itens.</p>
+<ul>
+<li><p class="first">Para implementar a execução da função TT:</p>
+<div class="syntax" ><pre><span class="k">SELECT</span>
+  <span class="k">SUM</span><span class="p">(</span><span class="k">C</span><span class="p">.</span><span class="n">CALCULADO</span><span class="p">)</span>
+<span class="k">FROM</span>
+  <span class="n">F_CENTRAL</span> <span class="k">C</span><span class="p">,</span> <span class="n">F_FOLHA</span> <span class="n">F</span><span class="p">,</span> <span class="n">F_FOLHA_TIPO</span> <span class="n">T</span>
+<span class="k">WHERE</span>
+  <span class="k">C</span><span class="p">.</span><span class="n">IDEMPRESA</span> <span class="o">=</span> <span class="p">:</span><span class="n">EMPRESA</span> <span class="k">AND</span>
+  <span class="k">C</span><span class="p">.</span><span class="n">IDFUNCIONARIO</span> <span class="o">=</span> <span class="p">:</span><span class="n">FUNCIONARIO</span> <span class="k">AND</span>
+  <span class="k">C</span><span class="p">.</span><span class="n">IDVENTO</span> <span class="o">=</span> <span class="p">:</span><span class="n">EVENTO</span>  <span class="k">AND</span>
+  <span class="n">F</span><span class="p">.</span><span class="n">IDEMPRESA</span> <span class="o">=</span> <span class="k">C</span><span class="p">.</span><span class="n">IDEMPRESA</span> <span class="k">AND</span>
+  <span class="n">F</span><span class="p">.</span><span class="n">IDFOLHA</span>   <span class="o">=</span> <span class="k">C</span><span class="p">.</span><span class="n">IDFOLHA</span> <span class="k">AND</span>
+  <span class="n">F</span><span class="p">.</span><span class="n">PERIODO_INICIO</span> <span class="o">&gt;=</span> <span class="p">:</span><span class="n">INICIO</span> <span class="k">AND</span>
+  <span class="n">F</span><span class="p">.</span><span class="n">PERIODO_FIM</span>    <span class="o">&lt;=</span> <span class="p">:</span><span class="n">FIM</span> <span class="k">AND</span>
+  <span class="n">T</span><span class="p">.</span><span class="n">IDFOLHA_TIPO</span> <span class="o">=</span> <span class="n">F</span><span class="p">.</span><span class="n">IDFOLHA_TIPO</span> <span class="k">AND</span>
+  <span class="n">T</span><span class="p">.</span><span class="n">TOTALIZAR_X</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</li>
+<li><p class="first">Para implementar a execução das variações da função TT:</p>
+<div class="syntax" ><pre><span class="k">SELECT</span>
+  <span class="p">[</span> <span class="k">SUM</span><span class="p">,</span> <span class="k">AVG</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">,</span> <span class="k">MAX</span><span class="p">,</span> <span class="k">MIN</span> <span class="p">]</span>
+  <span class="p">(</span> <span class="p">[</span> <span class="k">C</span><span class="p">.</span><span class="n">CALCULADO</span><span class="p">,</span> <span class="k">C</span><span class="p">.</span><span class="n">INFORMADO</span><span class="p">,</span> <span class="k">C</span><span class="p">.</span><span class="n">REFERENCIA</span><span class="p">,</span> <span class="k">C</span><span class="p">.</span><span class="n">TOTALIZADO</span> <span class="p">]</span> <span class="p">)</span>
+<span class="k">FROM</span>
+  <span class="n">F_CENTRAL</span> <span class="k">C</span><span class="p">,</span> <span class="n">F_FOLHA</span> <span class="n">F</span>
+  <span class="cm">/* Se não houver tipos de folha em F_TOTALIZADOR_FOLHA */</span>
+  <span class="p">[,</span> <span class="n">F_FOLHA_TIPO</span> <span class="n">T</span><span class="p">]</span>
+<span class="k">WHERE</span>
+  <span class="k">C</span><span class="p">.</span><span class="n">IDEMPRESA</span> <span class="o">=</span> <span class="p">:</span><span class="n">EMPRESA</span> <span class="k">AND</span>
+  <span class="k">C</span><span class="p">.</span><span class="n">IDFUNCIONARIO</span> <span class="o">=</span> <span class="p">:</span><span class="n">FUNCIONARIO</span> <span class="k">AND</span>
+  <span class="cm">/* Quando houver eventos em F_TOTALIZADOR_EVENTO */</span>
+  <span class="p">[</span> <span class="k">C</span><span class="p">.</span><span class="n">IDEVENTO</span> <span class="k">IN</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">IDEVENTO</span> <span class="k">FROM</span> <span class="n">F_TOTALIZADOR_EVENTO</span>
+                   <span class="k">WHERE</span> <span class="n">IDTOTAL</span> <span class="o">=</span> <span class="p">:</span><span class="n">TOTAL</span><span class="p">)</span> <span class="k">AND</span> <span class="p">]</span>
+  <span class="cm">/* Quando não houver eventos em F_TOTALIZADOR_EVENTO */</span>
+  <span class="p">[</span> <span class="k">C</span><span class="p">.</span><span class="n">IDVENTO</span> <span class="o">=</span> <span class="p">:</span><span class="n">EVENTO</span>  <span class="k">AND</span> <span class="p">]</span>
+  <span class="n">F</span><span class="p">.</span><span class="n">IDEMPRESA</span> <span class="o">=</span> <span class="k">C</span><span class="p">.</span><span class="n">IDEMPRESA</span> <span class="k">AND</span>
+  <span class="n">F</span><span class="p">.</span><span class="n">IDFOLHA</span>   <span class="o">=</span> <span class="k">C</span><span class="p">.</span><span class="n">IDFOLHA</span> <span class="k">AND</span>
+  <span class="n">F</span><span class="p">.</span><span class="n">PERIODO_INICIO</span> <span class="o">&gt;=</span> <span class="p">:</span><span class="n">INICIO</span> <span class="k">AND</span>
+  <span class="n">F</span><span class="p">.</span><span class="n">PERIODO_FIM</span>    <span class="o">&lt;=</span> <span class="p">:</span><span class="n">FIM</span> <span class="k">AND</span>
+  <span class="cm">/* Deve ser utilizado quando houver tipos de folha em F_TOTALIZADOR_FOLHA */</span>
+  <span class="p">[</span> <span class="n">F</span><span class="p">.</span><span class="n">IDFOLHA_TIPO</span> <span class="k">IN</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">IDFOLHA_TIPO</span> <span class="k">FROM</span> <span class="n">F_TOTALIZADOR_FOLHA</span>
+                       <span class="k">WHERE</span> <span class="n">IDTOTAL</span> <span class="o">=</span> <span class="p">:</span><span class="n">TOTAL</span><span class="p">)</span> <span class="p">]</span>
+  <span class="cm">/* Deve ser utilizado quando não houver tipos de folha em F_TOTALIZADOR_FOLHA */</span>
+  <span class="p">[</span> <span class="n">T</span><span class="p">.</span><span class="n">IDFOLHA_TIPO</span> <span class="o">=</span> <span class="n">F</span><span class="p">.</span><span class="n">IDFOLHA_TIPO</span> <span class="k">AND</span>
+    <span class="n">T</span><span class="p">.</span><span class="n">TOTALIZAR_X</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">]</span>
+</pre></div>
+</li>
+<li><p class="first">Para contar os tipos de folha de um determinado totalizador:</p>
+<div class="syntax" ><pre><span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">F_TOTALIZADOR_FOLHA</span>
+<span class="k">WHERE</span> <span class="n">IDTOTAL</span> <span class="o">=</span> <span class="p">:</span><span class="n">TOTAL</span>
+</pre></div>
+</li>
+<li><p class="first">Para contar os eventos considerados por um determinado totalizador:</p>
+<div class="syntax" ><pre><span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">F_TOTALIZADOR_EVENTO</span>
+<span class="k">WHERE</span> <span class="n">IDTOTAL</span> <span class="o">=</span> <span class="p">:</span><span class="n">TOTAL</span>
+</pre></div>
+</li>
+</ul>
+</div>
+
+  </div>
+</body>
+<!-- generated on: 2008-02-09 11:01:43.656000
+     file id: totalizador -->
+</html>

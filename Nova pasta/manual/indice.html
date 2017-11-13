@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Indíces &mdash; FolhaLivre</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="flivre.css" type="text/css">
+</head>
+<body>
+  <div id="content">
+    <h1 class="heading">Manual do FolhaLivre</h1>
+    <h2 class="subheading">Indíces</h2>
+    
+      <a id="backlink" href="index.html">&laquo; Volta para índice</a>
+      
+        <div class="toc">
+          <h2>Sumário</h2>
+          <ul class="contents">
+          
+            <li><a href="#defini-o">Definição</a></li>
+          
+            <li><a href="#objetivo">Objetivo</a></li>
+          
+            <li><a href="#cadastro">Cadastro</a></li>
+          
+            <li><a href="#f-rmula">Fórmula</a></li>
+          
+            <li><a href="#tabelas">Tabelas</a></li>
+          
+            <li><a href="#consulta-sql">Consulta SQL</a></li>
+          
+          </ul>
+        </div>
+        <br>
+      
+          
+    <div class="section">
+<h3><a id="defini-o" name="defini-o">Definição</a></h3>
+<p>É uma entidade cujo valor númerico se modifica no decorrer
+do tempo. O histórico das mudanças é apresentado na forma tabular, onde
+cada linha representa uma variação, com sua respectiva data e valor.</p>
+<p>O índice está subordinado à empresa. Cada empresa poderá possuir seu
+próprio conjunto de índices, independentemente das demais.</p>
+<p>Para que um índice esteja disponível para uso de todas as empresas, o
+mesmo deve ser incluído na empresa global.</p>
+</div>
+<div class="section">
+<h3><a id="objetivo" name="objetivo">Objetivo</a></h3>
+<p>O recurso de índices visa registrar as mudanças que um determinado
+<strong>valor</strong> sofreu no decorrer do tempo, a fim de fornecer suporte ao cálculo
+de eventos que se baseiam em valores mutavéis.</p>
+<p>Para que um <strong>valor</strong> seja considerado índice é necessário que o seu
+conteúdo numérico possa sofrer variações no transcorrer do tempo, mesmo
+que estas variações não sejam regulares.</p>
+<p>Como exemplo de um índice clássico temos o <strong>SALÁRIO MÍNIMO</strong>, que tem uma
+variação regular de um ano. Mesmo, nesse caso, a regularidade não é
+imposta pelo sistema.</p>
+</div>
+<div class="section">
+<h3><a id="cadastro" name="cadastro">Cadastro</a></h3>
+<p>Os campos requeridos para o cadastro de um índice são:</p>
+<ul class="simple">
+<li><strong>Empresa:</strong> Código da empresa a qual o índice está subordinado.</li>
+<li><strong>Código:</strong> Número inteiro que identificará o índice para a empresa.</li>
+<li><strong>Nome:</strong> Texto para descrever resumidamente o índice.</li>
+<li><strong>Competência:</strong> Data em que o valor monetário do índice sofreu variação.</li>
+<li><strong>Valor:</strong> Número monetário que representa a variação do índice.</li>
+</ul>
+<p>Um índice é cadastrado no FolhaLivre em duas etapas: Inclusão e Movimentação.</p>
+<ul>
+<li><p class="first"><strong>Inclusão</strong></p>
+<p>Execute a opção <strong>&lt;Índices&gt;</strong> do menu <strong>&lt;Cadastro&gt;</strong>. Pressione <strong>&lt;Novo&gt;</strong> e
+informe o código e o nome. O novo índice estará vinculado à empresa ativa.</p>
+</li>
+<li><p class="first"><strong>Movimentação</strong></p>
+<p>Depois da inclusão do índice no sistema, o mesmo poderá ser movimentado.
+Execute a opção <strong>&lt;Índices&gt;</strong> do menu <strong>&lt;Movimentações&gt;</strong>, escolha o índice
+desejado na lista apresentada e pressione <strong>&lt;Enter&gt;</strong>. Pressione <strong>&lt;Novo&gt;</strong>
+e informe a data e o valor da alteração.</p>
+</li>
+</ul>
+</div>
+<div class="section">
+<h3><a id="f-rmula" name="f-rmula">Fórmula</a></h3>
+<p>Utiliza-se uma fórmula para acessar o valor de um índice através de chamadas
+a diversas funções. As funções que manipulam os índices começam com a
+letra &quot;I&quot;. As funções são as sequintes:</p>
+<ul>
+<li><p class="first">IL{n} ou IL({n})</p>
+<p>Retorna o valor monetário do índice {n}. O índice será pesquisado apenas na
+empresa atual, caso o índice não seja encontrado será gerado o erro
+<tt class="docutils literal"><span class="pre">Índice</span> <span class="pre">local</span> <span class="pre">não</span> <span class="pre">existe</span></tt>.</p>
+<p>O valor do índice retornado será o último valor anterior ou igual à data do
+&quot;período final&quot; da folha em cálculo.</p>
+</li>
+<li><p class="first">IG{n} ou IG({n})</p>
+<p>Retorna o valor monetário do índice {n}. O índice será pesquisado apenas na
+empresa global, caso o índice não seja encontrado será gerado o erro
+<tt class="docutils literal"><span class="pre">Índice</span> <span class="pre">global</span> <span class="pre">não</span> <span class="pre">existe</span></tt>.</p>
+<p>O valor do índice retornado será o último valor anterior ou igual à data do
+&quot;período final&quot; da folha em cálculo.</p>
+</li>
+<li><p class="first">I{n} ou II{n} ou II({n})</p>
+<p>Retorna o valor monetário do índice {n}. O índice será primeiramente
+pesquisado na empresa atual, caso o mesmo não seja encontrado será
+pesquisado na empresa global. Se mesmo assim o índice não for encontrado
+será gerado o erro <tt class="docutils literal"><span class="pre">Índice</span> <span class="pre">não</span> <span class="pre">existe</span></tt>.</p>
+<p>O valor do índice retornado será o último valor anterior ou igual à data do
+&quot;período final&quot; da folha em cálculo.</p>
+</li>
+</ul>
+</div>
+<div class="section">
+<h3><a id="tabelas" name="tabelas">Tabelas</a></h3>
+<p>São duas as tabelas que dão suporte ao recurso de índices. A tabela <strong>F_INDICE</strong>
+armazena os índices, onde cada linha representa um índice e a tabela
+<strong>F_INDICE_VALOR</strong> armazena as mudanças nos valores dos índices, onde cada linha
+representa uma variação de determinado índice.</p>
+<ul>
+<li><p class="first"><strong>F_INDICE</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="52%" />
+<col width="48%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head"><p class="first last">Field Name</p>
+</th>
+<th class="head"><p class="first last">Data Type</p>
+</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><p class="first last"># IDEMPRESA</p>
+</td>
+<td><p class="first last">INTEGER</p>
+</td>
+</tr>
+<tr><td><p class="first last"># IDINDICE</p>
+</td>
+<td><p class="first last">INTEGER</p>
+</td>
+</tr>
+<tr><td><p class="first last">NOME</p>
+</td>
+<td><p class="first last">VARCHAR(30)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p class="first"><strong>F_INDICE_VALOR</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="48%" />
+<col width="52%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head"><p class="first last">Field Name</p>
+</th>
+<th class="head"><p class="first last">Data Type</p>
+</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><p class="first last"># IDEMPRESA</p>
+</td>
+<td><p class="first last">INTEGER</p>
+</td>
+</tr>
+<tr><td><p class="first last"># IDINDICE</p>
+</td>
+<td><p class="first last">INTEGER</p>
+</td>
+</tr>
+<tr><td><p class="first last"># DATA</p>
+</td>
+<td><p class="first last">DATE</p>
+</td>
+</tr>
+<tr><td><p class="first last">VALOR</p>
+</td>
+<td><p class="first last">NUMERIC(15,3)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</div>
+<div class="section">
+<h3><a id="consulta-sql" name="consulta-sql">Consulta SQL</a></h3>
+<p>Para consultar o valor de um índice o FolhaLivre envia ao SGDB o sequinte
+comando SQL:</p>
+<div class="syntax" ><pre><span class="k">SELECT</span>
+  <span class="n">VALOR</span>
+<span class="k">FROM</span>
+  <span class="n">F_INDICE_VALOR</span>
+<span class="k">WHERE</span>
+  <span class="n">IDEMPRESA</span> <span class="o">=</span> <span class="p">:</span><span class="n">IDEMPRESA</span>
+  <span class="k">AND</span> <span class="n">IDINDICE</span> <span class="o">=</span> <span class="p">:</span><span class="n">INDICE</span>
+  <span class="k">AND</span> <span class="n">COMPETENCIA</span> <span class="o">=</span> <span class="p">(</span> <span class="k">SELECT</span>
+                        <span class="k">MAX</span><span class="p">(</span><span class="n">I</span><span class="p">.</span><span class="n">COMPETENCIA</span><span class="p">)</span>
+                      <span class="k">FROM</span>
+                        <span class="n">F_INDICE_VALOR</span> <span class="n">I</span>
+                      <span class="k">WHERE</span>
+                        <span class="n">I</span><span class="p">.</span><span class="n">IDEMPRESA</span> <span class="o">=</span> <span class="n">IDEMPRESA</span>
+                        <span class="k">AND</span> <span class="n">I</span><span class="p">.</span><span class="n">IDINDICE</span> <span class="o">=</span> <span class="n">IDINDICE</span>
+                        <span class="k">AND</span> <span class="n">I</span><span class="p">.</span><span class="n">COMPETENCIA</span> <span class="o">&lt;=</span> <span class="p">:</span><span class="k">DATA</span> <span class="p">)</span>
+</pre></div>
+<p>Para verificar a existência um índice o FolhaLivre envia ao SGDB o
+sequinte comando SQL:</p>
+<div class="syntax" ><pre><span class="k">SELECT</span>
+  <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="k">FROM</span>
+  <span class="n">F_INDICE</span>
+<span class="k">WHERE</span>
+  <span class="n">IDEMPRESA</span> <span class="o">=</span> <span class="p">:</span><span class="n">EMPRESA</span> <span class="k">AND</span> <span class="n">IDINDICE</span> <span class="o">=</span> <span class="p">:</span><span class="n">INDICE</span>
+</pre></div>
+</div>
+
+  </div>
+</body>
+<!-- generated on: 2008-02-09 11:01:41.078000
+     file id: indice -->
+</html>

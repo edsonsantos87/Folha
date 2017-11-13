@@ -1,0 +1,275 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{ABD2CA97-D576-4ABB-8824-AAD2191C3C44}</ProjectGuid>
+        <MainSource>Folha.dpr</MainSource>
+        <Base>True</Base>
+        <Config Condition="'$(Config)'==''">Debug</Config>
+        <TargetedPlatforms>1</TargetedPlatforms>
+        <AppType>Application</AppType>
+        <FrameworkType>VCL</FrameworkType>
+        <ProjectVersion>14.4</ProjectVersion>
+        <Platform Condition="'$(Platform)'==''">Win32</Platform>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Base)'=='true') or '$(Base_Win32)'!=''">
+        <Base_Win32>true</Base_Win32>
+        <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win64' and '$(Base)'=='true') or '$(Base_Win64)'!=''">
+        <Base_Win64>true</Base_Win64>
+        <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_1)'!=''">
+        <Cfg_1>true</Cfg_1>
+        <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_2)'!=''">
+        <Cfg_2>true</Cfg_2>
+        <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Base)'!=''">
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <DCC_Define>FLIVRE;$(DCC_Define)</DCC_Define>
+        <DCC_E>false</DCC_E>
+        <DCC_F>false</DCC_F>
+        <DCC_ImageBase>00400000</DCC_ImageBase>
+        <DCC_UNSAFE_TYPE>true</DCC_UNSAFE_TYPE>
+        <DCC_ExeOutput>..\exe</DCC_ExeOutput>
+        <DCC_Namespace>Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;System;Xml;Data;Datasnap;Web;Soap;Winapi;System.Win;$(DCC_Namespace)</DCC_Namespace>
+        <DCC_S>false</DCC_S>
+        <DCC_UsePackage>vcl;rtl;dbrtl;adortl;vcldb;vclx;bdertl;vcldbx;ibxpress;dsnap;cds;bdecds;qrpt;dss;visualclx;visualdbclx;dsnapcrba;dsnapcon;VclSmp;vclshlctrls;vclie;xmlrtl;inet;inetdbbde;inetdbxpress;inetdb;nmfast;webdsnap;websnap;dbexpress;dbxcds;indy;dclOffice2k;ah_comp;Tee76;TeeUI76;TeeDB76;TeePro76;TeeGL76;TeeImage76;TeeLanguage76;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_UNSAFE_CODE>true</DCC_UNSAFE_CODE>
+        <VerInfo_Locale>1046</VerInfo_Locale>
+        <DCC_K>false</DCC_K>
+        <DCC_UNSAFE_CAST>true</DCC_UNSAFE_CAST>
+        <DCC_SymbolReferenceInfo>1</DCC_SymbolReferenceInfo>
+        <DCC_N>true</DCC_N>
+        <VerInfo_Keys>CompanyName=EMS;FileDescription=;FileVersion=1.0.0.0;InternalName=Folha;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Base_Win32)'!=''">
+        <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <Icon_MainIcon>Folha_Icon.ico</Icon_MainIcon>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Base_Win64)'!=''">
+        <Icon_MainIcon>Folha_Icon.ico</Icon_MainIcon>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_1)'!=''">
+        <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+        <DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
+        <DCC_DebugInformation>false</DCC_DebugInformation>
+        <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_2)'!=''">
+        <DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
+        <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
+        <DCC_Optimize>false</DCC_Optimize>
+    </PropertyGroup>
+    <ItemGroup>
+        <DelphiCompile Include="$(MainSource)">
+            <MainSource>MainSource</MainSource>
+        </DelphiCompile>
+        <DCCReference Include="main.pas">
+            <Form>TFrmFLivre</Form>
+        </DCCReference>
+        <DCCReference Include="flotacao.pas">
+            <Form>FrmLotacao</Form>
+        </DCCReference>
+        <DCCReference Include="ffolha.pas">
+            <Form>FrmFolha</Form>
+        </DCCReference>
+        <DCCReference Include="fevento.pas">
+            <Form>FrmEvento</Form>
+        </DCCReference>
+        <DCCReference Include="fincidencia.pas">
+            <Form>FrmIncidencia</Form>
+        </DCCReference>
+        <DCCReference Include="fvfixo.pas">
+            <Form>FrmVFixo</Form>
+        </DCCReference>
+        <DCCReference Include="ffuncionario.pas"/>
+        <DCCReference Include="fevento_grupo.pas">
+            <Form>FrmEvento_Grupo</Form>
+        </DCCReference>
+        <DCCReference Include="fcargo.pas">
+            <Form>FrmCargo</Form>
+        </DCCReference>
+        <DCCReference Include="fformula.pas">
+            <Form>FrmFormula</Form>
+        </DCCReference>
+        <DCCReference Include="ftabela.pas">
+            <Form>FrmTabela</Form>
+        </DCCReference>
+        <DCCReference Include="fgrupo_empresa.pas">
+            <Form>FrmGrupoEmpresa</Form>
+        </DCCReference>
+        <DCCReference Include="fgrupo_pagamento.pas">
+            <Form>FrmGrupoPagamento</Form>
+        </DCCReference>
+        <DCCReference Include="fempresas.pas">
+            <Form>FrmEmpresa</Form>
+        </DCCReference>
+        <DCCReference Include="fsequencia.pas">
+            <Form>FrmSequencia</Form>
+        </DCCReference>
+        <DCCReference Include="ffolha_tipo.pas">
+            <Form>FrmFolhaTipo</Form>
+        </DCCReference>
+        <DCCReference Include="fpadrao.pas">
+            <Form>FrmPadrao</Form>
+        </DCCReference>
+        <DCCReference Include="finformado.pas">
+            <Form>FrmInformado</Form>
+        </DCCReference>
+        <DCCReference Include="fautomatico.pas">
+            <Form>FrmAutomatico</Form>
+        </DCCReference>
+        <DCCReference Include="fcalculador.pas"/>
+        <DCCReference Include="findice_valor.pas">
+            <Form>FrmIndiceValor</Form>
+        </DCCReference>
+        <DCCReference Include="r_analitica.pas"/>
+        <DCCReference Include="r_contra_cheque.pas"/>
+        <DCCReference Include="r_total_lotacao.pas"/>
+        <DCCReference Include="kernel\fdialogo.pas">
+            <Form>FrmDialogo</Form>
+        </DCCReference>
+        <DCCReference Include="kernel\fplano_grupo.pas">
+            <Form>FrmPlanoGrupo</Form>
+        </DCCReference>
+        <DCCReference Include="kernel\sys_user.pas">
+            <Form>frmsysuser</Form>
+        </DCCReference>
+        <DCCReference Include="kernel\sys_global.pas">
+            <Form>frmsysglobal</Form>
+        </DCCReference>
+        <DCCReference Include="kernel\sys_empresa.pas">
+            <Form>frmsysempresa</Form>
+        </DCCReference>
+        <DCCReference Include="kernel\fplano.pas">
+            <Form>FrmPlano</Form>
+        </DCCReference>
+        <DCCReference Include="kernel\fbase.pas">
+            <Form>FrmBase</Form>
+        </DCCReference>
+        <DCCReference Include="kernel\fcadastro.pas">
+            <Form>FrmCadastro</Form>
+        </DCCReference>
+        <DCCReference Include="kernel\fendereco.pas">
+            <Form>FrameEndereco</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="kernel\ffind.pas"/>
+        <DCCReference Include="ftipo.pas"/>
+        <DCCReference Include="frecurso.pas"/>
+        <DCCReference Include="r_lista_bancaria.pas"/>
+        <DCCReference Include="fupgrade.pas"/>
+        <DCCReference Include="fbanco.pas">
+            <Form>FrmBanco</Form>
+        </DCCReference>
+        <DCCReference Include="fdependente.pas"/>
+        <DCCReference Include="fdependente_tipo.pas"/>
+        <DCCReference Include="kernel\sys_empresa_dados.pas">
+            <Form>FrmSysEmpresaDados</Form>
+        </DCCReference>
+        <DCCReference Include="r_lista_liquido.pas"/>
+        <DCCReference Include="fsindicato.pas">
+            <Form>FrmSindicato</Form>
+        </DCCReference>
+        <DCCReference Include="ftotalizador.pas"/>
+        <DCCReference Include="fsituacao.pas"/>
+        <DCCReference Include="fbase_acumulacao.pas"/>
+        <DCCReference Include="frescisao.pas"/>
+        <DCCReference Include="frescisao_causa.pas"/>
+        <DCCReference Include="splash.pas">
+            <Form>SplashForm</Form>
+        </DCCReference>
+        <DCCReference Include="frescisao_funcionario.pas">
+            <Form>frmRescisaoFuncionario</Form>
+        </DCCReference>
+        <DCCReference Include="fcaged.pas"/>
+        <DCCReference Include="fferiado.pas">
+            <Form>FrmFeriado</Form>
+        </DCCReference>
+        <DCCReference Include="fprogramado.pas"/>
+        <DCCReference Include="fimportador.pas"/>
+        <DCCReference Include="fc_rendimto.pas">
+            <Form>frmc_rendimento</Form>
+        </DCCReference>
+        <DCCReference Include="r_c_rendimento.pas"/>
+        <DCCReference Include="kernel\fcolor.pas"/>
+        <DCCReference Include="kernel\foption.pas"/>
+        <DCCReference Include="..\..\LIB\LIB.pas"/>
+        <DCCReference Include="fCidade.pas">
+            <Form>FrmCidade</Form>
+        </DCCReference>
+        <BuildConfiguration Include="Debug">
+            <Key>Cfg_2</Key>
+            <CfgParent>Base</CfgParent>
+        </BuildConfiguration>
+        <BuildConfiguration Include="Base">
+            <Key>Base</Key>
+        </BuildConfiguration>
+        <BuildConfiguration Include="Release">
+            <Key>Cfg_1</Key>
+            <CfgParent>Base</CfgParent>
+        </BuildConfiguration>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Delphi.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Delphi.Personality>
+                <Source>
+                    <Source Name="MainSource">Folha.dpr</Source>
+                </Source>
+                <Language>
+                    <Language Name="RootDir">D:\EMS\Sistemas\DP\source\</Language>
+                </Language>
+                <VersionInfo>
+                    <VersionInfo Name="IncludeVerInfo">True</VersionInfo>
+                    <VersionInfo Name="AutoIncBuild">False</VersionInfo>
+                    <VersionInfo Name="MajorVer">1</VersionInfo>
+                    <VersionInfo Name="MinorVer">0</VersionInfo>
+                    <VersionInfo Name="Release">0</VersionInfo>
+                    <VersionInfo Name="Build">0</VersionInfo>
+                    <VersionInfo Name="Debug">False</VersionInfo>
+                    <VersionInfo Name="PreRelease">False</VersionInfo>
+                    <VersionInfo Name="Special">False</VersionInfo>
+                    <VersionInfo Name="Private">False</VersionInfo>
+                    <VersionInfo Name="DLL">False</VersionInfo>
+                    <VersionInfo Name="Locale">1046</VersionInfo>
+                    <VersionInfo Name="CodePage">1252</VersionInfo>
+                </VersionInfo>
+                <VersionInfoKeys>
+                    <VersionInfoKeys Name="CompanyName">EMS</VersionInfoKeys>
+                    <VersionInfoKeys Name="FileDescription"/>
+                    <VersionInfoKeys Name="FileVersion">1.0.0.0</VersionInfoKeys>
+                    <VersionInfoKeys Name="InternalName">Folha</VersionInfoKeys>
+                    <VersionInfoKeys Name="LegalCopyright"/>
+                    <VersionInfoKeys Name="LegalTrademarks"/>
+                    <VersionInfoKeys Name="OriginalFilename"/>
+                    <VersionInfoKeys Name="ProductName"/>
+                    <VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
+                    <VersionInfoKeys Name="Comments"/>
+                </VersionInfoKeys>
+            </Delphi.Personality>
+            <Platforms>
+                <Platform value="Win32">True</Platform>
+                <Platform value="Win64">False</Platform>
+            </Platforms>
+        </BorlandProject>
+        <ProjectFileVersion>12</ProjectFileVersion>
+    </ProjectExtensions>
+    <Import Project="$(BDS)\Bin\CodeGear.Delphi.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')"/>
+    <Import Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj" Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')"/>
+</Project>

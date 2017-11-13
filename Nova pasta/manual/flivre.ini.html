@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Untitled</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="SynEdit HTML exporter" />
+<style type="text/css">
+<!--
+body { color: #000000; background-color: #FFFFFF; }
+.ini1-comment { color: #008000; }
+.ini1-key { color: #000000; }
+.ini1-number { color: #000080; }
+.ini1-section { color: #000000; font-weight: bold; }
+.ini1-space { color: #008080; font-style: italic; }
+.ini1-string { color: #FF00FF; }
+.ini1-symbol { color: #000000; }
+.ini1-text { color: #000000; }
+-->
+</style>
+</head>
+<body>
+<pre>
+<code><span style="font: 10pt Courier New;"><span class="ini1-section">[OPTIONS]
+
+</span><span class="ini1-comment">;O sistema considerará apenas esta seção e as aquelas
+;iniciadas com o nome do driver + sublinhado
+
+</span><span class="ini1-key">driver=IBX</span><span class="ini1-space"> 
+</span><span class="ini1-comment">;Os valores possíveis para driver são: ADO, DBX, IBX, ZEOS
+
+</span><span class="ini1-key">server=localhost
+</span><span class="ini1-comment">;informe o nome ou o endereço IP da máquina-servidor.
+;exemplo: 'servidor' ou '192.168.0.1'
+
+</span><span class="ini1-key">sgdb_name=firebird
+</span><span class="ini1-comment">;os valores possíveis para sgdb_name são: firebird, mysql, mssql, oracle,
+;                                         sqlite, postgresql, interbase, db2
+
+</span><span class="ini1-key">sgdb_version=</span><span class="ini1-number">150
+</span><span class="ini1-comment">;informe a versão com três digitos sem pontos. Ex.: para a versão 2.03 informe 203 
+
+</span><span class="ini1-section">[IBX_DRIVER]
+</span><span class="ini1-key">DatabaseName=
+</span><span class="ini1-comment">;informe a localização da base de dados na máquina-servidor no formato &lt;server&gt;:&lt;arquivo&gt;.
+;exemplo: '192.168.0.1:c:\flivre\flivre.fdb'
+
+</span><span class="ini1-key">LoginPrompt=False
+SQLDialect=</span><span class="ini1-number">3
+
+</span><span class="ini1-section">[IBX_CONNECTION]
+</span><span class="ini1-comment">;lc_ctype=
+;sql_role_name=
+</span><span class="ini1-key">password=masterkey
+user_name=SYSDBA
+
+</span><span class="ini1-section">[DBX_DRIVER]
+</span><span class="ini1-comment">;DriverName=Interbase
+</span><span class="ini1-key">DriverName=UIB</span><span class="ini1-space"> </span><span class="ini1-text">FireBird15
+GetDriverFunc=getSQLDriverINTERBASE
+LibraryName=dbexpUIBfire15.dll
+</span><span class="ini1-comment">;LibraryName=dbexpint.dll
+</span><span class="ini1-key">LoginPrompt=False
+</span><span class="ini1-comment">;VendorLib=GDS32.DLL
+</span><span class="ini1-key">VendorLib=fbclient.DLL
+
+</span><span class="ini1-section">[DBX_CONNECTION]
+</span><span class="ini1-key">BlobSize=-1
+CommitRetain=False
+Database=
+ErrorResourceFile=
+LocaleCode=</span><span class="ini1-number">0000
+</span><span class="ini1-key">Password=masterkey
+RoleName=RoleName
+ServerCharSet=
+SQLDialect=</span><span class="ini1-number">3
+</span><span class="ini1-comment">;Interbase TransIsolation=ReadCommited
+</span><span class="ini1-key">UIB FireBird15 TransIsolation=ReadCommited
+User_Name=SYSDBA
+WaitOnLocks=True
+
+</span></span>
+</code></pre>
+</body>
+</html>

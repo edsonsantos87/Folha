@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title> &mdash; FolhaLivre</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="flivre.css" type="text/css">
+</head>
+<body>
+  <div id="content">
+    <h1 class="heading">Manual do FolhaLivre</h1>
+    <h2 class="subheading"></h2>
+    
+      <a id="backlink" href="index.html">&laquo; Volta para índice</a>
+      
+        <div class="toc">
+          <h2>Sumário</h2>
+          <ul class="contents">
+          
+            <li><a href="#grupos-de-empresas-ge">Grupos de Empresas (GE)</a></li>
+          
+            <li><a href="#grupos-de-pagamentos-gp">Grupos de Pagamentos (GP)</a></li>
+          
+            <li><a href="#sequ-ncia-de-c-lculos-sc">Sequência de Cálculos (SC)</a></li>
+          
+            <li><a href="#eventos-padr-es-ep">Eventos Padrões (EP)</a></li>
+          
+          </ul>
+        </div>
+        <br>
+      
+          
+    <p>Estrutura</p>
+<img alt="sequencia_estrutura.png" src="sequencia_estrutura.png" />
+<div class="section">
+<h3><a id="grupos-de-empresas-ge" name="grupos-de-empresas-ge">Grupos de Empresas (GE)</a></h3>
+<p>Esses grupos podem serem cadastrados para representar uma organização (holding)
+de empresas que possuam vínculos entre si, ou serem simplesmente operacionais.</p>
+<p>As empresas que possuirem o mesmo grupo (GE) compartilham os mesmos grupos de
+pagamentos (GP) e consequentemente as mesmas sequências de cálculos,
+facilitando a administração dos eventos.</p>
+<p>Uma empresa pertence obrigatoriamente a um único grupo (GE), por isso o sistema
+já possui um grupo cadastrado (no. 1), não sendo possível excluí-lo. Não esqueça
+que toda empresa está subordinada a um único grupo de empresas (GE).</p>
+</div>
+<div class="section">
+<h3><a id="grupos-de-pagamentos-gp" name="grupos-de-pagamentos-gp">Grupos de Pagamentos (GP)</a></h3>
+<p>É uma entidade subordinada ao grupo de empresas (<strong>GE</strong>). Um grupo de empresas
+(<strong>GE</strong>) pode ter quantos grupos de pagamentos (<strong>GP</strong>) o usuário necessitar,
+porém um grupo de pagamento (<strong>GP</strong>) só pode estar vinculado a um único grupo
+de empresa (<strong>GE</strong>). Um grupo de pagamento possui várias finalidades:</p>
+<ul class="simple">
+<li>Possibilitar a formação de grupos de funcionários dentro de uma empresa
+para processamento em folhas distintas e independentes.</li>
+<li>Definir todos os eventos que serão calculados, a sequência do cálculo e
+suas fórmulas para cálculos diferentes do padrão. Exemplo: Se uma empresa
+possui duas filiais geograficamente distantes uma da outra e desejar
+executar os processamentos das folhas isoladamente, para pagamento em
+datas diferentes, pode-se criar dois grupos de pagamentos, executando o
+cálculo e emissão da folha para cada grupo, independentemente.</li>
+</ul>
+<p>Não esqueça que todo grupo de pagamento (<strong>GP</strong>) está subordinado a um grupo de
+empresa (<strong>GE</strong>).</p>
+</div>
+<div class="section">
+<h3><a id="sequ-ncia-de-c-lculos-sc" name="sequ-ncia-de-c-lculos-sc">Sequência de Cálculos (SC)</a></h3>
+<p>É uma entidade subordinada a um grupo de pagamento (GP). Para cada grupo de
+pagamentos (GP) existe uma lista de eventos que poderão constar nas folhas de
+pagamento deste grupo (GP). A esta lista chamamos de sequência de cálculo (SC).
+É nela que definimos os eventos, a ordem que os mesmos serão calculados e as
+fórmulas para cálculos (se o cálculo for personalizado para o grupo).</p>
+<p>Somente os eventos presentes na sequência (SC) serão processados pelo
+calculador do sistema para a folha de pagamento (FP) do grupo (GP).</p>
+<p>Veja a estrutura simplificada  da tabela de SEQUENCIA DE CALCULO:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="87%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>#</td>
+<td>GRUPO DE PAGAMENTO</td>
+</tr>
+<tr><td>#</td>
+<td>EVENTO</td>
+</tr>
+<tr><td>&nbsp;</td>
+<td>FORMULA</td>
+</tr>
+<tr><td>&nbsp;</td>
+<td>SEQUENCIA</td>
+</tr>
+</tbody>
+</table>
+<p>Veja a relação entre sequência de cálculo (SC), grupos de pagamento (GP) e
+eventos (EV):</p>
+<p>``
++--------------+       +---------------------------+      +--------------------------+
+| EVENTOS (EV) | -- &gt;&gt; | SEQUENCIA DE CALCULO (SC) | &lt;&lt;-- | GRUPOS DE PAGAMENTO (GP) |
++--------------+       +---------------------------+      +--------------------------+
+``</p>
+<ul class="simple">
+<li>Todo grupo de pagamento deve possuir uma sequência de cálculos;</li>
+</ul>
+<p>Veja [sequência de cálculo sequencia_calculo.html] para mais detalhes.</p>
+</div>
+<div class="section">
+<h3><a id="eventos-padr-es-ep" name="eventos-padr-es-ep">Eventos Padrões (EP)</a></h3>
+<p>Para cada tipo de folha (TF) dentro de um grupo de pagamento (GP) é
+definido um conjunto de eventos que serão lançados automaticamente para os
+funcionários que satisfazerem certas condições. Esse conjunto é chamado de
+eventos padroes (EP).</p>
+<p>A sequência de cálculo (SC) define quais os eventos que serão considerados para
+o cálculo da folha. O evento padrão (EP) define quando determinados eventos da
+sêquencia (SC) serão lançados automaticamente para o funcionário, desde
+que o mesmo satisfaça as regras definidas.</p>
+<p>Veja a estrutura simplificada da tabela de EVENTOS PADROES:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>#</td>
+<td>GRUPO DE PAGAMENTO</td>
+</tr>
+<tr><td>#</td>
+<td>TIPO DE FOLHA</td>
+</tr>
+<tr><td>#</td>
+<td>IDENTIFICADOR</td>
+</tr>
+<tr><td>&nbsp;</td>
+<td>EVENTO</td>
+</tr>
+<tr><td>&nbsp;</td>
+<td>TIPO DO FUNCIONARIO</td>
+</tr>
+<tr><td>&nbsp;</td>
+<td>SITUACAO DO FUNCIONARIO</td>
+</tr>
+<tr><td>&nbsp;</td>
+<td>VINCULO EMPREGATICIO</td>
+</tr>
+<tr><td>&nbsp;</td>
+<td>TIPO DE SALARIO</td>
+</tr>
+<tr><td>&nbsp;</td>
+<td>VALOR INFORMADO</td>
+</tr>
+<tr><td>&nbsp;</td>
+<td>COMPETENCIAS (1-13)</td>
+</tr>
+</tbody>
+</table>
+<p>Veja a relação entre eventos padroes (EP), tipos de folha (TF) e
+grupos de pagamento (GP):</p>
+<p>``
++---------------------+      +----------------------+      +--------------------------+
+| TIPOS DE FOLHA (TF) | --&gt;&gt; | EVENTOS PADROES (EP) | &lt;&lt;-- | GRUPOS DE PAGAMENTO (GP) |
++---------------------+      +----------------------+      +--------------------------+
+``</p>
+<ul class="simple">
+<li>Cada tipo de folha deve ter seus eventos padrões conforme o grupo de pagamento;</li>
+<li>O evento pode se repetir dentro dos eventos padroes desde que as condições sejam diferentes.</li>
+</ul>
+</div>
+
+  </div>
+</body>
+<!-- generated on: 2008-02-09 11:01:35.828000
+     file id: calculos -->
+</html>

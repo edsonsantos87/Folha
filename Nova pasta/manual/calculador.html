@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>O calculador &mdash; FolhaLivre</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="flivre.css" type="text/css">
+</head>
+<body>
+  <div id="content">
+    <h1 class="heading">Manual do FolhaLivre</h1>
+    <h2 class="subheading">O calculador</h2>
+    
+      <a id="backlink" href="index.html">&laquo; Volta para índice</a>
+      
+        <div class="toc">
+          <h2>Sumário</h2>
+          <ul class="contents">
+          
+            <li><a href="#valor-informado">Valor Informado</a></li>
+          
+            <li><a href="#valor-refer-ncia">Valor Referência</a></li>
+          
+            <li><a href="#valor-calculado">Valor Calculado</a></li>
+          
+            <li><a href="#valor-totalizado">Valor Totalizado</a></li>
+          
+          </ul>
+        </div>
+        <br>
+      
+          
+    <p>O calculador do FolhaLivre armazena algumas informações para cada evento processado:</p>
+<div class="section">
+<h3><a id="valor-informado" name="valor-informado">Valor Informado</a></h3>
+<p>É o valor fornecido através de uma das entradas de movimento do FolhaLivre. As entradas de
+evento são as sequintes: Lançamentos Informados, Lançamentos Automáticos e Eventos Padrões.</p>
+<p>Além das entradas o valor informado pode ser definido pela função <strong>SetInf()</strong> ou
+alterado pela variável <strong>VI</strong> através de uma fórmula. Exemplos:</p>
+<div class="syntax" ><pre><span class="c1">// Calculando anuêncio</span>
+<span class="n">SetInf</span><span class="p">(</span><span class="nb">Trunc</span><span class="p">(</span><span class="n">TS</span><span class="o">/</span><span class="mi">12</span><span class="p">))</span>  <span class="c1">// TS - Tempo de serviço em meses</span>
+</pre></div>
+<p>ou</p>
+<div class="syntax" ><pre><span class="c1">// Calculando anuênio</span>
+<span class="n">VI</span> <span class="o">:=</span> <span class="nb">Trunc</span><span class="p">(</span><span class="n">TS</span><span class="o">/</span><span class="mi">12</span><span class="p">)</span>  <span class="c1">// TS - Tempo de serviço em meses</span>
+</pre></div>
+</div>
+<div class="section">
+<h3><a id="valor-refer-ncia" name="valor-refer-ncia">Valor Referência</a></h3>
+<p>É um valor complementar e opcional. O calculador pressume este valor através
+das sequintes regras:</p>
+<ul>
+<li><p class="first">Se o campo <tt class="docutils literal"><span class="pre">Tipo</span> <span class="pre">de</span> <span class="pre">Cálculo</span></tt> do evento for <strong>Hora Trabalhada</strong>, o valor referência será o
+produto entre o valor da hora trabalhada (<strong>HT</strong>) e o multiplicador de hora do evento (<strong>MT</strong>);</p>
+</li>
+<li><p class="first">Se a fórmula utilizar alguma função de tabela (<strong>TG</strong>, <strong>TL</strong> ou <strong>TB</strong>), o valor referência
+será a taxa  correspondente à faixa encontrada, caso essa taxa seja 0.00 (zero) o valor referência
+será a diferênça entre o valor <tt class="docutils literal"><span class="pre">a</span> <span class="pre">acrescentar</span></tt> e o valor <tt class="docutils literal"><span class="pre">a</span> <span class="pre">deduzir</span></tt> da faixa encontrada;</p>
+<p>Exemplo: Consideremos a sequinte tabela de IRRF</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="34%" />
+<col width="34%" />
+<col width="32%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head"><p class="first last">Faixas
+De - Até</p>
+</th>
+<th class="head"><p class="first last">Alíquota %
+a aplicar</p>
+</th>
+<th class="head"><p class="first last">Parcela a
+deduzir</p>
+</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><p class="first last">R$ 1.500,00</p>
+</td>
+<td><p class="first last">Isento</p>
+</td>
+<td><p class="first last">R$ 0,00</p>
+</td>
+</tr>
+<tr><td><p class="first last">R$ 3.000,00</p>
+</td>
+<td><p class="first last">9,15</p>
+</td>
+<td><p class="first last">R$ 10,00</p>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p class="first">O valor refência pode ser definido através da função <strong>SetRef()</strong> ou alterado pela
+variável <strong>VR</strong> através de uma fórmula.</p>
+</li>
+</ul>
+</div>
+<div class="section">
+<h3><a id="valor-calculado" name="valor-calculado">Valor Calculado</a></h3>
+<p>É o valor propriamente dito (principal) do evento. É o único valor obrigatório.
+O evento só é gravado se o valor calculado for maior que 0,00 (zero). O valor calculado é encontrado
+através de várias regras, a saber:</p>
+<ul class="simple">
+<li>Se o campo <tt class="docutils literal"><span class="pre">Assume</span> <span class="pre">Valor</span> <span class="pre">Informado</span></tt> estiver marcado e o valor informado for fornecido
+através de alguma entrada do sistema, o calculador do evento assumirá este valor. Neste caso,
+todas as outras informações do evento serão desconsideradas;</li>
+<li>Se na <a class="reference" href="sequencia_calculo.html">Sequência de Cálculo</a> for especificada alguma fórmula,
+o cálculo do evento será efetuado pela avaliação desta fórmula. Neste caso, todas as
+outras informações do evento serão desconsideradas;</li>
+<li>Se o campo <tt class="docutils literal"><span class="pre">Tipo</span> <span class="pre">de</span> <span class="pre">Cálculo</span></tt> for <strong>Fórmula</strong>, o cálculo do evento será efetuado
+pela avaliação da expressão matemática contida em <tt class="docutils literal"><span class="pre">Fórmula</span> <span class="pre">Local</span></tt> ou em <tt class="docutils literal"><span class="pre">Fórmula</span> <span class="pre">Padrão</span></tt>;</li>
+<li>Quando o campo <tt class="docutils literal"><span class="pre">Tipo</span> <span class="pre">de</span> <span class="pre">Cálculo</span></tt> for <strong>Hora Trabalhada</strong>, o cálculo será efetuado
+pelo produto entre o <strong>Valor Informado</strong>, o <strong>Valor da Hora Trabalhada</strong> e o
+<strong>Multiplicado de Hora do Evento</strong>, respeitando os limites estabelecidos nos campos <tt class="docutils literal"><span class="pre">Mínimo</span></tt> e <tt class="docutils literal"><span class="pre">Máximo</span></tt>;</li>
+<li>Quando o campo <tt class="docutils literal"><span class="pre">Tipo</span> <span class="pre">de</span> <span class="pre">Cálculo</span></tt> for <strong>Contra Partida</strong> o cálculo será efetuado pela
+totalização do evento especificado no campo <tt class="docutils literal"><span class="pre">Evento</span> <span class="pre">de</span> <span class="pre">Contra-Partida</span></tt> nas folhas de
+<a class="reference" href="contra_partida.html">contra-partida</a> da folha atual. Neste caso, todas as outras
+informações do evento serão desconsideradas;</li>
+<li>Quando o <tt class="docutils literal"><span class="pre">Tipo</span> <span class="pre">de</span> <span class="pre">Cálculo</span></tt> for <strong>Valor Informado</strong> o cálculo será efetuado resgatando o
+valor fornecido numa das entradas de movimento: Lançamentos Informados, Lançamentos
+Automáticos ou Eventos Padrões. Qualquer outra informação do evento será desconsiderada.</li>
+</ul>
+</div>
+<div class="section">
+<h3><a id="valor-totalizado" name="valor-totalizado">Valor Totalizado</a></h3>
+<p>É um valor complementar e opcional. O calculador pressume o valor
+totalizado através das sequintes regras:</p>
+<ul class="simple">
+<li>A cada vez que a fórmula de cálculo acessar um <strong>Total de Incidência</strong> (TI) o valor totalizado
+será incrementado com o valor desta incidência;</li>
+<li>A cada vez que a fórmula de cálculo acessar uma base de cálculo o valor totalizado será
+incrementado com o valor desta base;</li>
+<li>O valor totalizado pode ser definido através da função <strong>SetTot()</strong> ou alterando a variável
+<strong>VT</strong> através da fórmula.</li>
+</ul>
+</div>
+
+  </div>
+</body>
+<!-- generated on: 2008-02-09 11:01:35.531000
+     file id: calculador -->
+</html>

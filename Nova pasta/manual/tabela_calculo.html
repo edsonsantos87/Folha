@@ -1,0 +1,491 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Tabelas de Cálculos &mdash; FolhaLivre</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="flivre.css" type="text/css">
+</head>
+<body>
+  <div id="content">
+    <h1 class="heading">Manual do FolhaLivre</h1>
+    <h2 class="subheading">Tabelas de Cálculos</h2>
+    
+      <a id="backlink" href="index.html">&laquo; Volta para índice</a>
+      
+        <div class="toc">
+          <h2>Sumário</h2>
+          <ul class="contents">
+          
+            <li><a href="#defini-o">Definição</a></li>
+          
+            <li><a href="#objetivos">Objetivos</a></li>
+          
+            <li><a href="#cadastro">Cadastro</a></li>
+          
+            <li><a href="#tipos-de-tabela-de-c-lculo">Tipos de tabela de cálculo</a></li>
+          
+            <li><a href="#f-rmula">Fórmula</a></li>
+          
+            <li><a href="#tabelas">Tabelas</a></li>
+          
+            <li><a href="#consulta-sql">Consulta SQL</a></li>
+          
+          </ul>
+        </div>
+        <br>
+      
+          
+    <div class="section">
+<h3><a id="defini-o" name="defini-o">Definição</a></h3>
+<p>É uma entidade subordinada à empresa. A tabela de cálculo é um conjunto (lista)
+de valores relacionados à uma data a partir da qual se tornam válidos. Como
+exemplos básicos de tabelas temos as tabela de <strong>IRRF</strong> e de <strong>INSS</strong>.</p>
+</div>
+<div class="section">
+<h3><a id="objetivos" name="objetivos">Objetivos</a></h3>
+<p>O recurso de tabela de cálculo visa fornecer suporte para o cálculo de eventos
+que necessitam que a determinado valor seja aplicado taxa, redução ou acréscimo
+baseado na análise desse valor através de uma faixa de valores.</p>
+</div>
+<div class="section">
+<h3><a id="cadastro" name="cadastro">Cadastro</a></h3>
+<p>Os campos requeridos para o cadastro de um índice são:</p>
+<ul class="simple">
+<li><strong>Empresa</strong>: Código da empresa da qual a tabela está subordinada;</li>
+<li><strong>Código</strong>: Número de identificação da tabela na empresa. Este número será usado
+para se ter acesso a tabela em diferentes partes do sistema;</li>
+<li><strong>Nome</strong>: Texto para se descrever brevemente a tabela, exempo: Tabela de IRRF;</li>
+<li><strong>Modelo de itens</strong>: Relação de itens, somente código e nome, para que as
+tabelas possuam valores individualizados independentes das faixas.</li>
+</ul>
+<p>A tabela de cálculo possui os seguintes elementos:</p>
+<ul>
+<li><p class="first"><strong>Competência</strong></p>
+<p>Data em que a tabela passa a ser considerada para efeito de cálculos. Exemplo: <strong>Janeiro/2003</strong>;</p>
+</li>
+<li><p class="first"><strong>Faixas</strong></p>
+<p>Lista de valores que serão usados como base para se aplicar a taxa, redução e
+acréscimo no valor-alvo. Exemplo: <strong>Faixas da Tabela de IRRF</strong>;</p>
+</li>
+<li><p class="first"><strong>Itens</strong></p>
+<p>Valores individualmente identificados que, da mesma maneira que as faixas, estão
+relacionados à uma competência. Exemplo: <strong>Valor por Dependente</strong>, <strong>Valor Minímo a Recolher</strong>.</p>
+</li>
+</ul>
+<p>Uma tabela de cálculo é cadastrada no FolhaLivre em duas etapas: <strong>Inclusão</strong> e <strong>Movimentação</strong>.</p>
+<ul class="simple">
+<li><strong>Inclusão</strong><ul>
+<li>Execute a opção <strong>&lt;Tabelas&gt;</strong> do menu <strong>&lt;Cadastro&gt;</strong>;</li>
+<li>Pressione <strong>&lt;Novo&gt;</strong> e informe o código e nome da nova tabela;</li>
+<li>Pressione <strong>&lt;Gravar&gt;</strong> para confirmar a inclusão da nova tabela;</li>
+<li>Se a tabela possuir valores individualizados independentes das faixas, vá
+para a guia <strong>Modelo de Itens</strong> e inclua os itens necessários.</li>
+</ul>
+</li>
+<li><strong>Movimentação</strong><ul>
+<li>Execute a opção <strong>&lt;Tabelas&gt;</strong> do menu <strong>&lt;Movimentações&gt;</strong>;</li>
+<li>Escolha a tabela, se houver mais de uma tabela cadastrada para a empresa;</li>
+<li>Pressione <strong>&lt;F2&gt;</strong> para iniciar uma nova competência;</li>
+<li>Preenchar as faixas com os valoes apropriados;</li>
+<li>Se houver itens, preencha também os valores para os itens.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section">
+<h3><a id="tipos-de-tabela-de-c-lculo" name="tipos-de-tabela-de-c-lculo">Tipos de tabela de cálculo</a></h3>
+<p>As tabela de cálculos podem serem do tipo:</p>
+<ul>
+<li><p class="first"><strong>Globais</strong> (TG)</p>
+<p>Quando pertecerem à empresa global. Essas tabelas estão dispónivel para todas
+as empresas. Exemplo: <strong>Tabela de Sálario-Fámilia</strong>, <strong>Tabela de IRRF</strong>;</p>
+</li>
+<li><p class="first"><strong>Locais</strong> (TL)</p>
+<p>Quando pertecerem a uma empresa diferente da global e só estão disponivéis
+para esta empresa. Exemplo: <strong>Tabela de Prêmio</strong>.</p>
+</li>
+</ul>
+</div>
+<div class="section">
+<h3><a id="f-rmula" name="f-rmula">Fórmula</a></h3>
+<p>O acesso às tabelas, faixas e itens se fará por intermédio de fórmulas através
+de funções apropriadas. As funções válidas para o acesso às tabelas são:</p>
+<ul>
+<li><p class="first"><strong>TG[t]([v])</strong> ou <strong>TG([t],[v])</strong> - Tabela Global.</p>
+<p>Retorna o valor resultante da aplicação de taxa, redução e/ou acréscimo sobre
+o valor-alvo [v] conforme a faixa apropriada pesquisada na tabela global [t].</p>
+<p>Se a tabela não foi encontrada será gerado o erro <tt class="docutils literal"><span class="pre">tabela</span> <span class="pre">global</span> <span class="pre">não</span> <span class="pre">existe</span></tt>.</p>
+<p>Veja a fórmula de cálculo do <a class="reference" href="imposto_renda.html">IRRF</a>.</p>
+</li>
+<li><p class="first"><strong>TGI[t]([i])</strong> ou <strong>TGI([t],[i])</strong> - Item da Tabela Global.</p>
+<p>Retorna o valor do item [i] da tabela global [t].
+Se a tabela não foi encontrada será gerado o erro <tt class="docutils literal"><span class="pre">tabela</span> <span class="pre">global</span> <span class="pre">não</span> <span class="pre">existe</span></tt>.</p>
+</li>
+<li><p class="first"><strong>TL[t]([v])</strong> ou <strong>TL([t],[v])</strong> - Tabela Local.</p>
+<p>Retorna o valor resultante da aplicação de taxa, redução e/ou acréscimo sobre
+o valor-alvo [v] conforme a faixa apropriada pesquisada da tabela local [t].</p>
+<p>Se a tabela não foi encontrada será gerado o erro <tt class="docutils literal"><span class="pre">tabela</span> <span class="pre">local</span> <span class="pre">não</span> <span class="pre">existe</span></tt>.</p>
+</li>
+<li><p class="first"><strong>TLI[t]([i])</strong> ou <strong>TLI([t],[i])</strong> - Item da Tabela Local.</p>
+<p>Retorna o valor do item [i] da tabela local [t]. Se a tabela não foi
+encontrada será gerado o erro <tt class="docutils literal"><span class="pre">tabela</span> <span class="pre">local</span> <span class="pre">não</span> <span class="pre">existe</span></tt>.</p>
+</li>
+<li><p class="first"><strong>TB[t]([v])</strong> ou <strong>TB([t],[v])</strong></p>
+<p>Retorna o valor resultante da aplicação de taxa, redução e/ou acréscimo
+sobre o valor-alvo [v] conforme a faixa apropriada pesquisada na tabela [t].
+A tabela [t] será primeiramente pesquisada na empresa local, se a tabela
+não existir na empresa local será pesquisada na empresa global.</p>
+<p>Se nenhuma tabela for encontrada será gerado o erro <tt class="docutils literal"><span class="pre">tabela</span> <span class="pre">de</span> <span class="pre">cálculo</span> <span class="pre">não</span> <span class="pre">existe</span></tt>.</p>
+</li>
+<li><p class="first"><strong>TBI[t]([i])</strong> ou <strong>TBI([t],[i])</strong></p>
+<p>Retorna o valor do item [i] da tabela local [t]. Se a tabela local [t] não
+existir o item [t] será pesquisado na tabela global [t].</p>
+<p>Se nenhuma tabela for encontrada será gerado o erro <tt class="docutils literal"><span class="pre">tabela</span> <span class="pre">de</span> <span class="pre">cálculo</span> <span class="pre">não</span> <span class="pre">existe</span></tt>;</p>
+</li>
+<li><p class="first"><strong>TX</strong></p>
+<p>Retorna o valor da taxa correspondente à faixa aplicada para a última tabela pesquisada.</p>
+</li>
+</ul>
+</div>
+<div class="section">
+<h3><a id="tabelas" name="tabelas">Tabelas</a></h3>
+<p>São quatro as tabelas que fornecem suporte ao recurso de tabela de cálculo. Todas
+estas tabelas têm seus nomes iniciados por <strong>F_TABELA</strong>, a saber:</p>
+<p><strong>F_TABELA</strong></p>
+<blockquote>
+<table border="1" class="docutils">
+<colgroup>
+<col width="52%" />
+<col width="48%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Field Name</th>
+<th class="head">Data Type</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td># IDEMPRESA</td>
+<td>INTEGER</td>
+</tr>
+<tr><td># IDTABELA</td>
+<td>INTEGER</td>
+</tr>
+<tr><td>NOME</td>
+<td>VARCHAR(30)</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<p><strong>F_TABELA_MODELO</strong></p>
+<blockquote>
+<table border="1" class="docutils">
+<colgroup>
+<col width="52%" />
+<col width="48%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Field Name</th>
+<th class="head">Data Type</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td># IDEMPRESA</td>
+<td>INTEGER</td>
+</tr>
+<tr><td># IDTABELA</td>
+<td>INTEGER</td>
+</tr>
+<tr><td># ITEM</td>
+<td>INTEGER</td>
+</tr>
+<tr><td>NOME</td>
+<td>VARCHAR(30)</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<p><strong>F_TABELA_FAIXA</strong></p>
+<blockquote>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Field Name</th>
+<th class="head">Data Type</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td># IDEMPRESA</td>
+<td>INTEGER</td>
+</tr>
+<tr><td># IDTABELA</td>
+<td>INTEGER</td>
+</tr>
+<tr><td># COMPETENCIA</td>
+<td>DATE</td>
+</tr>
+<tr><td># IDFAIXA</td>
+<td>INTEGER</td>
+</tr>
+<tr><td>FAIXA</td>
+<td>NUMERIC(15,3)</td>
+</tr>
+<tr><td>TAXA</td>
+<td>NUMERIC(15,3)</td>
+</tr>
+<tr><td>REDUZIR</td>
+<td>NUMERIC(15,3)</td>
+</tr>
+<tr><td>ACRESCENTAR</td>
+<td>NUMERIC(15,3)</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<p><strong>F_TABELA_ITEM</strong></p>
+<blockquote>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Field Name</th>
+<th class="head">Data Type</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td># IDEMPRESA</td>
+<td>INTEGER</td>
+</tr>
+<tr><td># IDTABELA</td>
+<td>INTEGER</td>
+</tr>
+<tr><td># COMPETENCIA</td>
+<td>DATE</td>
+</tr>
+<tr><td># ITEM</td>
+<td>INTEGER</td>
+</tr>
+<tr><td>VALOR</td>
+<td>NUMERIC(15,3)</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section">
+<h3><a id="consulta-sql" name="consulta-sql">Consulta SQL</a></h3>
+<p>Estes script SQL são utilizados para a criação das tabelas de suporte às
+tabela de cálculos e seus respectivos índices (primary key e foreign key) e triggers.
+São compatível com os SGDBs Interbase e Firebird. Para se adequar a outros
+SGDBs talvez seja necessário efetuar pequenas adaptações.</p>
+<p><strong>Tabela: F_TABELA</strong></p>
+<div class="syntax" ><pre><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">F_TABELA</span> <span class="p">(</span>
+  <span class="n">IDEMPRESA</span>  <span class="n">ID</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="n">IDTABELA</span>   <span class="n">ID</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="n">NOME</span>       <span class="n">DESCRICAO</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">);</span>
+
+<span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">F_TABELA</span> <span class="k">ADD</span> <span class="k">CONSTRAINT</span> <span class="n">PK_F_TABELA</span>
+<span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">IDEMPRESA</span><span class="p">,</span> <span class="n">IDTABELA</span><span class="p">);</span>
+
+<span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">F_TABELA</span> <span class="k">ADD</span> <span class="k">CONSTRAINT</span> <span class="n">FK_F_TABELA_EMPRESA</span>
+<span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">IDEMPRESA</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">EMPRESA</span> <span class="p">(</span><span class="n">IDEMPRESA</span><span class="p">);</span>
+</pre></div>
+<p><strong>Tabela: F_TABELA_MODELO</strong></p>
+<div class="syntax" ><pre><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">F_TABELA_MODELO</span> <span class="p">(</span>
+    <span class="n">IDEMPRESA</span>  <span class="n">ID</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">IDTABELA</span>   <span class="n">ID</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">ITEM</span>       <span class="n">ID</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">NOME</span>       <span class="n">DESCRICAO</span> <span class="p">);</span>
+
+
+<span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">F_TABELA_MODELO</span> <span class="k">ADD</span> <span class="k">CONSTRAINT</span> <span class="n">PK_F_TABELA_MODELO</span>
+<span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">IDEMPRESA</span><span class="p">,</span> <span class="n">IDTABELA</span><span class="p">,</span> <span class="n">ITEM</span><span class="p">);</span>
+
+
+<span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">F_TABELA_MODELO</span> <span class="k">ADD</span> <span class="k">CONSTRAINT</span> <span class="n">FK_F_TABELA_MODELO</span>
+<span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">IDEMPRESA</span><span class="p">,</span> <span class="n">IDTABELA</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">F_TABELA</span> <span class="p">(</span><span class="n">IDEMPRESA</span><span class="p">,</span> <span class="n">IDTABELA</span><span class="p">);</span>
+
+
+<span class="k">SET</span> <span class="n">TERM</span> <span class="o">^</span> <span class="p">;</span>
+
+
+<span class="cm">/* Trigger: F_TABELA_MODELO_AI0 */</span>
+<span class="k">CREATE</span> <span class="k">TRIGGER</span> <span class="n">F_TABELA_MODELO_AI0</span> <span class="k">FOR</span> <span class="n">F_TABELA_MODELO</span>
+<span class="n">ACTIVE</span> <span class="k">AFTER</span> <span class="k">INSERT</span> <span class="k">POSITION</span> <span class="mi">0</span>
+<span class="k">as</span>
+<span class="k">declare</span> <span class="k">variable</span> <span class="k">data</span> <span class="nb">DATE</span><span class="p">;</span>
+<span class="k">begin</span>
+  <span class="k">FOR</span>
+    <span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="n">COMPETENCIA</span> <span class="k">FROM</span> <span class="n">F_TABELA_ITEM</span>
+    <span class="k">WHERE</span> <span class="n">IDEMPRESA</span> <span class="o">=</span> <span class="k">NEW</span><span class="p">.</span><span class="n">IDEMPRESA</span> <span class="k">AND</span> <span class="n">IDTABELA</span> <span class="o">=</span> <span class="k">NEW</span><span class="p">.</span><span class="n">IDTABELA</span>
+    <span class="k">INTO</span> <span class="p">:</span><span class="k">data</span>
+  <span class="k">DO</span>
+  <span class="k">BEGIN</span>
+    <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">F_TABELA_ITEM</span>
+      <span class="p">(</span> <span class="n">IDEMPRESA</span><span class="p">,</span> <span class="n">IDTABELA</span><span class="p">,</span> <span class="n">COMPETENCIA</span><span class="p">,</span> <span class="n">ITEM</span><span class="p">,</span> <span class="n">VALOR</span><span class="p">)</span>
+    <span class="k">VALUES</span>
+      <span class="p">(</span> <span class="k">NEW</span><span class="p">.</span><span class="n">IDEMPRESA</span><span class="p">,</span> <span class="k">NEW</span><span class="p">.</span><span class="n">IDTABELA</span><span class="p">,</span> <span class="p">:</span><span class="k">data</span><span class="p">,</span> <span class="k">NEW</span><span class="p">.</span><span class="n">ITEM</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="k">END</span>
+<span class="k">end</span>
+<span class="o">^</span>
+
+<span class="cm">/* Trigger: F_TABELA_MODELO_BD0 */</span>
+<span class="k">CREATE</span> <span class="k">TRIGGER</span> <span class="n">F_TABELA_MODELO_BD0</span> <span class="k">FOR</span> <span class="n">F_TABELA_MODELO</span>
+<span class="n">ACTIVE</span> <span class="k">BEFORE</span> <span class="k">DELETE</span> <span class="k">POSITION</span> <span class="mi">0</span>
+<span class="k">as</span>
+<span class="k">begin</span>
+  <span class="k">DELETE</span> <span class="k">FROM</span> <span class="n">F_TABELA_ITEM</span>
+  <span class="k">WHERE</span> <span class="n">IDEMPRESA</span> <span class="o">=</span> <span class="k">OLD</span><span class="p">.</span><span class="n">IDEMPRESA</span> <span class="k">AND</span> <span class="n">IDTABELA</span> <span class="o">=</span> <span class="k">OLD</span><span class="p">.</span><span class="n">IDTABELA</span> <span class="k">AND</span> <span class="n">ITEM</span> <span class="o">=</span> <span class="k">OLD</span><span class="p">.</span><span class="n">ITEM</span><span class="p">;</span>
+<span class="k">end</span>
+<span class="o">^</span>
+
+<span class="k">SET</span> <span class="n">TERM</span><span class="p">;</span> <span class="o">^</span>
+</pre></div>
+<p><strong>Tabela: F_TABELA_FAIXA</strong></p>
+<div class="syntax" ><pre><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">F_TABELA_FAIXA</span> <span class="p">(</span>
+    <span class="n">IDEMPRESA</span>    <span class="n">ID</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">IDTABELA</span>     <span class="n">ID</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">COMPETENCIA</span>  <span class="n">COMPETENCIA</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">IDFAIXA</span>      <span class="n">ID</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">FAIXA</span>        <span class="n">NUMERO</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">TAXA</span>         <span class="n">NUMERO</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">REDUZIR</span>      <span class="n">NUMERO</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">ACRESCENTAR</span>  <span class="n">NUMERO</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="p">);</span>
+
+
+<span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">F_TABELA_FAIXA</span> <span class="k">ADD</span> <span class="k">CONSTRAINT</span> <span class="n">PK_F_TABELA_FAIXA</span>
+<span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">IDEMPRESA</span><span class="p">,</span> <span class="n">IDTABELA</span><span class="p">,</span> <span class="n">COMPETENCIA</span><span class="p">,</span> <span class="n">IDFAIXA</span><span class="p">);</span>
+
+<span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">F_TABELA_FAIXA</span> <span class="k">ADD</span> <span class="k">CONSTRAINT</span> <span class="n">FK_F_TABELA_FAIXA</span>
+<span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">IDEMPRESA</span><span class="p">,</span> <span class="n">IDTABELA</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">F_TABELA</span> <span class="p">(</span><span class="n">IDEMPRESA</span><span class="p">,</span> <span class="n">IDTABELA</span><span class="p">);</span>
+
+<span class="k">CREATE</span> <span class="k">UNIQUE</span> <span class="k">INDEX</span> <span class="n">F_TABELA_FAIXA_IDX1</span>
+<span class="k">ON</span> <span class="n">F_TABELA_FAIXA</span> <span class="p">(</span><span class="n">IDEMPRESA</span><span class="p">,</span> <span class="n">IDTABELA</span><span class="p">,</span> <span class="n">COMPETENCIA</span><span class="p">,</span> <span class="n">FAIXA</span><span class="p">);</span>
+
+
+<span class="k">SET</span> <span class="n">TERM</span> <span class="o">^</span> <span class="p">;</span>
+
+<span class="cm">/* Trigger: F_TABELA_FAIXA_AD0 */</span>
+<span class="k">CREATE</span> <span class="k">TRIGGER</span> <span class="n">F_TABELA_FAIXA_AD0</span> <span class="k">FOR</span> <span class="n">F_TABELA_FAIXA</span>
+<span class="n">ACTIVE</span> <span class="k">AFTER</span> <span class="k">DELETE</span> <span class="k">POSITION</span> <span class="mi">0</span>
+<span class="k">as</span>
+<span class="k">DECLARE</span> <span class="k">VARIABLE</span> <span class="n">iCount</span> <span class="nb">INTEGER</span><span class="p">;</span>
+<span class="k">begin</span>
+
+  <span class="cm">/* Se nao houve mais faixas para a tabela os itens tambem são excluidos */</span>
+
+  <span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">F_TABELA_FAIXA</span>
+  <span class="k">WHERE</span> <span class="n">IDEMPRESA</span> <span class="o">=</span> <span class="k">OLD</span><span class="p">.</span><span class="n">IDEMPRESA</span> <span class="k">AND</span> <span class="n">IDTABELA</span> <span class="o">=</span> <span class="k">OLD</span><span class="p">.</span><span class="n">IDTABELA</span> <span class="k">AND</span>
+        <span class="n">COMPETENCIA</span> <span class="o">=</span> <span class="k">OLD</span><span class="p">.</span><span class="n">COMPETENCIA</span>
+  <span class="k">INTO</span> <span class="p">:</span><span class="n">iCount</span><span class="p">;</span>
+
+  <span class="n">if</span> <span class="p">(</span><span class="n">iCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+    <span class="k">DELETE</span> <span class="k">FROM</span> <span class="n">F_TABELA_ITEM</span>
+    <span class="k">WHERE</span> <span class="n">IDEMPRESA</span> <span class="o">=</span> <span class="k">OLD</span><span class="p">.</span><span class="n">IDEMPRESA</span> <span class="k">AND</span> <span class="n">IDTABELA</span> <span class="o">=</span> <span class="k">OLD</span><span class="p">.</span><span class="n">IDTABELA</span> <span class="k">AND</span>
+        <span class="n">COMPETENCIA</span> <span class="o">=</span> <span class="k">OLD</span><span class="p">.</span><span class="n">COMPETENCIA</span><span class="p">;</span>
+
+<span class="k">end</span>
+<span class="o">^</span>
+
+<span class="cm">/* Trigger: F_TABELA_FAIXA_AI0 */</span>
+<span class="k">CREATE</span> <span class="k">TRIGGER</span> <span class="n">F_TABELA_FAIXA_AI0</span> <span class="k">FOR</span> <span class="n">F_TABELA_FAIXA</span>
+<span class="n">ACTIVE</span> <span class="k">AFTER</span> <span class="k">INSERT</span> <span class="k">POSITION</span> <span class="mi">0</span>
+<span class="k">as</span>
+<span class="k">declare</span> <span class="k">variable</span> <span class="n">iCount</span> <span class="nb">INTEGER</span><span class="p">;</span>
+<span class="k">declare</span> <span class="k">variable</span> <span class="n">dData</span> <span class="nb">DATE</span><span class="p">;</span>
+<span class="k">begin</span>
+
+  <span class="cm">/* Verifica se existe ITENS para a competencia */</span>
+  <span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="n">ITEM</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">F_TABELA_ITEM</span>
+  <span class="k">WHERE</span> <span class="n">IDEMPRESA</span> <span class="o">=</span> <span class="k">NEW</span><span class="p">.</span><span class="n">IDEMPRESA</span> <span class="k">AND</span> <span class="n">IDTABELA</span> <span class="o">=</span> <span class="k">NEW</span><span class="p">.</span><span class="n">IDTABELA</span> <span class="k">AND</span>
+        <span class="n">COMPETENCIA</span> <span class="o">=</span> <span class="k">NEW</span><span class="p">.</span><span class="n">COMPETENCIA</span>
+  <span class="k">INTO</span> <span class="p">:</span><span class="n">iCount</span><span class="p">;</span>
+
+  <span class="n">if</span> <span class="p">(</span><span class="n">iCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+  <span class="k">begin</span>
+
+    <span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="n">COMPETENCIA</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">F_TABELA_ITEM</span>
+    <span class="k">WHERE</span> <span class="n">IDEMPRESA</span> <span class="o">=</span> <span class="k">NEW</span><span class="p">.</span><span class="n">IDEMPRESA</span> <span class="k">AND</span> <span class="n">IDTABELA</span> <span class="o">=</span> <span class="k">NEW</span><span class="p">.</span><span class="n">IDTABELA</span> <span class="k">AND</span>
+          <span class="n">COMPETENCIA</span> <span class="o">&lt;</span> <span class="k">NEW</span><span class="p">.</span><span class="n">COMPETENCIA</span>
+    <span class="k">INTO</span> <span class="p">:</span><span class="n">iCount</span><span class="p">;</span>
+
+    <span class="n">if</span> <span class="p">(</span><span class="n">iCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+    <span class="k">begin</span>
+
+      <span class="cm">/* Nao existe uma competencia menor que a competencia em questao</span>
+<span class="cm">         apenas inclui os itens do modelo com valores default */</span>
+
+      <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">F_TABELA_ITEM</span>
+        <span class="p">(</span><span class="n">IDEMPRESA</span><span class="p">,</span> <span class="n">IDTABELA</span><span class="p">,</span> <span class="n">COMPETENCIA</span><span class="p">,</span> <span class="n">ITEM</span><span class="p">)</span>
+      <span class="k">SELECT</span> <span class="n">IDEMPRESA</span><span class="p">,</span> <span class="n">IDTABELA</span><span class="p">,</span> <span class="k">NEW</span><span class="p">.</span><span class="n">COMPETENCIA</span><span class="p">,</span> <span class="n">ITEM</span>
+      <span class="k">FROM</span> <span class="n">F_TABELA_MODELO</span>
+      <span class="k">WHERE</span> <span class="n">IDEMPRESA</span> <span class="o">=</span> <span class="k">NEW</span><span class="p">.</span><span class="n">IDEMPRESA</span> <span class="k">AND</span> <span class="n">IDTABELA</span> <span class="o">=</span> <span class="k">NEW</span><span class="p">.</span><span class="n">IDTABELA</span><span class="p">;</span>
+
+    <span class="k">end</span> <span class="k">else</span>
+    <span class="k">begin</span>
+
+      <span class="cm">/* Os valores dos itens sac copiados de uma competencia</span>
+<span class="cm">         imediatamente menor que a competencia em questao */</span>
+
+      <span class="k">SELECT</span> <span class="k">MAX</span><span class="p">(</span><span class="n">COMPETENCIA</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">F_TABELA_ITEM</span>
+      <span class="k">WHERE</span> <span class="n">IDEMPRESA</span> <span class="o">=</span> <span class="k">NEW</span><span class="p">.</span><span class="n">IDEMPRESA</span> <span class="k">AND</span> <span class="n">IDTABELA</span> <span class="o">=</span> <span class="k">NEW</span><span class="p">.</span><span class="n">IDTABELA</span> <span class="k">AND</span>
+            <span class="n">COMPETENCIA</span> <span class="o">&lt;</span> <span class="k">NEW</span><span class="p">.</span><span class="n">COMPETENCIA</span>
+      <span class="k">INTO</span> <span class="p">:</span><span class="n">dData</span><span class="p">;</span>
+
+      <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">F_TABELA_ITEM</span>
+        <span class="p">(</span><span class="n">IDEMPRESA</span><span class="p">,</span> <span class="n">IDTABELA</span><span class="p">,</span> <span class="n">COMPETENCIA</span><span class="p">,</span> <span class="n">ITEM</span><span class="p">,</span> <span class="n">VALOR</span><span class="p">)</span>
+      <span class="k">SELECT</span> <span class="n">IDEMPRESA</span><span class="p">,</span> <span class="n">IDTABELA</span><span class="p">,</span> <span class="k">NEW</span><span class="p">.</span><span class="n">COMPETENCIA</span><span class="p">,</span> <span class="n">ITEM</span><span class="p">,</span> <span class="n">VALOR</span> <span class="k">FROM</span> <span class="n">F_TABELA_ITEM</span>
+      <span class="k">WHERE</span> <span class="n">IDEMPRESA</span> <span class="o">=</span> <span class="k">NEW</span><span class="p">.</span><span class="n">IDEMPRESA</span> <span class="k">AND</span> <span class="n">IDTABELA</span> <span class="o">=</span> <span class="k">NEW</span><span class="p">.</span><span class="n">IDTABELA</span> <span class="k">AND</span> <span class="n">COMPETENCIA</span> <span class="o">=</span> <span class="p">:</span><span class="n">dData</span><span class="p">;</span>
+
+    <span class="k">end</span>
+
+  <span class="k">end</span>
+
+<span class="k">end</span>
+<span class="o">^</span>
+
+<span class="cm">/* Trigger: F_TABELA_FAIXA_BI0 */</span>
+<span class="k">CREATE</span> <span class="k">TRIGGER</span> <span class="n">F_TABELA_FAIXA_BI0</span> <span class="k">FOR</span> <span class="n">F_TABELA_FAIXA</span>
+<span class="n">ACTIVE</span> <span class="k">BEFORE</span> <span class="k">INSERT</span> <span class="k">POSITION</span> <span class="mi">0</span>
+<span class="k">as</span>
+<span class="k">begin</span>
+  <span class="n">if</span> <span class="p">(</span> <span class="p">(</span><span class="k">NEW</span><span class="p">.</span><span class="n">IDFAIXA</span> <span class="k">IS</span> <span class="k">NULL</span><span class="p">)</span> <span class="k">OR</span> <span class="p">(</span><span class="k">NEW</span><span class="p">.</span><span class="n">IDFAIXA</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">)</span> <span class="k">then</span>
+  <span class="k">begin</span>
+    <span class="k">SELECT</span> <span class="k">MAX</span><span class="p">(</span><span class="n">IDFAIXA</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span> <span class="k">FROM</span> <span class="n">F_TABELA_FAIXA</span>
+    <span class="k">WHERE</span> <span class="n">IDEMPRESA</span> <span class="o">=</span> <span class="k">NEW</span><span class="p">.</span><span class="n">IDFAIXA</span> <span class="k">AND</span> <span class="n">IDTABELA</span> <span class="o">=</span> <span class="k">NEW</span><span class="p">.</span><span class="n">IDTABELA</span>
+    <span class="k">INTO</span> <span class="k">NEW</span><span class="p">.</span><span class="n">IDFAIXA</span><span class="p">;</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+<span class="o">^</span>
+
+
+<span class="k">SET</span> <span class="n">TERM</span> <span class="p">;</span> <span class="o">^</span>
+</pre></div>
+<p><strong>Tabela: F_TABELA_ITEM</strong></p>
+<div class="syntax" ><pre><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">F_TABELA_ITEM</span> <span class="p">(</span>
+    <span class="n">IDEMPRESA</span>    <span class="n">ID</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">IDTABELA</span>     <span class="n">ID</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">COMPETENCIA</span>  <span class="n">COMPETENCIA</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">ITEM</span>         <span class="n">ID</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">VALOR</span>        <span class="n">NUMERO</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="p">);</span>
+
+
+<span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">F_TABELA_ITEM</span> <span class="k">ADD</span> <span class="k">CONSTRAINT</span> <span class="n">PK_F_TABELA_ITEM</span>
+<span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">IDEMPRESA</span><span class="p">,</span> <span class="n">IDTABELA</span><span class="p">,</span> <span class="n">COMPETENCIA</span><span class="p">,</span> <span class="n">ITEM</span><span class="p">);</span>
+
+
+<span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">F_TABELA_ITEM</span> <span class="k">ADD</span> <span class="k">CONSTRAINT</span> <span class="n">FK_F_TABELA_ITEM</span>
+<span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">IDEMPRESA</span><span class="p">,</span> <span class="n">IDTABELA</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">F_TABELA</span> <span class="p">(</span><span class="n">IDEMPRESA</span><span class="p">,</span> <span class="n">IDTABELA</span><span class="p">);</span>
+</pre></div>
+</div>
+
+  </div>
+</body>
+<!-- generated on: 2008-02-09 11:01:42.250000
+     file id: tabela_calculo -->
+</html>

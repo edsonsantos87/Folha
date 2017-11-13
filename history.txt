@@ -1,0 +1,166 @@
+==========================
+Histórico das modificações
+==========================
+
+.. sidebar:: IMPORTANTE
+
+   Após atualizar a versão binária, você dever ir para a opção
+   **<Ferramentas>** **<Atualizar Estrutura da Base de Dados>**
+   e confirmar a atualização.
+
+
+20/04/2007 - Versão 1.4
+=======================
+
+- Eventos Programados - Request ID 1686344
+- Adicionado o importador para eventos informados;
+- Calculador: Adicionado a função SN - Salario Normal (desconsidera o valor informado)
+- Calculador: Adicionada a função DPU - Número de dias úteis no período da folha;
+- Calculador: Adicionada a função DPF - Número de dias não-úteis no período da folha;
+- Calculador: Adicionada a função GN - Gratificação Natalina;
+- Calculador: Adicionada a função MM - Meses para Média;
+- Calculador: Adicionada a função MAA - Meses de Admissão no Ano; 
+- Bug fix: 1672060 - Salário Mensal e Salário;
+- Bug Fix: 1666112 - Testar Valores Minimo e Maximo;
+- Adicionado o campo "TIPO_SALARIO" no cadastro de eventos, para suporte da função GN();
+- Adicionado o filtro por funcionário na impressão de contra-cheques;
+- Melhorias no cadastro de folhas de pagamento;
+- Melhorias no cadastro de eventos;
+- Melhorias no cadastro de funcionários.
+
+
+30/09/2006 - versão 1.3
+=======================
+
+- Otimização da ativação das folhas de pagamento;
+- Cadastro de Feriados;
+- Melhorias na interface do cadastro de funcionarios;
+- Ícone do FolhaLivre adicionado ao executável;
+- Implementação da função: DRS() - Descanso Remunerado Semanal.
+
+
+11/07/2005 - versão 1.2
+=======================
+
+- Suporte ao cálculo de folha complementar: Folha, Evento e Calculador;
+- Correção de bugs no calculador: Rescisão;
+- Correção de bugs: splashscreen e cadastro de usuários.
+
+07/06/2005 - versão 1.1
+=======================
+
+- Cadastro de Causa de Rescisão de Contrato;
+- Cadastro de Eventos para Rescisão de Contratos;
+- Rescisão de Funcionario;
+- Novas rotinas para o calculador: XE e XI;
+- Correção de bugs no calculador: Itens de Tabelas e valor minímo para o evento.
+
+
+14/02/2005 - versão 1.0
+=======================
+
+- Cadastro de bases de acumulação;
+- Correção de bug no calculador - dependentes;
+- Melhoria no cadastro de folhas - Sequência de Cálculo e Eventos Padrões;
+
+
+10/12/2004 - versão 0.1.6
+=========================
+
+- Gravação de relatórios em arquivo txt;
+- Facilidades de navegação na visualização de relatórios;
+- Compilação também em Delphi 7;
+- Cadastro da Situação de Funcionários (RAIS);
+- Cadastro de Totalizadores;
+- O calculador considera apenas os funcionários ativos;
+- O calculador considera os totalizadores;
+- Correção de bug no calculador durante a pesquisa de índices. 
+
+
+23/10/2004 - versão 0.1.5
+=========================
+
+- Cadastro de Sindicatos;
+- Listagem de Líquidos da Folha;
+- Correção no Cadastro de Eventos Informados;
+- Correção de bugs reportados pelo Grupo FolhaLivre.
+
+
+18/09/2004 - versão 0.1.4
+=========================
+
+- Folhas de Adiantamento Salarial;
+- Folhas de Contra-Partida;
+- Correção de pequenos bug e melhoramentos na interface reportados pelo Grupo FolhaLivre.
+
+
+11/08/2004 - versão 0.1.3
+=========================
+
+- Revisão no codigo-fonte para compatibilidade com Delphi 5 e Delphi 8;
+- Correção de pequenos bug e melhoramentos na interface reportados pelo Grupo FolhaLivre;
+- Adicionado no calculador tipo de cálculo "Dia Trabalhado".
+
+
+04/05/2004 - versão 0.1.2
+=========================
+
+- Correção de bugs no calculador;
+
+
+30/04/2004 - versão 0.1.1
+=========================
+
+- Implementação da rotina de geração de arquivo FEBRABAN
+- Cadastro de Informações sobre a empresa ativa;
+- Correções de pequenos bugs no código do FolhaLivre.
+
+
+15/03/2004 - versão 0.0.9
+=========================
+
+- Implementação de recursos no calculador para se adequar ao manual;
+- Mudança na interface dos cadastro de eventos e fórmulas;
+- Correções de pequenos bugs no código do FolhaLivre.
+
+
+02/03/2004 - versão 0.0.8
+=========================
+
+- Correção de bugs no cadastro de dependentes;
+- Correção no tamanho do CBO;
+- Correções de bugs no AKExpression;
+- Correções de outros bugs reportados;
+- Campos Totalizar no cadastro de Tipos de Folhas para fornecer
+  suporte ao recurso de totalizadores a ser incluído na próxima versão. 
+
+
+10/02/2004 - versão 0.0.7
+=========================
+
+- Alterações no AKExpression. Permissão para manipulação de variavéis;
+- Cadastro de Tipos de Dependentes
+- Cadastro de Dependentes
+
+
+versão 0.0.6
+============
+
+- Correção de bugs na abertura de alguns cadastros;
+- Correção de bugs no calculador envolvendo acesso aos indices;
+- Para o Firebird pode-se também utilizar a extensão ".fdb";
+- Ajustes na interface do cadastro de fórmulas.
+
+
+versão 0.0.5
+============
+
+- Cadastro de Bancos e Agências;
+- Novos campos no cadastro de funcionários: Banco, Agência e Conta Bancária;
+- Formulário para filtragem de funcionários para
+  os relatórios de Folha Analitica, Total de Lotação e Contra-cheques;  
+- Relatório de Listagem Bancária;
+- Opção para moldura o relatório de contra-cheque;
+- No Windows 2000 ou XP, a extensão da base de dados deve ser
+  alterada para ".ib" para o Interbase ou ".fb" para o Firebird;  
+- Correção de bugs detectados no calculador, relacionados aos índices.

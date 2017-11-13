@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Dependentes &mdash; FolhaLivre</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="flivre.css" type="text/css">
+</head>
+<body>
+  <div id="content">
+    <h1 class="heading">Manual do FolhaLivre</h1>
+    <h2 class="subheading">Dependentes</h2>
+    
+      <a id="backlink" href="index.html">&laquo; Volta para índice</a>
+      
+        <div class="toc">
+          <h2>Sumário</h2>
+          <ul class="contents">
+          
+            <li><a href="#defini-o">Definição</a></li>
+          
+            <li><a href="#objetivo">Objetivo</a></li>
+          
+            <li><a href="#cadastro">Cadastro</a></li>
+          
+            <li><a href="#tipo-de-dependentes">Tipo de Dependentes</a></li>
+          
+            <li><a href="#f-rmula">Fórmula</a></li>
+          
+            <li><a href="#tabelas">Tabelas</a></li>
+          
+          </ul>
+        </div>
+        <br>
+      
+          
+    <!-- -*- mode: rst -*- -->
+<div class="section">
+<h3><a id="defini-o" name="defini-o">Definição</a></h3>
+<p>É uma entidade subordinada ao funcionário. Cada funcionário poderá ter nenhum, um
+ou vários dependentes. Cada dependente pertencerá a um único funcionário e poderá
+assumir vários tipos simultaneamente.</p>
+</div>
+<div class="section">
+<h3><a id="objetivo" name="objetivo">Objetivo</a></h3>
+<p>O recurso de dependentes visa fornecer suporte ao cálculo de eventos que necessitam
+da quantidade de dependentes que satisfaçam certos requisitos, como por exemplo um
+limite de idade.</p>
+</div>
+<div class="section">
+<h3><a id="cadastro" name="cadastro">Cadastro</a></h3>
+<p>O cadastro de dependentes estar disponível através da opção <strong>&lt;Dependentes&gt;</strong> do menu
+<strong>&lt;Cadastro&gt;</strong>. Todos os campos do dependente são obrigatórios. O dependente possui os sequintes
+campos:</p>
+<ul>
+<li><p class="first"><strong>Empresa</strong></p>
+<p>Código da empresa a qual o funcionário está subordinado. O usuário não informa esse número,
+sistema assume o código da empresa atual.</p>
+</li>
+<li><p class="first"><strong>Funcionario</strong></p>
+<p>Código do funcionário que o dependente está subordinado.
+O usuário normalmente escolhe o funcionário.</p>
+</li>
+<li><p class="first"><strong>Nome</strong></p>
+<p>Nome completo do dependente conforme registrado na certidão de nascimento.
+Este campo identifica o dependente para o funcionário por isso não haverá mais de um dependente
+com o mesmo nome para o funcionário.</p>
+</li>
+<li><p class="first"><strong>Nascimento</strong></p>
+<p>Data do nascimento conforme registrado na certidão de nascimento.
+A data de nascimento é importante porque alguns tipos podem possuir limites de idade
+para considerar o dependente numa contagem.</p>
+</li>
+<li><p class="first"><strong>Sexo</strong></p>
+<p>O sexo do dependentes pode ser representado pelas letras &quot;F&quot; e &quot;M&quot; sendo
+respectivamente feminimo e masculino.</p>
+</li>
+<li><p class="first"><strong>Tipos</strong></p>
+<p>Texto alfanumérico contendo a relação de tipos que o dependente pertece.
+Cada letra representa um tipo, não pode ser usada as letras D, F, M e I. Se o usuário
+desejar pode inserir no texto outros caracteres que não sejam letras.</p>
+</li>
+<li><p class="first"><strong>Inválido</strong></p>
+<p>Indica se o dependente possui algum tipo de deficiência que o impossibilite
+de trabalhar. O dependente que possuir este campo marcado será considerado na contagem
+do tipo independentemente de sua idade.</p>
+</li>
+</ul>
+</div>
+<div class="section">
+<h3><a id="tipo-de-dependentes" name="tipo-de-dependentes">Tipo de Dependentes</a></h3>
+<p>O tipo de dependente é uma classificação que tem por objetivo estabelecer limites de
+idade para a contagem de dependentes. O tipo é representado por uma letra, exceto &quot;D&quot;,
+&quot;F&quot;, &quot;M&quot; e &quot;I&quot;. Cada dependente pode ser classificado em vários tipos simultanêamente.</p>
+<p>Por padrão, o FolhaLivre já traz cadastrado 2 (dois) tipos de dependentes, que são:</p>
+<blockquote>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="47%" />
+<col width="37%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Tipo</th>
+<th class="head">Descrição</th>
+<th class="head">Limite-Idade</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>S</td>
+<td>Salário Família</td>
+<td>14 anos</td>
+</tr>
+<tr><td>R</td>
+<td>Imposto de Renda</td>
+<td>21 anos</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<p>Para que um dependente seja classificado simultaneamente nestes dois tipoS, informe
+no campo <strong>TIPOS</strong> o texto <cite>&quot;R-S&quot;</cite>.</p>
+<p>O cadastro de tipos de dependentes estar disponível através da opção <strong>&lt;Tipos de Dependente&gt;</strong> do menu
+<strong>&lt;Cadastro&gt;</strong>.</p>
+</div>
+<div class="section">
+<h3><a id="f-rmula" name="f-rmula">Fórmula</a></h3>
+<p>A contagem dos dependentes do funcionário se realizará por intermédio de fórmula através
+da chamada de funções e constantes apropriadas.</p>
+<p>As funções de dependentes iniciam-se pela letra &quot;D&quot;, que são as sequintes:</p>
+<ul>
+<li><p class="first">D[T] ou D([T])</p>
+<p>Executa a contagem dos dependentes do tipo <cite>T</cite>, considerando o limite
+de idade para o tipo informado. Os dependentes cujo campo <strong>[] Inválido</strong> está marcado são
+incluídos na contagem, desconsiderando a idade. Veja os exemplos nas fórmulas
+para imposto de renda e salário-família respectivamente:</p>
+<div class="syntax" ><pre><span class="n">d</span> <span class="o">:=</span> <span class="n">DR</span><span class="o">*</span><span class="n">TGI</span><span class="p">(</span><span class="mi">2</span><span class="o">,</span><span class="mi">1</span><span class="p">)</span>  <span class="c1">// Dedução por dependentes - Tipo &quot;R&quot;</span>
+</pre></div>
+<div class="syntax" ><pre><span class="n">VR</span> <span class="o">:=</span> <span class="n">DS</span>  <span class="c1">// DS - Quantidade de dependentes do tipo S</span>
+</pre></div>
+</li>
+<li><p class="first">D[T][M,F][I] ou D([T],[M,F],[I])</p>
+<p>Realiza a contagem dos dependentes considerando o
+limite de idade quando o tipo for especificado. Se o modificador opcional [M,F] for
+usado será considerado apenas os dependentes de sexo correspondente. Se o modificador
+opcional [I] for utilizado será considerado apenas os dependentes <strong>'inválidos'</strong>.</p>
+</li>
+<li><p class="first">DD ou DD()</p>
+<p>Executa a contagem geral dos dependentes desconsiderando quaisquer informações.</p>
+</li>
+<li><p class="first">DD[T][M,F][I] ou DD([T],[M,F],[I])</p>
+<p>Realiza a contagem dos dependentes desconsiderando as idades e os limites do tipo.
+Se o modificador [T] for informado será considerado apenas os dependentes dos tipos [T].
+Se o modificador opcional [M,F] for usado será considerado apenas os dependentes
+do sexo correspondente. Se o modificador opcional [I] for utilizado será
+considerado apenas os dependentes <strong>&quot;inválidos&quot;</strong>.</p>
+</li>
+</ul>
+<p>Consulte fórmula pa</p>
+</div>
+<div class="section">
+<h3><a id="tabelas" name="tabelas">Tabelas</a></h3>
+<p>São duas as tabelas que dão suporte ao recurso de dependentes.</p>
+<ul>
+<li><p class="first">A tabela <strong>F_DEPENDENTE_TIPO</strong> armazena os tipos de dependentes, onde cada
+linha representa um tipo. Possue a sequinte estrutura:</p>
+<blockquote>
+<table border="1" class="docutils">
+<colgroup>
+<col width="54%" />
+<col width="46%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head"><p class="first last">Name Field</p>
+</th>
+<th class="head"><p class="first last">Type</p>
+</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><p class="first last"># IDTipo</p>
+</td>
+<td><p class="first last">Char(1)</p>
+</td>
+</tr>
+<tr><td><p class="first last">Descricao</p>
+</td>
+<td><p class="first last">Varchar(30)</p>
+</td>
+</tr>
+<tr><td><p class="first last">Limite_ano</p>
+</td>
+<td><p class="first last">SmallInt</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</li>
+<li><p class="first">A tabela <strong>F_DEPENDENTE</strong> armazena todos os dependentes do sistema, onde cada
+linha representa um dependente. Possue a sequinte estrutura:</p>
+<blockquote>
+<table border="1" class="docutils">
+<colgroup>
+<col width="57%" />
+<col width="43%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head"><p class="first last">Name Field</p>
+</th>
+<th class="head"><p class="first last">Type</p>
+</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><p class="first last"># IDEmpresa</p>
+</td>
+<td><p class="first last">Integer</p>
+</td>
+</tr>
+<tr><td><p class="first last"># IDFuncionario</p>
+</td>
+<td><p class="first last">Integer</p>
+</td>
+</tr>
+<tr><td><p class="first last"># Nome</p>
+</td>
+<td><p class="first last">Varchar(50)</p>
+</td>
+</tr>
+<tr><td><p class="first last">Nascimento</p>
+</td>
+<td><p class="first last">Date</p>
+</td>
+</tr>
+<tr><td><p class="first last">Tipo</p>
+</td>
+<td><p class="first last">Char(10)</p>
+</td>
+</tr>
+<tr><td><p class="first last">Invalido_x</p>
+</td>
+<td><p class="first last">SmallInt</p>
+</td>
+</tr>
+<tr><td><p class="first last">Sexo</p>
+</td>
+<td><p class="first last">Char(1)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</li>
+</ul>
+</div>
+
+  </div>
+</body>
+<!-- generated on: 2008-02-09 11:01:36.625000
+     file id: dependente -->
+</html>
